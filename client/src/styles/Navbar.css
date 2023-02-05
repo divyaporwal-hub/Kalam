@@ -1,0 +1,36 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap"); */
+.Navbar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: #a7c7e7;
+  background-color: #6098d1;
+  height: 100vh;
+  position: fixed;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  /* font-family: "Acme", sans-serif; */
+}
+
+.Navbar .navbarContainer {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+.Navbar .navbarContainer .menuItem {
+  color: white;
+  padding: 15px 10px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 140ms linear;
+}
+
+.Navbar .navbarContainer .menuItem:hover {
+  background-color: #355ca7c2;
+}
+
+.Navbar .navbarContainer .itemLink {
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
+}

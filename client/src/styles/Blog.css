@@ -1,0 +1,41 @@
+.Blog {
+  display: flex;
+  width: 100%;
+  background-color: #ededed;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.Blog .blogImage {
+  width: 30%;
+  display: flex;
+}
+
+.Blog .blogImage img {
+  width: 100%;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.Blog .blogDetails {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.Blog .blogInfo {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0;
+  font-size: 1.3rem;
+  color: #7b7878;
+}
+
+.Blog .blogInfo div {
+  margin: 0 5px;
+}
+
+.Blog .blogPreview {
+  margin: 0px 5px;
+  font-size: 1.3rem;
+}

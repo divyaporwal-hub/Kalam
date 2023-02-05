@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
+.Home {
+  display: flex;
+  flex-direction: column;
+  font-family: "Acme", sans-serif;
+}
+
+.Home .header {
+  display: flex;
+  align-items: center;
+  background: #191970;
+  justify-content: space-between;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 5px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.Home .header h1 {
+  color: white;
+  font-family: "Dancing Script", cursive;
+  /* padding-bottom: 0.5rem; */
+}
+
+.Home .header .userInfo img {
+  height: 40px;
+  width: 40px;
+}
+
+.Home .main {
+  display: flex;
+  margin-top: 54px;
+}
+
+.Home .main .left {
+  width: 20%;
+  position: fixed;
+  margin-top: 5px;
+}
+
+.Home .main .right {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  display: flex;
+}
+
+.Home .main .informationContainer {
+  width: 80%;
+}
+
+.Home .main .right .informationContainer .blogsContainer {
+  margin: 10px;
+}
+
+.Home .main .tagContainer {
+  width: 17%;
+  margin: 10px 5px 0px 0px;
+  border-radius: 10px;
+  position: fixed;
+  right: 0;
+}
