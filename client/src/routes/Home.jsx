@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import Blogs from "../components/Blogs";
 import { RiQuillPenLine } from "react-icons/ri";
 // import Login from "./Login";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../styles/Home.css";
 import Avatar from "../images/userAvatar.png";
@@ -16,7 +16,7 @@ const Home = () => {
       {/* Header will contain userprofile icons and name of the website */}
       <div className="header">
         <h1>
-          Kalam se  and this is a good thing...
+          Kalam se! right xyz someting  and thsis simply
           <RiQuillPenLine size={40} />
         </h1>
         <div className="userInfo">
