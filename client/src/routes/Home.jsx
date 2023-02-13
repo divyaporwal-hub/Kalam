@@ -4,6 +4,8 @@ import Intro from "../components/Intro";
 import Navbar from "../components/Navbar";
 import Blogs from "../components/Blogs";
 import { RiQuillPenLine } from "react-icons/ri";
+// import Login from "./Login";
+import {Link} from "react-router-dom";
 
 import "../styles/Home.css";
 import Avatar from "../images/userAvatar.png";
@@ -18,7 +20,11 @@ const Home = () => {
           <RiQuillPenLine size={40} />
         </h1>
         <div className="userInfo">
-          <img src={Avatar} alt="user" />
+          {/* <Link className="login" to {/login}> */}
+          <Link to={"/profile"}>
+            <img src={Avatar} alt="user" />
+          </Link>
+          {/* </Link> */}
         </div>
       </div>
       {/* main will contain entire page information */}

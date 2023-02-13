@@ -9,11 +9,11 @@ const Login = () => {
         <input type="text" placeholder="email/username" />
         <input type="password" placeholder="Password" />
         <Link to={"/"}>
-          <button type="submit"> Home </button>
+          <button type="submit"> Login </button>
         </Link>
       </form>
     </>
-  );
-};
+  );
+};
 
 export default Login;
