@@ -16,7 +16,7 @@ const Home = () => {
       {/* Header will contain userprofile icons and name of the website */}
       <div className="header">
         <h1>
-          Kalam se! right xyz someting  and thsis simply
+          Kalam se! right xyz someting  and thsis simply thisis cool
           <RiQuillPenLine size={40} />
         </h1>
         <div className="userInfo">
