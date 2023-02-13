@@ -1,0 +1,99 @@
+.Write {
+  margin-top: 59px;
+  display: flex;
+}
+
+.Write .right {
+  width: calc(80% - 200px);
+  margin-left: 25%;
+  background-color: #f1f1f1;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  margin-top: 60px;
+  padding: 10px;
+  height: 550px;
+}
+
+.Write .right .heading,
+.Write .right .btn-cnt {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Write .right .btn-cnt {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 35px;
+}
+
+.ql-container {
+  border: none !important;
+}
+
+.ql-toolbar {
+  border-radius: 38px !important;
+  box-shadow: rgb(0 0 0 / 15%) 0px 3px 3px 0px;
+}
+
+.Write .right .blogHeading {
+  font-size: 1.5rem;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  margin-bottom: 20px;
+  border: none;
+  resize: none;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+
+.Write .right .editorContainer div {
+  width: 100% !important;
+}
+
+.Write .right .mainEditor {
+  width: 80%;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e1e1e1;
+}
+
+.Write .right div input {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 5px;
+  transition: all 150ms linear;
+}
+
+.Write .right div input:focus {
+  border-bottom: 2px solid grey;
+}
+
+.Write .right div .textEditor {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: lightgray;
+  padding: 10px;
+  overflow: hidden;
+  font-size: 1.3rem;
+  padding-bottom: 5px;
+  margin-top: 20px;
+  transition: all 150ms linear;
+}

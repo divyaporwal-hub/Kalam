@@ -1,54 +1,41 @@
 import React from "react";
 import Blog from "./Blog";
-
+import { BASE_URL } from "../helper/ref";
+import axios from "axios";
 import BlogImage from "../images/blog1.jpg";
+import { useState, useEffect } from "react";
 
 import "../styles/Blogs.css";
 
 const Blogs = () => {
-  const blogs = [
-    {
-      blogImage: BlogImage,
-      heading: "Blog 1",
-      uploadTime: "10 Jan 2023",
-      authorName: "abhinav",
-      minuteRead: "5",
-      blogPreview:
-        "The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as...",
-    },
-    {
-      blogImage: BlogImage,
-      heading: "Blog 2",
-      uploadTime: "12 Feb 2023",
-      authorName: "shikha",
-      minuteRead: "2",
-      blogPreview: "blog preview 2",
-    },
-    {
-      blogImage: BlogImage,
-      heading: "Blog 3",
-      uploadTime: "28 Sept 2013",
-      authorName: "divya",
-      minuteRead: "10",
-      blogPreview: "blog preview 3",
-    },
-  ];
+  const [allBlogs, setAllBlogs] = useState([]);
+
+  useEffect(() => {
+    // make your API call here...
+    axios
+      .get(`${BASE_URL}/blog/getblogs`)
+      .then((response) => {
+        setAllBlogs(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className="Blogs">
       <h1> All Blogs </h1>
       <div className="allBlogs">
-        {blogs.map((value, index) => {
+        {allBlogs.map((value, index) => {
           return (
             <Blog
-              blogImage={value.blogImage}
-              heading={value.heading}
-              uploadTime={value.uploadTime}
-              authorName={value.authorName}
+              blogImage={BlogImage}
+              heading={value.blogHeading}
+              uploadTime={value.blogSaveTime}
+              authorName={value.userName}
               minuteRead={value.minuteRead}
-              blogPreview={value.blogPreview}
+              blogPreview={value.blogText}
               key={index}
-              s
             />
           );
         })}

@@ -2,35 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const data = [
-  {
-    label: "Home",
-    to: "/",
-  },
-  {
-    label: "Write",
-    to: "/write",
-  },
-  {
-    label: "Get Started",
-    to: "/get-started",
-  },
-  {
-    label: "Profile",
-    to: "/profile",
-  },
-];
 const Navbar = () => {
+  const localData = JSON.parse(localStorage.getItem("userInfo"));
   return (
     <nav className="Navbar">
       <ul className="navbarContainer">
-        {data.map((item, key) => (
-          <li key={key} className="menuItem">
-            <Link className="itemLink" to={item.to}>
-              {item.label}
+        <Link className="itemLink" to={"/"}>
+          <li className="menuItem">Home</li>
+        </Link>
+        <Link className="itemLink" to={"/write"}>
+          <li className="menuItem">Write</li>
+        </Link>
+
+        {localData === null ? (
+          <>
+            <Link className="itemLink" to={"/login"}>
+              <li className="menuItem">Login</li>
             </Link>
-          </li>
-        ))}
+            <Link className="itemLink" to={"/register"}>
+              <li className="menuItem">Sign Up</li>
+            </Link>
+          </>
+        ) : (
+          <Link className="itemLink" to={"/logout"}>
+            <li className="menuItem">Logout</li>
+          </Link>
+        )}
       </ul>
     </nav>
   );

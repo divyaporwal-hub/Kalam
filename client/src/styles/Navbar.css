@@ -17,10 +17,13 @@
   flex-direction: column;
   list-style-type: none;
 }
+
 .Navbar .navbarContainer .menuItem {
-  color: white;
   padding: 15px 10px;
   font-size: 1.4rem;
+}
+.Navbar .navbarContainer .menuItem .itemLink {
+  color: white;
   cursor: pointer;
   transition: all 140ms linear;
 }

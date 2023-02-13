@@ -1,4 +1,11 @@
 .allBlogs {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 30px 20px;
+  justify-content: space-between;
+}
+
+.Blogs h1 {
+  text-align: center;
 }

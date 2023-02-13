@@ -1,10 +1,17 @@
-import React from "./react";
+import React from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-
-const Home = () =>
-{
-    return (
-        <h1>LOgOut page</h1>
-    )
-}
+const Logout = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.setItem("userInfo", null);
+    navigate("/login");
+  }, []);
+  return (
+    <>
+      <h1>logout page</h1>
+    </>
+  );
+};
 export default Logout;

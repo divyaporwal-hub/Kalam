@@ -1,34 +1,43 @@
 .Blog {
   display: flex;
-  width: 100%;
-  background-color: #ededed;
-  margin: 10px 0;
+  width: 45%;
+  height: 400px;
+  /* background-color: #ededed; */
+  margin: 20px 0;
+  padding-bottom: 10px;
   border-radius: 5px;
+  flex-direction: column;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .Blog .blogImage {
-  width: 30%;
+  width: 100%;
+  height: 45%;
   display: flex;
 }
 
 .Blog .blogImage img {
   width: 100%;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px;
 }
 
 .Blog .blogDetails {
   display: flex;
-  width: 70%;
+  width: 100%;
   flex-direction: column;
   padding: 10px;
+  word-wrap: break-word;
 }
 
 .Blog .blogInfo {
   display: flex;
   flex-direction: row;
   margin: 10px 0;
-  font-size: 1.3rem;
-  color: #7b7878;
+  font-size: 1.1rem;
+  color: #7b7878c9;
+  width: 100%;
 }
 
 .Blog .blogInfo div {
@@ -37,5 +46,5 @@
 
 .Blog .blogPreview {
   margin: 0px 5px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }

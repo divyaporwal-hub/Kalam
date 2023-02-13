@@ -1,4 +1,14 @@
-.main__container
-{
-    
+.Profile {
+  background-color: #00082b;
+  margin-top: 59px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile .userSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

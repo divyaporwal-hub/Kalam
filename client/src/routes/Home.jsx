@@ -3,30 +3,17 @@ import Tags from "../components/Tags";
 import Intro from "../components/Intro";
 import Navbar from "../components/Navbar";
 import Blogs from "../components/Blogs";
-import { RiQuillPenLine } from "react-icons/ri";
+import Header from "./Header";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 // import Login from "./Login";
-import { Link } from "react-router-dom";
-
 import "../styles/Home.css";
-import Avatar from "../images/userAvatar.png";
 
 const Home = () => {
   return (
     <div className="Home">
       {/* Header will contain userprofile icons and name of the website */}
-      <div className="header">
-        <h1>
-          Kalam se! right xyz someting  and thsis simply thisis cool
-          <RiQuillPenLine size={40} />
-        </h1>
-        <div className="userInfo">
-          {/* <Link className="login" to {/login}> */}
-          <Link to={"/profile"}>
-            <img src={Avatar} alt="user" />
-          </Link>
-          {/* </Link> */}
-        </div>
-      </div>
+      <Header />
       {/* main will contain entire page information */}
       <div className="main">
         {/* Left seciton will contain the Navbar */}

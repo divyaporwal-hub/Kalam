@@ -1,33 +1,46 @@
-import React from "react";
-import Avatar from "../images/userAvatar.png";
-import { BiUpvote } from "react-icons/bi";
-import { BiDownvote } from "react-icons/bi";
-
-// everything fine...
-// link it to that page
-// okay, mtlb icon se? HOME PAGE? (thik hai)
-// avatar se link karo profile page ko home par jo avatar h
-// abhi link nhi hua I think yaha se navigate use katna padega kya
-// ho gya...
+import React, { useState, useEffect } from "react";
+import "../styles/Profile.css";
+import Header from "./Header";
+import User from "../components/User";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../helper/ref";
 
 const Profile = () => {
+  const { userName } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/user/userInfo`, {
+        params: {
+          userName: userName,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
   return (
     <>
-      <div className="main__container">
-        <div className="avatar">
-          <img src={Avatar} alt="user" />
-        </div>
-        <h1>Divya Porwal</h1>
-        <h3> Biography </h3>
-        <BiUpvote size={30} color={"blue"} />
-        <br />
-        <h4>40</h4>
-        <br />
-        <BiDownvote size={30} color={"blue"} />
-        <br />
-        <h4>40</h4>
-        <h2>Number of Blogs : 5</h2>
-        <h2> Most Liked Blog : React Projects </h2>
+      <Header />
+      <div className="Profile">
+        <section className="userSection">
+          <User
+            fullname={"Shikha Pandey"}
+            username={"shikha@2803"}
+            userBio={
+              "lorem is not just a normal snippet—it’s actually a generator. Every time you expand it, it will generate a 30-words dummy text, splitted into a few sentences."
+            }
+            location={"India"}
+            postCount={10}
+            followers={78}
+          />
+        </section>
+        <section className="blogSection">BLOGS</section>
       </div>
     </>
   );

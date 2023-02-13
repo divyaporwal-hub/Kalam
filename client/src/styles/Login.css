@@ -1,0 +1,53 @@
+.formContainer {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  background: url("https://img.freepik.com/premium-photo/notebook-with-black-sheets-white-spiral-binder-black-pen-dark-background-top-view-copy-space-business-education-minimal-concept_259229-739.jpg")
+    no-repeat center center fixed;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+
+  /* filter: blur(8px);
+  -webkit-filter: blur(8px);
+  z-index: -1; */
+}
+
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-top: 10vh;
+  background-color: white;
+}
+
+.formContainer form .formHeading {
+  margin: 10px 0;
+}
+
+.formContainer form input {
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  padding: 5px 10px;
+  margin: 10px 0;
+  background-color: #80808033;
+}
+
+.formContainer form a {
+  text-decoration: none;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.formContainer form a button {
+  width: 100%;
+  margin: 10px 0;
+}
