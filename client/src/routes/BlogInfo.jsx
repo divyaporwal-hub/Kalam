@@ -7,7 +7,7 @@ const BlogInfo = () => {
 
   return (
     <div>
-      blog is: {id}
+      My blog is: {id}
     </div>
   );
 }
