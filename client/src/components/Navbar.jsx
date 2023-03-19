@@ -10,7 +10,7 @@ const Navbar = () => {
         <Link className="itemLink" to={"/"}>
           <li className="menuItem">Home</li>
         </Link>
-        <Link className="itemLink" to={"/write"}>
+        <Link className="itemLink" to={localData ? "/write" : "/login"}>
           <li className="menuItem">Write</li>
         </Link>
 

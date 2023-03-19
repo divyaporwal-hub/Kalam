@@ -19,7 +19,7 @@ const Header = () => {
         </Link>
         <div className="userInfo">
           {/* <Link className="login" to {/login}> */}
-          <NavLink to={`/profile/${localData.userName}`}>
+          <NavLink to={localData ? `/profile/${localData.userName}` : "/login"}>
             <img src={Avatar} alt="user" />
           </NavLink>
           {/* </Link> */}

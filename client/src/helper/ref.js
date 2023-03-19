@@ -1,1 +1,1 @@
-export const BASE_URL = "https://7nvyfh-8000.preview.csb.app";
+export const BASE_URL = "http://localhost:8000";

@@ -9,16 +9,19 @@ import "../styles/Blogs.css";
 
 const Blogs = () => {
   const [allBlogs, setAllBlogs] = useState([]);
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     // make your API call here...
     axios
       .get(`${BASE_URL}/blog/getblogs`)
       .then((response) => {
+        console.log("Blogs response: ", response);
         setAllBlogs(response.data);
       })
       .catch((err) => {
-        console.log(err);
+        setFetchError(true);
+        console.log("Blogs Error: ", err);
       });
   }, []);
 
@@ -26,19 +29,23 @@ const Blogs = () => {
     <div className="Blogs">
       <h1> All Blogs </h1>
       <div className="allBlogs">
-        {allBlogs.map((value, index) => {
-          return (
-            <Blog
-              blogImage={BlogImage}
-              heading={value.blogHeading}
-              uploadTime={value.blogSaveTime}
-              authorName={value.userName}
-              minuteRead={value.minuteRead}
-              blogPreview={value.blogText}
-              key={index}
-            />
-          );
-        })}
+        {fetchError && allBlogs ? (
+          <div>Please wait, Trying to fetch the blogs...</div>
+        ) : (
+          allBlogs.map((value, index) => {
+            return (
+              <Blog
+                blogImage={BlogImage}
+                heading={value.blogHeading}
+                uploadTime={value.blogSaveTime}
+                authorName={value.userName}
+                minuteRead={value.minuteRead}
+                blogPreview={value.blogText}
+                key={index}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

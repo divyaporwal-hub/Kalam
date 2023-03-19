@@ -20,10 +20,8 @@ const Login = () => {
     })
       //email/password verification
       .then((response) => {
-        if (response.status === 200) {
+        if (response.data.length) {
           // save information in localstorage before moving to home page
-          
-          console.log(responsee);
           localStorage.setItem(
             "userInfo",
             JSON.stringify({
@@ -34,7 +32,7 @@ const Login = () => {
           );
 
           // navigating to home page
-          navigate("/");
+            navigate("/");
         } else {
           alert("Email/Password is incorrect");
         }

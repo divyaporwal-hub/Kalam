@@ -28,7 +28,6 @@ router.post("/saveUser", async (req, res) => {
     await user.save();
     res.send("OK");
   } catch (err) {
-    console.log(err);
     res.send("NO");
   }
 });
@@ -42,14 +41,7 @@ router.post("/login", (req, res) => {
   UserModel.find({ userEmail: userEmail, userPassword: userPassword })
     .then((result) => {
       // ok response (user found)
-
-      if (result.length !== 0) {
-        res.status(200).send(result);
-      }
-      // user not found
-      else {
-        res.send("NO");
-      }
+      res.status(200).send(result); 
     })
     .catch((err) => {
       res.send("ERR");
@@ -66,13 +58,16 @@ router.post("/userInfo", (req, res) => {
   });
 });
 
-router.get("/userInfo", (req, res) => {
+router.get("/userInfo", async (req, res) => {
   let userName = req.params.userName;
 
-  UserModel.find({ userName: userName }, (err, result) => {
-    if (err) res.send(err);
-    res.send(result);
-  });
+  try{
+    const blogs = await UserModel.find({ userName: userName });
+    res.send(blogs);
+  }
+  catch(err){
+    console.log(err);
+  }
 });
 
 // export this router

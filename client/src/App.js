@@ -22,10 +22,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
           <Route path="/logout" element={<Logout />} />
-
-          {/* <Route path="/navbar" element={<Navbar />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/register" element={<Register />} /> */}
         </Routes>
       </Router>
     </>
