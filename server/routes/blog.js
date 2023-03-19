@@ -45,7 +45,7 @@ router.get("/getblogs", (req, res) => {
 // to send information about specific blog by its ID
 
 router.get("/getBlogInfo" ,(req, res) => {
-  const blogId = req.params.id;
+  const blogId = req.query.id;
 
   BlogModel.find({_id: blogId})
     .then((response) => {
