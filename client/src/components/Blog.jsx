@@ -22,7 +22,7 @@ const Blog = ({
           <div>{uploadTime}</div> • <div>{authorName}</div> •
           <div>{minuteRead}</div>
         </div>
-        <div className="blogPreview">{blogPreview.slice(150,0) + "..."}</div>
+        <div className="blogPreview">{blogPreview.slice(0,150) + "..."}</div>
       </div>
     </div>
   );
