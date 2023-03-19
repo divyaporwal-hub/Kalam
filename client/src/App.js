@@ -8,6 +8,7 @@ import ForgetPass from "./routes/ForgetPass";
 import Register from "./routes/Register";
 import Write from "./routes/Write";
 import Logout from "./routes/Logout";
+import BlogInfo from "./routes/BlogInfo"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/bloginfo/:id" element={<BlogInfo/>}/>
         </Routes>
       </Router>
     </>

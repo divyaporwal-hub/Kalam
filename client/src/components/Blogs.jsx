@@ -41,6 +41,7 @@ const Blogs = () => {
                 authorName={value.userName}
                 minuteRead={value.minuteRead}
                 blogPreview={value.blogText}
+                blogId = {value._id}
                 key={index}
               />
             );

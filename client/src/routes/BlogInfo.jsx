@@ -1,26 +1,13 @@
-import React from "react"
+import React from "react";
+import {useParams} from "react-router-dom"
 
-const BlogInfo = ({
-  blogImage,
-  heading,
-  uploadTime,
-  authorName,
-  minuteRead,
-  blogPreview,
-}) => {
+const BlogInfo = () => {
+
+  const {id} = useParams();
+
   return (
-    <div className="Blog">
-      <div className="blogImage">
-        <img src={blogImage} alt="blogImage" />
-      </div>
-      <div className="blogDetails">
-        <h1>{heading}</h1>
-        <div className="blogInfo">
-          <div>{uploadTime}</div> • <div>{authorName}</div> •
-          <div>{minuteRead}</div>
-        </div>
-        <div className="blogPreview">{blogPreview.slice(0, 150) + "..."}</div>
-      </div>
+    <div>
+      blog is: {id}
     </div>
   );
 }
