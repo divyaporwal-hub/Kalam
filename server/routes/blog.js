@@ -30,6 +30,7 @@ router.post("/saveBlog", async (req, res) => {
   }
 });
 
+// to show all the blogs
 router.get("/getblogs", (req, res) => {
   BlogModel.find({})
     .then((response) => {
@@ -39,5 +40,21 @@ router.get("/getblogs", (req, res) => {
       res.send(err);
     });
 });
+
+
+// to send information about specific blog by its ID
+
+router.get("/getBlogInfo" ,(req, res) => {
+  const blogId = req.params.id;
+
+  BlogModel.find({_id: blogId})
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+
+})
 
 module.exports = router;

@@ -5,11 +5,25 @@ const BlogInfo = () => {
 
   const {id} = useParams();
 
+  useEffect(() => {
+    axios.get(`${BASE_URL}/blog/`, {
+      params: {
+        id: id
+      }
+    }).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
+
+
   return (
     <div>
-      My blog is: {id}
+      <h1></h1>
     </div>
   );
 }
+
 export default BlogInfo;
 
