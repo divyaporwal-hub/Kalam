@@ -4,6 +4,7 @@ import { BASE_URL } from "../helper/ref";
 import axios from "axios";
 import BlogImage from "../images/blog1.jpg";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../styles/Blogs.css";
 
