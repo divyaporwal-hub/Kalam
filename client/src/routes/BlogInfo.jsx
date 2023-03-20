@@ -25,8 +25,7 @@ const BlogInfo = () => {
 
   return (
     <div>
-      <h1>{blogData.blogHeading}</h1>
-      <p>{blogData.blogText}</p>
+      Hello
     </div>
   );
 }
