@@ -7,7 +7,7 @@ const BlogInfo = () => {
 
   return (
     <div>
-      My blog is: {id}
+      follow my blogs on this id: {id}
     </div>
   );
 }
