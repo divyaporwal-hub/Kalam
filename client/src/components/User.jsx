@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Axios from "axios";
 import Avatar from "../images/userAvatar.png";
+
 
 import "../styles/User.css";
 import { Link } from "react-router-dom";
