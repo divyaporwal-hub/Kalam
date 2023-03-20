@@ -25,7 +25,10 @@ const BlogInfo = () => {
 
   return (
     <div>
-      Hello
+      hello
+
+
+      ok
     </div>
   );
 }
