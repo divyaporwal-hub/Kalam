@@ -3,7 +3,7 @@ import Tags from "../components/Tags";
 import Intro from "../components/Intro";
 import Navbar from "../components/Navbar";
 import Blogs from "../components/Blogs";
-import Header from "./Header";
+import Header from "../components/Header";
 import "../styles/Home.css";
 
 const Home = () => {

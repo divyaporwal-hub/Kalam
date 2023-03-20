@@ -1,0 +1,14 @@
+.BlogInfoContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+.BlogInfoContainer .left{
+    width: 80%;
+    background-color: grey;
+}
+
+.BlogInfoContainer .right{
+    width: 20%;
+}
