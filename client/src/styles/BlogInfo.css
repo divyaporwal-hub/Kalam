@@ -1,0 +1,19 @@
+.BlogInfoContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+
+.BlogInfoContainer .left{
+    width: 80%;
+}
+
+.BlogInfoContainer .left .blogDetailContainer{
+    width: 80%;
+    margin: 40px auto;
+}
+
+
+.BlogInfoContainer .right{
+    width: 20%;
+}

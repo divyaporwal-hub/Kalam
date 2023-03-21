@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom"
+import parse from "html-react-parser";
 import "../styles/Blog.css";
 
 const Blog = ({
@@ -12,6 +12,9 @@ const Blog = ({
   blogPreview,
   blogId
 }) => {
+
+  // console.log(parse(blogPreview))
+
   return (
     <div className="Blog" >
       <NavLink to={`/bloginfo/${blogId}`}>
@@ -24,7 +27,7 @@ const Blog = ({
             <div>{uploadTime}</div> • <div>{authorName}</div> •
             <div>{minuteRead}</div>
           </div>
-          <div className="blogPreview">{blogPreview.slice(0, 150) + "..."}</div>
+          <div className="blogPreview">{(blogPreview.slice(0, 150)) + "..."}</div>
         </div>
       </NavLink>
     </div>
