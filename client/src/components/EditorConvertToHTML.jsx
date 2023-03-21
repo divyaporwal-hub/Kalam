@@ -5,7 +5,7 @@ import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css"; //Snow theme
 
 const EditorConvertToHTML = ({ blogText, setBlogText }) => {
-  const placeholder = "Write your blog here......";
+  const placeholder = "Write your blog here...";
   const { quill, quillRef } = useQuill({ placeholder });
 
   React.useEffect(() => {
@@ -13,7 +13,7 @@ const EditorConvertToHTML = ({ blogText, setBlogText }) => {
       quill.on("text-change", (delta, oldDelta, source) => {
         // console.log("SRC: ", source);
         // console.log("OLD: ", oldDelta);
-        setBlogText(quill.getText());
+        setBlogText(quill.root.innerHTML);
         // console.log(quill.getText()); // Get text only
         // console.log(quill.getContents()); // Get delta contents
         // console.log(quill.root.innerHTML); // Get innerHTML using quill

@@ -1,11 +1,14 @@
-import React from "react"
+import React from "react";
+import BlogPoster from "../../images/blog1.jpg";
 
 const BlogImage = () => {
-    return (
-        <>
-            <h1>BlogImage</h1>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="BlogMainImage">
+        <img src={BlogPoster} alt="blogposter" />
+      </div>
+    </>
+  );
+};
 
 export default BlogImage;

@@ -18,8 +18,8 @@ const User = (props) => {
   return (
     <div className="profileContainer">
       <img src={Avatar} alt="user" />
-      <h2 className="fullname">{props.fullname}</h2>
-      <p className="username">{props.username}</p>
+      <h2 className="fullname">{props.fullName}</h2>
+      <p className="username">{props.userName}</p>
       <p className="bio">{props.userBio}</p>
       <div className="secondaryInfo">
         <p className="location">{props.location} </p>

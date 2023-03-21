@@ -1,17 +1,21 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
+import "../../styles/BlogUser.css";
 
-const BlogUser = () => {
+const BlogUser = ({ userName, blogSaveTime, minuteRead }) => {
   return (
     <>
       <div className="BlogUserContainer">
         <div className="imageContainer">
-          <img src="" alt="blog" />
+          <NavLink to={`/profile/${userName}`}><img
+            src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
+            alt="blog"
+          /></NavLink>
         </div>
         <div className="userInfoContainer">
-          <div className="blogPrimaryInfo">Divya Porwal</div>
+          <div className="blogPrimaryInfo"><NavLink to={`/profile/${userName}`}>{userName}</NavLink></div>
           <div className="blogSecondaryInfo">
-            <div>{"Sep 27, 2022"}</div> •<div>{"authorName"}</div> •
-            <div>{"2 min rea"}</div>
+            <div>{blogSaveTime}</div> ・<div>{minuteRead}</div>
           </div>
         </div>
       </div>

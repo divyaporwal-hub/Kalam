@@ -59,8 +59,8 @@ router.post("/userInfo", (req, res) => {
 });
 
 router.get("/userInfo", async (req, res) => {
-  let userName = req.params.userName;
-
+  let userName = req.query.userName;
+  console.log(userName);
   try{
     const blogs = await UserModel.find({ userName: userName });
     res.send(blogs);

@@ -26,6 +26,7 @@ const BlogInfo = () => {
         },
       })
       .then((response) => {
+        console.log(response.data[0]);
         setBlogData(response.data[0]);
       })
       .catch((err) => {
@@ -38,11 +39,18 @@ const BlogInfo = () => {
       <Header />
       <div className="BlogInfoContainer">
         <div className="left">
-          <BlogUser />
-          <BlogImage />
-          <BlogHeading />
-          <BlogContent />
-          <BlogFooter />
+          <div className="blogDetailContainer">
+            <BlogUser
+              userName={blogData.userName}
+              blogSaveTime={blogData.blogSaveTime}
+              minuteRead={blogData.minuteRead}
+            />
+            <BlogImage />
+            <BlogHeading blogHeading={blogData.blogHeading} />
+            {/* <BlogTags /> */}
+            <BlogContent blogText={blogData.blogText} />
+            <BlogFooter />
+          </div>
         </div>
         <div className="right">nothing</div>
       </div>
