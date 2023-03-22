@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {BASE_URL} from "../helper/ref.js";
 
 import "../styles/Login.css";
 
@@ -15,7 +16,7 @@ const Register = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    Axios.post("https://7nvyfh-8000.preview.csb.app/user/saveUser", {
+    Axios.post(`${BASE_URL}/user/saveUser`, {
       userEmail: userEmail,
       userName: userName,
       fullName: fullName,

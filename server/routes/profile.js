@@ -1,73 +1,44 @@
 const express = require("express");
 const router = express.Router();
 
+
 // import the Schema
-const UserModel = require("../models/Profile.js");
+const ProfileModel = require("../models/Profile.js");
+router.put("/updateProfile", async (req,res)=>{
+ const fullName=req.body.fullName;
+ const userName=req.body.userName;
+ const newUserName=req.body.newUserName;
+ const userBio=req.body.userBio;
+ const userCountry=req.body.userCountry;
+ const userFacebook=req.body.userSocialLinks;
+ const userInstagram=req.body.userInstagram;
+ const userGithub=req.body.userGithub;
+  
 
-// post request to save the user registration in the DB
-router.post("/saveUser", async (req, res) => {
-  // store the values from front-end
-  const userName = req.body.userName;
-  const fullName = req.body.fullName;
-  const userPassword = req.body.userPassword;
-  const userEmail = req.body.userEmail;
-
-  console.log(userName, fullName, userPassword, userEmail);
-
-  // make a object-model to save the data
-  const user = new UserModel({
-    userName: userName,
-    fullName: fullName,
-    userEmail: userEmail,
-    userPassword: userPassword,
-    userOtp: "",
-  });
-
-  // save the data
-  try {
-    await user.save();
-    res.send("OK");
-  } catch (err) {
-    console.log(err);
-    res.send("NO");
-  }
-});
-
-//post request for loin....
-
-router.post("/login", (req, res) => {
-  const userEmail = req.body.userEmail;
-  const userPassword = req.body.userPassword;
-
-  UserModel.find({ userEmail: userEmail, userPassword: userPassword })
-    .then((result) => {
-      // ok response (user found)
-
-      if (result.length !== 0) {
-        res.status(200).send(result);
-      }
-      // user not found
-      else {
-        res.send("NO");
-      }
-    })
-    .catch((err) => {
-      res.send("ERR");
-      console.log(err);
-    });
-});
+ // creating a new object to store the data
+ /*const updatedProfile=new ProfileModel({
+  fullName:fullName,
+  userName: userName,
+  userBio: userBio,
+  userCountry:userCountry,
+  userFacebook:userFacebook,
+  userInstagram: userInstagram,
+  userGithub: userGithub,
+})*/
 
 
+ProfileModel.find({userName: userName}, (err, result) => {
+  if(err) res.send("err");
+ result[0].fullName = fullName;
+ result[0].userName = newUserName;
+ result[0].userBio = userBio;
+ result[0].userCountry = userCountry;
 
-
-router.post("/userInfo", (req, res) => {
-  let userEmail = req.body.userEmail;
-
-  UserModel.find({ userEmail: userEmail }, (err, result) => {
-    if (err) res.send(err);
-    res.send(result);
-  });
-});
-
+ // ab hmko social links ko array me convert krke update krna hai...
+ let socialMedialinks=[userFacebook, userInstagram, userGithub];
+ result[0].userSocialLinks=socialMedialinks;
+})
+result[0].save();
+})
 // export this router
 module.exports = router;

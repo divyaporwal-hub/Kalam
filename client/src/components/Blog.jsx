@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom"
-import parse from "html-react-parser";
 import "../styles/Blog.css";
 
 const Blog = ({

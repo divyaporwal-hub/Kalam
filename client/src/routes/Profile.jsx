@@ -35,12 +35,11 @@ const Profile = () => {
           <User
             fullName={userData.fullName}
             userName={userData.userName}
-            userBio={
-              "lorem is not just a normal snippet—it’s actually a generator. Every time you expand it, it will generate a 30-words dummy text, splitted into a few sentences."
-            }
-            location={"India"}
-            postCount={10}
-            followers={78}
+            userBio={userData.userBio}
+            location={userData.userCountry}
+            postCount={userData.userPostcount}
+            followers={userData.userFollower}
+            userSocialLinks={userData.userSocialLinks}
           />
         </section>
         <section className="blogSection">BLOGS</section>
