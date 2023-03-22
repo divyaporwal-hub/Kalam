@@ -1,0 +1,59 @@
+.EditProfile {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.EditProfile form {
+    width: 60%;
+}
+
+.EditProfile form .formGroup{
+    display: flex;
+    margin: 20px 0;
+}
+
+.EditProfile form .formGroup label{
+    width: 20%;
+    text-align: right;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.EditProfile form .formGroup input{
+    width: 80%;
+    font-size: 1.4rem;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 30px;
+}
+
+/* 
+.EditProfile form .formGroup input::placeholder{
+    font-weight: 100;
+} */
+
+.EditProfile form .formGroup textarea{
+    width: 80%;
+    font-size: 1.4rem;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin-left: 30px;
+}
+
+.EditProfile form .formGroup #countryName{
+    /* width: 100%; */
+    font-size: 1.4rem;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
