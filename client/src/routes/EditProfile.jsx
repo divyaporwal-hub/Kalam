@@ -23,8 +23,8 @@ function Editprofile() {
     const [value, setValue] = useState('')
     const options = useMemo(() => countryList().getData(), [])
 
-    const changeHandler = value => {
-        setCountry(value)
+    const changeHandler = country => {
+        setCountry(country)
     }
 
     function handleSubmit(e) {
@@ -37,7 +37,7 @@ function Editprofile() {
             <div className="EditProfile">
                 <form onSubmit={handleSubmit}>
                 <div className="formGroup">
-                        <label htmlFor="userName">Upload Image</label>
+                        <label htmlFor="userName">Profile</label>
                         <input
                             type="file"
                             id="userName"
@@ -69,14 +69,14 @@ function Editprofile() {
                     </div>
                     <div className="formGroup">
                         <label htmlFor="countryName">Country</label>
-                        <Select options={options} value={value} onChange={changeHandler}  id="countryName"/>
+                        <Select options={options} value={country} onChange={changeHandler}  id="countryName"/>
                     </div>
                     <div className="formGroup">
                         <label htmlFor="facebook"></label>
                         <input
                             type="text"
                             id="facebook"
-                            placeholder="your facebook url"
+                            placeholder="facebook url"
                             onChange={(e) => setFacebook(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -84,7 +84,7 @@ function Editprofile() {
                         <input
                             type="text"
                             id="Instagram"
-                            placeholder="your Instagram url"
+                            placeholder="instagram url"
                             onChange={(e) => setInstagram(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -92,8 +92,16 @@ function Editprofile() {
                         <input
                             type="text"
                             id="Github"
-                            placeholder="your Github url"
+                            placeholder="github url"
                             onChange={(e) => setGithub(e.target.value)}></input>
+                    </div>
+
+                    <div className="formGroup">
+                        <label htmlFor=""></label>
+                        <input
+                            type="submit"
+                            id="submit"
+                            value={"Update"}></input>
                     </div>
                 </form>
             </div>
