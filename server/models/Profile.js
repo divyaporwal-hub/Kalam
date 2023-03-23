@@ -16,7 +16,7 @@ const UserProfile = new mongoose.Schema({
         type: Number,
     },
     userCountry:{
-        type:String,
+        type:Object,
     },
     userFollower:{
         type: Number,

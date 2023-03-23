@@ -4,6 +4,9 @@ const router = express.Router();
 
 // import the Schema
 const ProfileModel = require("../models/Profile.js");
+const UserModel = require("../models/User.js");
+
+
 router.put("/updateProfile", async (req, res) => {
   const fullName = req.body.fullName;
   const userName = req.body.userName;
@@ -14,13 +17,9 @@ router.put("/updateProfile", async (req, res) => {
   const userInstagram = req.body.userInstagram;
   const userGithub = req.body.userGithub;
 
-
-  console.log(userName, newUserName)
-
   const socialMediaLinks = [userFacebook, userInstagram, userGithub];
   try {
     let result = await ProfileModel.find({ userName: userName });
-    console.log(result)
     if (result.length) {
       console.log("exist");
       result[0].fullName = fullName;
@@ -30,9 +29,16 @@ router.put("/updateProfile", async (req, res) => {
 
       result[0].userSocialLinks = socialMediaLinks;
       await result[0].save();
+    // update user name and fullname of user model
+      if(userName !== newUserName) {
+        let userResult = await UserModel.find({userName: userName})
+        userResult[0].userName = newUserName;
+        userResult[0].fullName = fullName;
+        await userResult[0].save();
+      }
+
       res.send("user updated");
     } else {
-      console.log("else part...")
       const updatedProfile = new ProfileModel({
         fullName: fullName,
         userName: newUserName,
@@ -40,7 +46,14 @@ router.put("/updateProfile", async (req, res) => {
         userCountry: userCountry,
         userSocialLinks: socialMediaLinks,
       })
-      console.log("just phle")
+      // update user name and fullname of user model
+      if(userName !== newUserName) {
+        let userResult = await UserModel.find({userName: userName})
+        userResult[0].userName = newUserName;
+        userResult[0].fullName = fullName;
+        await userResult[0].save();
+      }
+
       updatedProfile.save();
       // res.send("user added")
     }
@@ -48,6 +61,13 @@ router.put("/updateProfile", async (req, res) => {
     console.log("kuchh error hai...")
   }
 
+})
+
+//get request for display the latest information of user profile 
+router.get("/getProfile",async (req,res)=>{
+  const userName=req.query.userName;
+ const result= await ProfileModel.find({userName:userName});
+ res.send(result);
 })
 // export this router
 module.exports = router;

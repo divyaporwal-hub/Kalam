@@ -56,3 +56,7 @@
 .profileContainer .socialMedia a:hover {
   color: white;
 }
+
+.profileContainer .editButtonLink{
+  margin-top: 10px;
+}

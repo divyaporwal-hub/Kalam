@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo,useEffect } from 'react'
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
 import { BASE_URL } from "../helper/ref.js";
@@ -7,6 +7,7 @@ import isUrl from "is-url";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
+
 import "../styles/EditProfile.css"
 
 
@@ -14,7 +15,7 @@ function Editprofile() {
     const userData= JSON.parse(localStorage.getItem("userInfo"));
 
     const [newUserName, setNewuserName] = useState(userData.userName);
-    const [fullName, setFullName] = useState("");
+    const [fullName, setFullName] = useState(userData.fullName);
     const [userBio, setUserBio] = useState("");
     const [facebook, setFacebook] = useState("");
     const [instagram, setInstagram] = useState("");
@@ -26,7 +27,6 @@ function Editprofile() {
     const options = useMemo(() => countryList().getData(), [])
 
     const changeHandler = country => {
-        console.log(country)
         setCountry(country)
     }
 
@@ -39,19 +39,47 @@ function Editprofile() {
           newUserName: newUserName,
           fullName:fullName,
           userBio:userBio,
-          userCountry:country.label,
+          userCountry:country,
           userInstagram:instagram,
           userFacebook:facebook,
           userGithub:github,
         })
         .then((response)=>{
-            console.log(response.data);
+            // update the username and ufullname from localstorage
+            let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+            userInfo.userName = newUserName;
+            userInfo.fullName = fullName;
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
         })
         .catch((err)=>{
             console.log(err);
         });
     }
     
+    useEffect(()=>{
+        Axios.get(`${BASE_URL}/profile/getProfile`, {
+            params:{
+                userName:userData.userName,
+            }
+        })
+        .then((response)=>{
+            if(response.data.length) {
+                let user = response.data[0];
+                setNewuserName(user.newUserName);
+                setFullName(user.fullName);
+                setUserBio(user.userBio);
+                setCountry(user.userCountry);
+                setFacebook(user.userSocialLinks[0]);
+                setInstagram(user.userSocialLinks[1]);
+                setGithub(user.userSocialLinks[2]);
+            }
+            
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }, [])
+
     return (
         <>
             <Header />
@@ -81,6 +109,7 @@ function Editprofile() {
                             type="text"
                             id="fullName"
                             placeholder="Full Name"
+                            value={fullName}
                             onChange={(e) => setFullName(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -88,6 +117,7 @@ function Editprofile() {
                         <textarea
                             id="userBio"
                             placeholder="write about yourself"
+                            value={userBio}
                             onChange={(e) => setUserBio(e.target.value)}></textarea>
                     </div>
                     <div className="formGroup">
@@ -100,6 +130,7 @@ function Editprofile() {
                             type="text"
                             id="facebook"
                             placeholder="facebook url"
+                            value={facebook}
                             onChange={(e) => setFacebook(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -108,6 +139,7 @@ function Editprofile() {
                             type="text"
                             id="Instagram"
                             placeholder="instagram url"
+                            value={instagram}
                             onChange={(e) => setInstagram(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -116,6 +148,7 @@ function Editprofile() {
                             type="text"
                             id="Github"
                             placeholder="github url"
+                            value={github}
                             onChange={(e) => setGithub(e.target.value)}></input>
                     </div>
 

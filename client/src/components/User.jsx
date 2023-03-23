@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
 import Avatar from "../images/userAvatar.png";
-
+import { NavLink } from "react-router-dom"
 
 import "../styles/User.css";
 import { Link } from "react-router-dom";
@@ -39,6 +39,8 @@ const User = (props) => {
           <FontAwesomeIcon icon={faInstagram} />
         </Link>
       </div>
+      <NavLink to={`/profile/edit/${props.userName}`} className="editButtonLink"><button>
+        edit</button></NavLink>
     </div>
   );
 };
