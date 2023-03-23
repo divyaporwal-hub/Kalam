@@ -11,12 +11,13 @@ app.use(cors());
 const userRouter = require("./routes/user.js");
 const blogRouter = require("./routes/blog.js");
 const forgetRouter = require("./routes/forgetpassword.js");
+const updateProfileRouter=require("./routes/profile.js");
 
 //use the imported router
 app.use("/user", userRouter);
 app.use("/blog", blogRouter);
 app.use("/forget", forgetRouter);
-
+app.use("/profile",updateProfileRouter);
 
 app.get("/", (req, res) => {
     res.send("server is running...");

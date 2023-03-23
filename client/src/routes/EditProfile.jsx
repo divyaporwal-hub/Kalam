@@ -11,7 +11,9 @@ import "../styles/EditProfile.css"
 
 
 function Editprofile() {
-    const [newuserName, setNewuserName] = useState("");
+    const userData= JSON.parse(localStorage.getItem("userInfo"));
+
+    const [newUserName, setNewuserName] = useState(userData.userName);
     const [fullName, setFullName] = useState("");
     const [userBio, setUserBio] = useState("");
     const [facebook, setFacebook] = useState("");
@@ -24,12 +26,32 @@ function Editprofile() {
     const options = useMemo(() => countryList().getData(), [])
 
     const changeHandler = country => {
+        console.log(country)
         setCountry(country)
     }
 
+
     function handleSubmit(e) {
-        e.preventdefault();
+        e.preventDefault();
+    
+        Axios.put(`${BASE_URL}/profile/updateProfile`,{
+          userName:userData.userName,
+          newUserName: newUserName,
+          fullName:fullName,
+          userBio:userBio,
+          userCountry:country.label,
+          userInstagram:instagram,
+          userFacebook:facebook,
+          userGithub:github,
+        })
+        .then((response)=>{
+            console.log(response.data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
+    
     return (
         <>
             <Header />
@@ -37,10 +59,10 @@ function Editprofile() {
             <div className="EditProfile">
                 <form onSubmit={handleSubmit}>
                 <div className="formGroup">
-                        <label htmlFor="userName">Profile</label>
+                        <label htmlFor="Image">Profile</label>
                         <input
                             type="file"
-                            id="userName"
+                            id="Image"
                             placeholder="UserName"
                             onChange={(e) => setNewuserName(e.target.value)}></input>
                     </div>
@@ -49,7 +71,8 @@ function Editprofile() {
                         <input
                             type="text"
                             id="userName"
-                            placeholder="UserName"
+                            placeholder="User Name"
+                            value={newUserName}
                             onChange={(e) => setNewuserName(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
@@ -57,7 +80,7 @@ function Editprofile() {
                         <input
                             type="text"
                             id="fullName"
-                            placeholder="UserName"
+                            placeholder="Full Name"
                             onChange={(e) => setFullName(e.target.value)}></input>
                     </div>
                     <div className="formGroup">
