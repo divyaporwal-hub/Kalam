@@ -14,14 +14,12 @@ const Write = () => {
   const navigate = useNavigate();
 
   const localDataObject = JSON.parse(localStorage.getItem("userInfo"));
-  const userName = localDataObject.userName;
-  // const stats = readingTime(blogText);
-  // console.log(stats);
+  const userId = localDataObject.userId;
   function saveContent() {
     Axios.post(`${BASE_URL}/blog/saveBlog`, {
       blogHeading: heading,
       blogText: blogText,
-      userName: userName,
+      userId: userId,
       saveDate: moment(new Date()).format("ll"),
     })
       .then((response) => {
