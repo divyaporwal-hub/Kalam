@@ -3,7 +3,6 @@ import Select from 'react-select'
 import countryList from 'react-select-country-list'
 import { BASE_URL } from "../helper/ref.js";
 import Axios from "axios";
-import isUrl from "is-url";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 
@@ -23,7 +22,6 @@ function Editprofile() {
     const [country, setCountry] = useState("");
 
 
-    const [value, setValue] = useState('')
     const options = useMemo(() => countryList().getData(), [])
 
     const changeHandler = country => {
@@ -73,12 +71,11 @@ function Editprofile() {
                 setInstagram(user.userSocialLinks[1]);
                 setGithub(user.userSocialLinks[2]);
             }
-            
         })
         .catch((error)=>{
             console.log(error);
         })
-    }, [])
+    }, [userData.userName])
 
     return (
         <>

@@ -21,7 +21,6 @@ router.put("/updateProfile", async (req, res) => {
   try {
     let result = await ProfileModel.find({ userName: userName });
     if (result.length) {
-      console.log("exist");
       result[0].fullName = fullName;
       result[0].userName = newUserName;
       result[0].userBio = userBio;
@@ -29,13 +28,12 @@ router.put("/updateProfile", async (req, res) => {
 
       result[0].userSocialLinks = socialMediaLinks;
       await result[0].save();
-    // update user name and fullname of user model
-      if(userName !== newUserName) {
-        let userResult = await UserModel.find({userName: userName})
-        userResult[0].userName = newUserName;
-        userResult[0].fullName = fullName;
-        await userResult[0].save();
-      }
+
+      // update user name and fullname of user model
+      let userResult = await UserModel.find({userName: userName});
+      userResult[0].userName = newUserName;
+      userResult[0].fullName = fullName;
+      await userResult[0].save();
 
       res.send("user updated");
     } else {
@@ -46,16 +44,15 @@ router.put("/updateProfile", async (req, res) => {
         userCountry: userCountry,
         userSocialLinks: socialMediaLinks,
       })
-      // update user name and fullname of user model
-      if(userName !== newUserName) {
-        let userResult = await UserModel.find({userName: userName})
-        userResult[0].userName = newUserName;
-        userResult[0].fullName = fullName;
-        await userResult[0].save();
-      }
 
-      updatedProfile.save();
-      // res.send("user added")
+      await updatedProfile.save();
+
+      // update user name and fullname of user model
+      let userResult = await UserModel.find({userName: userName})
+      userResult[0].userName = newUserName;
+      userResult[0].fullName = fullName;
+      await userResult[0].save();
+      res.send("user added")
     }
   } catch (err) {
     console.log("kuchh error hai...")
