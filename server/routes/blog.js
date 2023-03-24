@@ -9,7 +9,7 @@ router.post("/saveBlog", async (req, res) => {
   const blogHeading = req.body.blogHeading;
   const blogText = req.body.blogText;
   const saveDate = req.body.saveDate;
-  const userName = req.body.userName;
+  const userId = req.body.userId;
 
   const stats = readingTime(blogText);
 
@@ -17,7 +17,7 @@ router.post("/saveBlog", async (req, res) => {
     blogHeading: blogHeading,
     blogText: blogText,
     blogSaveTime: saveDate,
-    userName: userName,
+    userId: userId,
     minuteRead: stats.text,
   });
 
