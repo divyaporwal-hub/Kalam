@@ -4,7 +4,6 @@ import { BASE_URL } from "../helper/ref";
 import axios from "axios";
 import BlogImage from "../images/blog1.jpg";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import "../styles/Blogs.css";
 
@@ -17,12 +16,10 @@ const Blogs = () => {
     axios
       .get(`${BASE_URL}/blog/getblogs`)
       .then((response) => {
-        console.log("Blogs response: ", response);
         setAllBlogs(response.data);
       })
       .catch((err) => {
         setFetchError(true);
-        console.log("Blogs Error: ", err);
       });
   }, []);
 

@@ -22,35 +22,39 @@
     text-align: right;
     font-size: 1.4rem;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.EditProfile form .formGroup input{
+.EditProfile form .formGroup label .icon-hover{
+    cursor: pointer;
+    color: rgb(140, 141, 141);
+    font-size: 2rem;
+    transition: all 200ms linear;
+}
+
+.EditProfile form .formGroup label .icon-hover:hover{
+    color: rgb(71, 71, 71);
+}
+
+.EditProfile form .formGroup input,.EditProfile form .formGroup textarea, .EditProfile form .formGroup button#submit{
     width: 80%;
     font-size: 1.4rem;
     outline: none;
-    border: 1px solid grey;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 5px 10px;
     margin-left: 30px;
+    background: rgb(255, 255, 255);
+    border: 2px solid transparent;
+    transition: all 200ms linear;
 }
 
-/* 
-.EditProfile form .formGroup input::placeholder{
-    font-weight: 100;
-} */
-
-.EditProfile form .formGroup textarea{
-    width: 80%;
-    font-size: 1.4rem;
-    outline: none;
-    border: 1px solid grey;
-    border-radius: 3px;
-    padding: 5px 10px;
-    margin-left: 30px;
+.EditProfile form .formGroup input:focus,.EditProfile form .formGroup textarea:focus{
+    border: 2px solid rgb(21, 161, 243);
 }
 
 .EditProfile form .formGroup #countryName{
-    /* width: 100%; */
     font-size: 1.4rem;
     outline: none;
     border: none;
@@ -58,7 +62,7 @@
     margin-left: 10px;
 }
 
-.EditProfile form .formGroup input[type="submit"] {
+.EditProfile form .formGroup button#submit {
     background-color: #191970;
     color: white;
     outline: none;
@@ -68,6 +72,6 @@
     transition: all 200ms linear;
 }
 
-.EditProfile form .formGroup input[type="submit"]:hover {
+.EditProfile form .formGroup button#submit:hover {
     background-color: #01014e;
 }

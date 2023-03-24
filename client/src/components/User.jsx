@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Axios from "axios";
+import React from "react";
 import Avatar from "../images/userAvatar.png";
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 import "../styles/User.css";
 import { Link } from "react-router-dom";
@@ -19,7 +17,7 @@ const User = (props) => {
     <div className="profileContainer">
       <img src={Avatar} alt="user" />
       <h2 className="fullname">{props.fullName}</h2>
-      <p className="username">{props.userName}</p>
+      <p className="username">@{props.userName}</p>
       <p className="bio">{props.userBio}</p>
       <div className="secondaryInfo">
         <p className="location">{props.location} </p>
@@ -29,18 +27,28 @@ const User = (props) => {
         <p className="followers">{props.followers} followers</p>
       </div>
       <div className="socialMedia">
-        <Link to={"https://www.google.com"}>
-          <FontAwesomeIcon icon={faLinkedin} />
-        </Link>
-        <Link to={"https://www.google.com"}>
-          <FontAwesomeIcon icon={faGithub} />
-        </Link>
-        <Link to={"https://www.google.com"}>
-          <FontAwesomeIcon icon={faInstagram} />
-        </Link>
+        {props.userSocialLinks[0] && (
+          <Link to={props.userSocialLinks[0]}>
+            <FontAwesomeIcon icon={faLinkedin} />
+          </Link>
+        )}
+        {props.userSocialLinks[1] && (
+          <Link to={props.userSocialLinks[1]}>
+            <FontAwesomeIcon icon={faGithub} />
+          </Link>
+        )}
+        {props.userSocialLinks[2] && (
+          <Link to={props.userSocialLinks[2]}>
+            <FontAwesomeIcon icon={faInstagram} />
+          </Link>
+        )}
       </div>
-      <NavLink to={`/profile/edit/${props.userName}`} className="editButtonLink"><button>
-        edit</button></NavLink>
+      <NavLink
+        to={`/profile/edit/${props.userName}`}
+        className="editButtonLink"
+      >
+        <button>edit</button>
+      </NavLink>
     </div>
   );
 };
