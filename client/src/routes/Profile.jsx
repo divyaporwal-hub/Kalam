@@ -5,27 +5,46 @@ import User from "../components/User";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../helper/ref";
-import {RiFileEditFill} from "react-icons/ri";
+import Blog from "../components/Blog";
 
 const Profile = () => {
   const { userName } = useParams();
   const [userData, setUserData] = useState({});
   const [userBlog,setAllBlog] =useState([]);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/user/userInfo`, {
-        params: {
-          userName: userName,
-        },
-      })
-      .then((res) => {
-        setUserData(res.data[0]);
+    setLoading(true);
+
+    axios.post(`${BASE_URL}/user/userInfo`, {
+      userName: userName,
+    })
+      .then((userIdResponse) => {
+        axios.get(`${BASE_URL}/profile/getProfile`, {
+          params: {
+            userName: userName,
+          },
+        })
+          .then((userResponse) => {
+            axios.post(`${BASE_URL}/blog/blogFindByUserId`, {
+              userId: userIdResponse.data[0]._id,
+            }).then((blogResponse) => {
+              setUserData(userResponse.data[0]);
+              setAllBlog(blogResponse.data);
+              setLoading(false);
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+            setLoading(false);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userName]);
+  
+
 
   return (
     <>
@@ -42,7 +61,15 @@ const Profile = () => {
             userSocialLinks={userData.userSocialLinks}
           />
         </section>
-        <section className="blogSection">BLOGS</section>
+        <section className="blogSection">
+          <Blog blogHeading={setAllBlog.blogHeading}
+                uploadTime={setAllBlog.blogSaveTime}
+                authorName={setAllBlog.userName}
+                minuteRead={setAllBlog.minuteRead}
+                blogPreview={setAllBlog.blogText}
+                blogId = {setAllBlog._id}
+          />
+        </section>
       </div>
     </>
   );
