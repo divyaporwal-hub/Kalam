@@ -56,5 +56,13 @@ router.get("/getBlogInfo" ,(req, res) => {
     });
 
 })
+router.post("/blogFindByUserId", (req, res) => {
+  let userId = req.body.userId;
+
+  BlogModel.find({ userId: userId }, (err, result) => {
+    console.log(result);
+    res.send(result);
+  });
+});
 
 module.exports = router;
