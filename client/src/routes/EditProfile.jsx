@@ -5,6 +5,8 @@ import { BASE_URL } from "../helper/ref.js";
 import Axios from "axios";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { useNavigate } from 'react-router-dom';
+
 
 
 import "../styles/EditProfile.css"
@@ -12,6 +14,8 @@ import "../styles/EditProfile.css"
 
 function Editprofile() {
     const userData= JSON.parse(localStorage.getItem("userInfo"));
+
+    const navigate = useNavigate();
 
     const [newUserName, setNewuserName] = useState(userData.userName);
     const [fullName, setFullName] = useState(userData.fullName);
@@ -43,11 +47,14 @@ function Editprofile() {
           userGithub:github,
         })
         .then((response)=>{
+            console.log(response)
             // update the username and ufullname from localstorage
             let userInfo = JSON.parse(localStorage.getItem("userInfo"));
             userInfo.userName = newUserName;
             userInfo.fullName = fullName;
             localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            navigate("/");
+
         })
         .catch((err)=>{
             console.log(err);
@@ -70,6 +77,7 @@ function Editprofile() {
                 setFacebook(user.userSocialLinks[0]);
                 setInstagram(user.userSocialLinks[1]);
                 setGithub(user.userSocialLinks[2]);
+
             }
         })
         .catch((error)=>{

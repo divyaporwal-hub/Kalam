@@ -56,8 +56,8 @@ router.get("/getBlogInfo" ,(req, res) => {
     });
 
 })
-router.post("/blogFindByUserId", (req, res) => {
-  let userId = req.body.userId;
+router.get("/blogFindByUserId", (req, res) => {
+  let userId = req.query.userId;
 
   BlogModel.find({ userId: userId }, (err, result) => {
     console.log(result);

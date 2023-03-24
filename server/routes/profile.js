@@ -18,9 +18,13 @@ router.put("/updateProfile", async (req, res) => {
   const userGithub = req.body.userGithub;
 
   const socialMediaLinks = [userFacebook, userInstagram, userGithub];
+
+  console.log(userName)
   try {
+    console.log("shikha ma'am")
     let result = await ProfileModel.find({ userName: userName });
     if (result.length) {
+      console.log("kuchh yha se dikkat hai...")
       result[0].fullName = fullName;
       result[0].userName = newUserName;
       result[0].userBio = userBio;
@@ -37,6 +41,7 @@ router.put("/updateProfile", async (req, res) => {
 
       res.send("user updated");
     } else {
+      console.log("abhinav");
       const updatedProfile = new ProfileModel({
         fullName: fullName,
         userName: newUserName,
@@ -46,6 +51,7 @@ router.put("/updateProfile", async (req, res) => {
       })
 
       await updatedProfile.save();
+      console.log("save kr lia")
 
       // update user name and fullname of user model
       let userResult = await UserModel.find({userName: userName})
