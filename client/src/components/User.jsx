@@ -13,6 +13,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const User = (props) => {
+
+  console.log(props)
+
   return (
     <div className="profileContainer">
       <img src={Avatar} alt="user" />
@@ -20,7 +23,7 @@ const User = (props) => {
       <p className="username">@{props.userName}</p>
       <p className="bio">{props.userBio}</p>
       <div className="secondaryInfo">
-        <p className="location">{props.location} </p>
+        <p className="location">{props.location.label} </p>
         <p>●</p>
         <p className="postCount">{props.postCount} posts</p>
         <p>●</p>

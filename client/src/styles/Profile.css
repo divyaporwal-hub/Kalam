@@ -1,14 +1,27 @@
 .Profile {
-  background-color: #00082b;
   margin-top: 59px;
-  padding-top: 30px;
   display: flex;
   flex-direction: column;
 }
 
 .Profile .userSection {
+  background-color: #00082b;
   width: 100%;
+  padding: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Profile .blogSection{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.Profile .blogSection .Blog{
+  width: 300px;
 }

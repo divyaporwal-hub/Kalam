@@ -56,13 +56,17 @@ router.get("/getBlogInfo" ,(req, res) => {
     });
 
 })
-router.get("/blogFindByUserId", (req, res) => {
+
+
+router.get("/blogFindByUserId", async (req, res) => {
   let userId = req.query.userId;
 
-  BlogModel.find({ userId: userId }, (err, result) => {
-    console.log(result);
+  let result = await BlogModel.find({ userId: userId });
+  try{
     res.send(result);
-  });
+  }catch(err) { 
+    console.log(err);
+  }
 });
 
 module.exports = router;
