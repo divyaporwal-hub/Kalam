@@ -1,0 +1,19 @@
+.footerContainer{
+    display: flex;
+    background-color: #c0c0c066;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.footerContainer div{
+    display: flex;
+    font-size: 1.3rem;
+    margin: 0 10px;
+}
+
+/* .footerContainer .commentSection{
+    display: flex;
+    font-size: 1.3rem;
+} */

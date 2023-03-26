@@ -40,7 +40,7 @@ const Blog = ({
         <div className="blogDetails">
           <h1>{heading}</h1>
           <div className="blogInfo">
-            <div>{uploadTime}</div> • <div>{userName}</div> •
+            <div>{uploadTime}</div> • <div>{userName ? userName : ""}</div> •
             <div>{minuteRead}</div>
           </div>
           <div className="blogPreview">{blogPreview.slice(0, 150) + "..."}</div>

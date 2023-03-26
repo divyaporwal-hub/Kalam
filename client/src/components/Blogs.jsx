@@ -10,7 +10,6 @@ import "../styles/Blogs.css";
 const Blogs = () => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
-  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     // make your API call here...
@@ -31,7 +30,7 @@ const Blogs = () => {
         {fetchError && allBlogs ? (
           <div>Please wait, Trying to fetch the blogs...</div>
         ) : (
-          allBlogs.map((value, index) => {
+          allBlogs && allBlogs.map((value, index) => {
             return (
               <Blog
                 blogImage={BlogImage}

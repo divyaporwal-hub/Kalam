@@ -27,7 +27,7 @@ const Profile = () => {
       });
 
       try{
-        setUserBlogs(userBlogResult.data);
+        setUserBlogs(userBlogResult.data.reverse());
         setPostCount(userBlogResult.data.length);
       } catch(err) {
         console.log("Error: blogs can't be feched due to", err)
@@ -105,7 +105,7 @@ const Profile = () => {
                 blogImage={BlogImage}
                 heading={blog.blogHeading}
                 uploadTime={blog.blogSaveTime}
-                authorName={blog.userName}
+                userId={blog.userId}
                 minuteRead={blog.minuteRead}
                 blogPreview={blog.blogText}
                 blogId = {blog._id}
