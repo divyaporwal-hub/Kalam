@@ -17,6 +17,7 @@ const BlogInfo = () => {
   const { id } = useParams();
 
   const [blogData, setBlogData] = useState({});
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     axios
@@ -26,8 +27,23 @@ const BlogInfo = () => {
         },
       })
       .then((response) => {
-        console.log(response.data[0]);
         setBlogData(response.data[0]);
+        let userId = response.data[0].userId;
+        // to get the username by userId
+        // why? because the username may be change during the profile edit
+        axios
+          .get(`${BASE_URL}/user/userInfoById`, {
+            params: {
+              userId: userId,
+            }
+          })
+          .then((userResponse) => {
+            setUserName(userResponse.data[0].userName);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+          // end userInfo request
       })
       .catch((err) => {
         console.log(err);
@@ -41,7 +57,7 @@ const BlogInfo = () => {
         <div className="left">
           <div className="blogDetailContainer">
             <BlogUser
-              userName={blogData.userName}
+              userName={userName}
               blogSaveTime={blogData.blogSaveTime}
               minuteRead={blogData.minuteRead}
             />

@@ -60,10 +60,20 @@ router.post("/userInfo", (req, res) => {
 
 router.get("/userInfo", async (req, res) => {
   let userName = req.query.userName;
-  console.log(userName);
   try{
-    const blogs = await UserModel.find({ userName: userName });
-    res.send(blogs);
+    const user = await UserModel.find({ userName: userName });
+    res.send(user);
+  }
+  catch(err){
+    console.log(err);
+  }
+});
+
+router.get("/userInfoById", async (req, res) => {
+  let userId = req.query.userId;
+  try{
+    const user = await UserModel.find({ _id: userId });
+    res.send(user);
   }
   catch(err){
     console.log(err);
