@@ -13,6 +13,10 @@ const Profile = () => {
   const [userData, setUserData] = useState({});
   const [profileData, setProfileData] = useState({});
   const [userBlogs, setUserBlogs] = useState([]);
+  const [postCount, setPostCount] = useState(0);
+
+  /// used in future
+  // const [followerCount, setFollowersCount] = useState(0);
 
   useEffect(() => {
     async function fetchUserBlogs(id) {
@@ -24,6 +28,7 @@ const Profile = () => {
 
       try{
         setUserBlogs(userBlogResult.data);
+        setPostCount(userBlogResult.data.length);
       } catch(err) {
         console.log("Error: blogs can't be feched due to", err)
       }
@@ -77,7 +82,7 @@ const Profile = () => {
               userName={profileData.userName}
               userBio={profileData.userBio}
               location={profileData.userCountry}
-              postCount={0}
+              postCount={postCount}
               followers={0}
               userSocialLinks={profileData.userSocialLinks}
             />
