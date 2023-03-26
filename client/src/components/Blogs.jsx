@@ -10,13 +10,14 @@ import "../styles/Blogs.css";
 const Blogs = () => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     // make your API call here...
     axios
       .get(`${BASE_URL}/blog/getblogs`)
       .then((response) => {
-        setAllBlogs(response.data);
+        setAllBlogs(response.data.reverse());
       })
       .catch((err) => {
         setFetchError(true);
@@ -36,10 +37,10 @@ const Blogs = () => {
                 blogImage={BlogImage}
                 heading={value.blogHeading}
                 uploadTime={value.blogSaveTime}
-                authorName={value.userName}
+                userId={value.userId}
                 minuteRead={value.minuteRead}
                 blogPreview={value.blogText}
-                blogId = {value._id}
+                blogId={value._id}
                 key={index}
               />
             );

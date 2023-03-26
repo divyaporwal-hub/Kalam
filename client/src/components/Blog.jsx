@@ -1,21 +1,38 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom"
+import React, {useEffect, useState} from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import {BASE_URL} from "../helper/ref"
 import "../styles/Blog.css";
 
 const Blog = ({
   blogImage,
   heading,
   uploadTime,
-  authorName,
+  userId,
   minuteRead,
   blogPreview,
-  blogId
+  blogId,
 }) => {
 
-  // console.log(parse(blogPreview))
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/user/userInfoById`, {
+        params: {
+          userId: userId,
+        },
+      })
+      .then((response) => {
+        setUserName(response.data[0].userName);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
-    <div className="Blog" >
+    <div className="Blog">
       <NavLink to={`/bloginfo/${blogId}`}>
         <div className="blogImage">
           <img src={blogImage} alt="blogImage" />
@@ -23,14 +40,14 @@ const Blog = ({
         <div className="blogDetails">
           <h1>{heading}</h1>
           <div className="blogInfo">
-            <div>{uploadTime}</div> • <div>{authorName}</div> •
+            <div>{uploadTime}</div> • <div>{userName}</div> •
             <div>{minuteRead}</div>
           </div>
-          <div className="blogPreview">{(blogPreview.slice(0, 150)) + "..."}</div>
+          <div className="blogPreview">{blogPreview.slice(0, 150) + "..."}</div>
         </div>
       </NavLink>
     </div>
-      );
+  );
 };
 
 export default Blog;
