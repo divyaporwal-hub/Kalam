@@ -18,6 +18,7 @@ const BlogInfo = () => {
 
   const [blogData, setBlogData] = useState({});
   const [userName, setUserName] = useState("");
+  const [blogId, setBlogId] = useState("");
 
   useEffect(() => {
     axios
@@ -28,6 +29,7 @@ const BlogInfo = () => {
       })
       .then((response) => {
         setBlogData(response.data[0]);
+        setBlogId(response.data[0]._id);
         let userId = response.data[0].userId;
         // to get the username by userId
         // why? because the username may be change during the profile edit
@@ -65,7 +67,9 @@ const BlogInfo = () => {
             <BlogHeading blogHeading={blogData.blogHeading} />
             {/* <BlogTags /> */}
             <BlogContent blogText={blogData.blogText} />
-            <BlogFooter />
+            {
+              blogId && <BlogFooter id={blogId}/>
+            }
           </div>
         </div>
         <div className="right">nothing</div>

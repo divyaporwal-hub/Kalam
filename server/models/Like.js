@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const LikeSchema = new mongoose.Schema({
-    userId: {
+    blogId: {
         type: String, 
     },
-    Likes: {
+    likes: {
         type: Array,
     }
 });
 
-const Likes = mongoose.model("likes", Likeschema);
-module.exports = Like;
+const Likes = mongoose.model("likes", LikeSchema);
+module.exports = Likes;
