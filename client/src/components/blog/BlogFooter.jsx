@@ -3,6 +3,14 @@ import "../../styles/BlogFooter.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faComments, faShare } from "@fortawesome/free-solid-svg-icons";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  InstapaperShareButton,
+  LinkedinShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+} from "react-share";
 
 const BlogFooter = () => {
   return (
