@@ -14,23 +14,27 @@ const Profile = () => {
   const [profileData, setProfileData] = useState({});
   const [userBlogs, setUserBlogs] = useState([]);
   const [postCount, setPostCount] = useState(0);
+  const [userFollower, setUserFollower] = useState(0);
 
   /// used in future
   // const [followerCount, setFollowersCount] = useState(0);
 
   useEffect(() => {
     async function fetchUserBlogs(id) {
-      let userBlogResult = await axios.get(`${BASE_URL}/blog/blogFindByUserId`, {
-        params: {
-          userId: id,
-        },
-      });
+      let userBlogResult = await axios.get(
+        `${BASE_URL}/blog/blogFindByUserId`,
+        {
+          params: {
+            userId: id,
+          },
+        }
+      );
 
-      try{
+      try {
         setUserBlogs(userBlogResult.data.reverse());
         setPostCount(userBlogResult.data.length);
-      } catch(err) {
-        console.log("Error: blogs can't be feched due to", err)
+      } catch (err) {
+        console.log("Error: blogs can't be feched due to", err);
       }
     }
 
@@ -41,11 +45,23 @@ const Profile = () => {
         },
       });
 
+      async function fetchUserFollowers() {
+        let followerResult = await axios.get(
+          `${BASE_URL}/follower/getFollowers`,
+          {
+            params: {
+              userId: userResult.data[0]._id,
+            },
+          }
+        );
+        setUserFollower(followerResult.data[0].followers.length);
+      }
+
       try {
         setUserData(userResult.data[0]);
-        fetchUserBlogs(userResult.data[0]._id); 
-      }
-      catch (err) {
+        fetchUserBlogs(userResult.data[0]._id);
+        fetchUserFollowers(userResult.data[0]._id);
+      } catch (err) {
         console.log("Error: User can't be fetched due to", err);
       }
     }
@@ -64,11 +80,8 @@ const Profile = () => {
         console.log("Error: Profile can't be feched due to", err);
       }
     }
-
-   
     fetchUserInfo();
     fetchUserProfile();
-
   }, [userName]);
 
   return (
@@ -83,7 +96,7 @@ const Profile = () => {
               userBio={profileData.userBio}
               location={profileData.userCountry}
               postCount={postCount}
-              followers={0}
+              followers={userFollower}
               userSocialLinks={profileData.userSocialLinks}
             />
           ) : (
@@ -92,27 +105,28 @@ const Profile = () => {
               userName={userData.userName}
               userBio={""}
               location={""}
-              postCount={""}
-              followers={""}
+              postCount={0}
+              followers={0}
               userSocialLinks={""}
             />
           )}
         </section>
         <section className="blogSection">
-            {
-              userBlogs && userBlogs.map((blog, index) => {
-                return <Blog
-                blogImage={BlogImage}
-                heading={blog.blogHeading}
-                uploadTime={blog.blogSaveTime}
-                userId={blog.userId}
-                minuteRead={blog.minuteRead}
-                blogPreview={blog.blogText}
-                blogId = {blog._id}
-                key={index}
-              />
-              })
-            }
+          {userBlogs &&
+            userBlogs.map((blog, index) => {
+              return (
+                <Blog
+                  blogImage={BlogImage}
+                  heading={blog.blogHeading}
+                  uploadTime={blog.blogSaveTime}
+                  userId={blog.userId}
+                  minuteRead={blog.minuteRead}
+                  blogPreview={blog.blogText}
+                  blogId={blog._id}
+                  key={index}
+                />
+              );
+            })}
         </section>
       </div>
     </>

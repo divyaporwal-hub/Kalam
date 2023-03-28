@@ -23,3 +23,25 @@
     display: flex;
     color: grey;
 }
+
+.BlogUserContainer .followButtonContainer{
+    display: flex;
+    margin-left: 30px;
+}
+
+.BlogUserContainer .followButtonContainer button{
+    border-radius: 20px;
+    font-size: 1.2rem;
+    padding: 3px 10px;
+    border: 2px solid blue;
+}
+
+.BlogUserContainer .followButtonContainer button.unfollow{
+    background-color: white;
+    color: blue;
+}
+
+.BlogUserContainer .followButtonContainer button.follow{
+    background-color: blue;
+    color: white;
+}

@@ -14,8 +14,6 @@ import {
 
 const User = (props) => {
 
-  console.log(props)
-
   return (
     <div className="profileContainer">
       <img src={Avatar} alt="user" />

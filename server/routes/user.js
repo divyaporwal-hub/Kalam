@@ -3,6 +3,8 @@ const router = express.Router();
 
 // import the Schema
 const UserModel = require("../models/User.js");
+const ProfileModel = require("../models/Profile.js");
+const FollowerModel = require("../models/Followers.js");
 
 // post request to save the user registration in the DB
 router.post("/saveUser", async (req, res) => {
@@ -23,9 +25,24 @@ router.post("/saveUser", async (req, res) => {
     userOtp: "",
   });
 
+  const updatedProfile = new ProfileModel({
+    fullName: fullName,
+    userName: userName,
+    userBio: "",
+    userCountry: "",
+    userSocialLinks: [],
+    userFollower: 0,
+  })
+
   // save the data
   try {
-    await user.save();
+    let userSaveResult = await user.save();
+    await updatedProfile.save();
+    const userFollowers = new FollowerModel({
+      userId: userSaveResult._id,
+      followers: [],
+    });
+    await userFollowers.save();
     res.send("OK");
   } catch (err) {
     res.send("NO");
