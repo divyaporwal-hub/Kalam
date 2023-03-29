@@ -21,6 +21,8 @@ router.post("/saveBlog", async (req, res) => {
     minuteRead: stats.text,
   });
 
+  
+
   try {
     await blog.save();
     res.send("Blog Stored Successfully");
