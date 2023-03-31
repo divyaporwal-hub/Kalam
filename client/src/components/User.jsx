@@ -13,6 +13,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const User = (props) => {
+<<<<<<< HEAD
+=======
+  let localData = JSON.parse(localStorage.getItem("userInfo"));
+>>>>>>> c2de5c9071c8d885bc5553b7a7e04418067d35d8
 
   return (
     <div className="profileContainer">
@@ -48,7 +52,7 @@ const User = (props) => {
         to={`/profile/edit/${props.userName}`}
         className="editButtonLink"
       >
-        <button>edit</button>
+        {localData.userName === props.userName && <button>edit</button>}
       </NavLink>
     </div>
   );

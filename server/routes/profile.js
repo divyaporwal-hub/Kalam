@@ -24,12 +24,10 @@ router.put("/updateProfile", async (req, res) => {
     console.log("shikha ma'am")
     let result = await ProfileModel.find({ userName: userName });
     if (result.length) {
-      console.log("kuchh yha se dikkat hai...")
       result[0].fullName = fullName;
       result[0].userName = newUserName;
       result[0].userBio = userBio;
       result[0].userCountry = userCountry;
-
       result[0].userSocialLinks = socialMediaLinks;
       await result[0].save();
 
@@ -41,7 +39,6 @@ router.put("/updateProfile", async (req, res) => {
 
       res.send("user updated");
     } else {
-      console.log("abhinav");
       const updatedProfile = new ProfileModel({
         fullName: fullName,
         userName: newUserName,
@@ -72,5 +69,25 @@ router.get("/getProfile",async (req,res)=>{
  const result= await ProfileModel.find({userName:userName});
  res.send(result);
 })
+
+router.put("/updateFollow", async (req, res) => {
+  const follow = req.body.follower;
+  const userName = req.body.userName;
+  console.log(follow)
+  let result = await ProfileModel.find({userName: userName});
+  try{
+    if(follow)
+      result[0].userFollower = result[0].userFollower - 1;
+    else 
+      result[0].userFollower = result[0].userFollower + 1;
+
+    result[0].save();
+    res.send(result);
+  }catch(e) {
+    console.log(e);  
+    res.send(e);
+  }
+})
+
 // export this router
 module.exports = router;

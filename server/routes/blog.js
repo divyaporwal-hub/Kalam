@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const BlogModel = require("../models/Blog.js");
-
+const LikeModel = require("../models/Like.js");
 const readingTime = require("reading-time");
 
 router.post("/saveBlog", async (req, res) => {
@@ -21,9 +21,16 @@ router.post("/saveBlog", async (req, res) => {
     minuteRead: stats.text,
   });
 
+  
+
   try {
-    await blog.save();
-    res.send("Blog Stored Successfully");
+    let result = await blog.save();
+    const like = new LikeModel({
+      blogId: result._id,
+      likes: [],
+    });
+    await like.save();
+    res.send("blog saved");
   } catch (err) {
     console.log(err);
     res.send("No");
@@ -41,30 +48,27 @@ router.get("/getblogs", (req, res) => {
     });
 });
 
-
 // to send information about specific blog by its ID
 
-router.get("/getBlogInfo" ,(req, res) => {
+router.get("/getBlogInfo", (req, res) => {
   const blogId = req.query.id;
 
-  BlogModel.find({_id: blogId})
+  BlogModel.find({ _id: blogId })
     .then((response) => {
       res.send(response);
     })
     .catch((err) => {
       res.send(err);
     });
-
-})
-
+});
 
 router.get("/blogFindByUserId", async (req, res) => {
   let userId = req.query.userId;
 
   let result = await BlogModel.find({ userId: userId });
-  try{
+  try {
     res.send(result);
-  }catch(err) { 
+  } catch (err) {
     console.log(err);
   }
 });
