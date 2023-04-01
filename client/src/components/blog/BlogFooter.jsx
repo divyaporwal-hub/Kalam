@@ -26,6 +26,8 @@ const BlogFooter = ({ id }) => {
   const [likeCount, setLikeCount] = useState(0);
   const [comment, setComment] = useState('');
   const [showComment, setShowComment] = useState(false);
+  const [allComments, setAllComments] = useState([]);
+  const [commentCount, setCommentCount] = useState(0);
 
 
   // getting local data from localStorage
@@ -49,6 +51,22 @@ const BlogFooter = ({ id }) => {
       }
     };
     fetchLikes();
+
+    //get request to fetch all the comments
+
+
+    axios.get(`${BASE_URL}/comment/getComment`, {
+      params: {
+        blogId: id,
+      }
+    }).then(res => {
+      console.log(res);
+      setAllComments(res.data);
+      setCommentCount(res.data.length)
+    }).catch(err => {
+      console.log(err);
+    })
+
   }, []);
 
   async function handleLike() {
@@ -86,10 +104,10 @@ const BlogFooter = ({ id }) => {
             />
           </div>
         </div>
-        < div className="commentSection" onClick={handleComment }>
-          <div className="commentCount">0</div>
+        < div className="commentSection" onClick={handleComment}>
+          <div className="commentCount">{commentCount}</div>
           <div className="commentIcon" >
-          <FontAwesomeIcon icon={faComments} />
+            <FontAwesomeIcon icon={faComments} />
           </div>
         </div>
 
@@ -99,8 +117,8 @@ const BlogFooter = ({ id }) => {
       </div>
 
       {
-          showComment && <Comment blogId={id}/>
-        }
+        showComment && <Comment blogId={id} allComments={allComments} setCommentCount={setCommentCount}/>
+      }
     </>
   );
 };

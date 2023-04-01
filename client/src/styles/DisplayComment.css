@@ -1,0 +1,40 @@
+.DisplayComment{
+    background-color: #8080801a;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+    border-radius: 7px;
+}
+
+.DisplayComment .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.DisplayComment .container .infoContainer{
+    display: flex;
+    align-items: center;
+}
+
+.DisplayComment .container .fullName{
+    font-weight: 600;
+}
+
+.DisplayComment .container .timerEmoji{
+    margin-left: 30px;
+    font-size: 13px;
+    color: #80808098;
+}
+
+.DisplayComment .container .postedTime{
+    margin-left: 5px;
+    font-size: 15px;
+    color: #808080bf;
+    font-style: italic;
+}
+
+.DisplayComment .comment{
+    margin-top: 20px;
+}
