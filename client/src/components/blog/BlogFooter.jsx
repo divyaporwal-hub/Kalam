@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/BlogFooter.css";
+import Comment from "../blog/Comment.jsx";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,10 +21,12 @@ import { BASE_URL } from "../../helper/ref.js";
 import axios from "axios";
 
 const BlogFooter = ({ id }) => {
-  console.log(id);
 
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+  const [comment, setComment] = useState('');
+  const [showComment, setShowComment] = useState(false);
+
 
   // getting local data from localStorage
 
@@ -61,10 +64,14 @@ const BlogFooter = ({ id }) => {
 
     try {
       console.log(response);
-      setLikeCount(!like ? likeCount+1 : likeCount-1);
+      setLikeCount(!like ? likeCount + 1 : likeCount - 1);
     } catch (e) {
       console.log(e);
     }
+  }
+
+  function handleComment() {
+    setShowComment(!showComment)
   }
 
   return (
@@ -79,14 +86,21 @@ const BlogFooter = ({ id }) => {
             />
           </div>
         </div>
-        <div className="commentSection">
+        < div className="commentSection" onClick={handleComment }>
           <div className="commentCount">0</div>
+          <div className="commentIcon" >
           <FontAwesomeIcon icon={faComments} />
+          </div>
         </div>
+
         <div className="shareSection">
           <FontAwesomeIcon icon={faShare} />
         </div>
       </div>
+
+      {
+          showComment && <Comment blogId={id}/>
+        }
     </>
   );
 };

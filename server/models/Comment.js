@@ -1,22 +1,18 @@
 var mongoose = require('mongoose');
 var commentSchema = mongoose.Schema({
     postId: {
-        type: Number,
+        type: String,
         default: 1
     },
-    parentId: {
-        type: mongoose.Schema.Types.ObjectId,
+    blogId: {
+        type: String,
         default: null
     },
-    postedDate: {type: Date, default: Date.now},
-    author: {
-        id: mongoose.Schema.Types.ObjectId,
-        name: String,
-    },
+    postedDate: { type: Date, default: Date.now },
+
     commentText: {
         type: String,
-        required: true
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Comments', commentSchema);
