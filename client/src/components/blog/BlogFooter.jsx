@@ -53,14 +53,11 @@ const BlogFooter = ({ id }) => {
     fetchLikes();
 
     //get request to fetch all the comments
-
-
     axios.get(`${BASE_URL}/comment/getComment`, {
       params: {
         blogId: id,
       }
     }).then(res => {
-      console.log(res);
       setAllComments(res.data);
       setCommentCount(res.data.length)
     }).catch(err => {

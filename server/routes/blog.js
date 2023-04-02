@@ -51,7 +51,7 @@ router.get("/getblogs", (req, res) => {
 // to send information about specific blog by its ID
 
 router.get("/getBlogInfo", (req, res) => {
-  const blogId = req.query.id;
+  const blogId = req.query.id;  
 
   BlogModel.find({ _id: blogId })
     .then((response) => {
@@ -73,6 +73,23 @@ router.get("/blogFindByUserId", async (req, res) => {
   }
 });
 
+router.put("/updateBlog", async (req, res) => {
+  let blogId = req.body.blogId;
+  let blogHeading = req.body.blogHeading;
+  let blogText = req.body.blogText;
+  let saveDate = req.body.saveDate;
+
+  let result = await BlogModel.find({_id: blogId});
+  const stats = readingTime(blogText);
+
+  result[0].blogHeading = blogHeading;
+  result[0].blogText = blogText;
+  result[0].minuteRead = stats.text;
+  result[0].blogSaveTime = saveDate; 
+  
+  let updatedData = await result[0].save();
+  res.send(updatedData);
+})
 
 router.delete("/deleteBlog", async (req, res) => {
   let blogId = req.query.blogId;

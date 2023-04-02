@@ -10,6 +10,7 @@ import Write from "./routes/Write";
 import Logout from "./routes/Logout";
 import BlogInfo from "./routes/BlogInfo"
 import EditProfile from "./routes/EditProfile"
+import EditBlog from "./routes/EditBlog";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/write" element={<Write />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/bloginfo/:id" element={<BlogInfo/>}/>
+          <Route path="/editblog/:blogId" element={<EditBlog/>}/>
           <Route path="/profile/edit/:userName" element={<EditProfile/>}/>
         </Routes>
       </Router>

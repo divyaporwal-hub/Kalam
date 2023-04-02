@@ -71,17 +71,21 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
   async function handleDelete(e) {
     e.preventDefault();
     // let sure = confirm("Are you sure want to delete");
-    if(window.confirm("Are you sure want to delete") === true) {
+    if (window.confirm("Are you sure want to delete") === true) {
       let response = await axios.delete(`${BASE_URL}/blog/deleteBlog`, {
         params: {
           blogId: blogId,
-        }
-      })
+        },
+      });
 
       console.log(response);
       navigate("/");
     }
-    
+  }
+
+
+  function handleEdit() {
+    navigate("/editblog/"+blogId);
   }
 
   return (
@@ -117,7 +121,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
               <button className="deleteButton">Delete</button>
             </div>
 
-            <div className="followButtonContainer" onClick={handleFollow}>
+            <div className="followButtonContainer" onClick={handleEdit}>
               <button className="editButton">Edit</button>
             </div>
           </>

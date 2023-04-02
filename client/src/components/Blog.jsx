@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {BASE_URL} from "../helper/ref"
+import { BASE_URL } from "../helper/ref";
 import "../styles/Blog.css";
+import parse from "html-react-parser";
 
 const Blog = ({
   blogImage,
@@ -13,7 +14,6 @@ const Blog = ({
   blogPreview,
   blogId,
 }) => {
-
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
@@ -43,7 +43,9 @@ const Blog = ({
             <div>{uploadTime}</div> • <div>{userName ? userName : ""}</div> •
             <div>{minuteRead}</div>
           </div>
-          <div className="blogPreview">{blogPreview.slice(0, 150) + "..."}</div>
+          <div className="blogPreview">
+            {parse(blogPreview.slice(0, 150) + "...")}
+          </div>
         </div>
       </NavLink>
     </div>
