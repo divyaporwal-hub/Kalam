@@ -62,6 +62,7 @@ const BlogInfo = () => {
               userName={userName}
               blogSaveTime={blogData.blogSaveTime}
               minuteRead={blogData.minuteRead}
+              blogId={blogId}
             />
             <BlogImage />
             <BlogHeading blogHeading={blogData.blogHeading} />

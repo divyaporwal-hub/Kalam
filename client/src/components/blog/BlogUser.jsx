@@ -3,46 +3,47 @@ import { NavLink } from "react-router-dom";
 import "../../styles/BlogUser.css";
 import axios from "axios";
 import { BASE_URL } from "../../helper/ref";
+import { useNavigate } from "react-router-dom";
 
-const BlogUser = ({ userName, blogSaveTime, minuteRead }) => {
+const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
   const [follow, setFollow] = useState(false);
   const [userId, setUserId] = useState("");
-
+  const navigate = useNavigate();
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
 
-  useEffect( () => {
-
+  useEffect(() => {
     async function fetchUserInfo() {
       let userResult = await axios.get(`${BASE_URL}/user/userInfo`, {
         params: {
-          userName: userName
-        }
+          userName: userName,
+        },
       });
-      
-      try{
-        if(userResult.data.length) {
-          let followerResult = await axios.get(`${BASE_URL}/follower/getFollowers`, {
-            params: {
-              userId: userResult.data[0]._id,
+
+      try {
+        if (userResult.data.length) {
+          let followerResult = await axios.get(
+            `${BASE_URL}/follower/getFollowers`,
+            {
+              params: {
+                userId: userResult.data[0]._id,
+              },
             }
-          });
+          );
 
-
-          if(followerResult.data.length) {
-            // kuchh krna hai...
-            setFollow(followerResult.data[0].followers.includes(localData.userId));
+          if (followerResult.data.length) {
+            setFollow(
+              followerResult.data[0].followers.includes(localData.userId)
+            );
           }
-          
           setUserId(userResult.data[0]._id);
         }
-      }catch(e) {
+      } catch (e) {
         console.log(e);
       }
     }
     fetchUserInfo();
   }, [userName]);
-
 
   async function handleFollow(e) {
     e.preventDefault();
@@ -51,22 +52,36 @@ const BlogUser = ({ userName, blogSaveTime, minuteRead }) => {
     let localData = JSON.parse(localStorage.getItem("userInfo"));
     // followed by
     let followerId = localData.userId;
-  
 
     // request to update the followers of the user
 
     let result = await axios.put(`${BASE_URL}/follower/setFollower`, {
-      userId: userId, 
+      userId: userId,
       followerId: followerId,
       follow: follow,
     });
 
-    try{
+    try {
       console.log(result);
-    }catch(e) {
-      console.log(e);  
+    } catch (e) {
+      console.log(e);
     }
-   
+  }
+
+  async function handleDelete(e) {
+    e.preventDefault();
+    // let sure = confirm("Are you sure want to delete");
+    if(window.confirm("Are you sure want to delete") === true) {
+      let response = await axios.delete(`${BASE_URL}/blog/deleteBlog`, {
+        params: {
+          blogId: blogId,
+        }
+      })
+
+      console.log(response);
+      navigate("/");
+    }
+    
   }
 
   return (
@@ -94,6 +109,18 @@ const BlogUser = ({ userName, blogSaveTime, minuteRead }) => {
               {follow ? "Followed" : "Follow"}
             </button>
           </div>
+        )}
+
+        {localData.userName === userName && (
+          <>
+            <div className="followButtonContainer" onClick={handleDelete}>
+              <button className="deleteButton">Delete</button>
+            </div>
+
+            <div className="followButtonContainer" onClick={handleFollow}>
+              <button className="editButton">Edit</button>
+            </div>
+          </>
         )}
       </div>
     </>

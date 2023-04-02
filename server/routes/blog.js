@@ -73,4 +73,12 @@ router.get("/blogFindByUserId", async (req, res) => {
   }
 });
 
+
+router.delete("/deleteBlog", async (req, res) => {
+  let blogId = req.query.blogId;
+
+  let result = await BlogModel.findByIdAndDelete({_id: blogId});
+  res.send(result);
+})
+
 module.exports = router;
