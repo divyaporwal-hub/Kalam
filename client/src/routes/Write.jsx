@@ -52,6 +52,7 @@ const Write = () => {
             <EditorConvertToHTML
               blogText={blogText}
               setBlogText={setBlogText}
+              updateCall={false}
             />
           </div>
           <div className="btn-cnt">

@@ -73,6 +73,7 @@ const EditBlog = () => {
             <EditorConvertToHTML
               blogText={blogText}
               setBlogText={setBlogText}
+              updateCall={true}
             />
           </div>
           <div className="btn-cnt">
