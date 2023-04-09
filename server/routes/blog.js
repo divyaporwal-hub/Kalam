@@ -50,10 +50,10 @@ router.get("/getblogs", (req, res) => {
 
 // to send information about specific blog by its ID
 
-router.get("/getBlogInfo", (req, res) => {
+router.get("/getBlogInfo", async (req, res) => {
   const blogId = req.query.id;  
 
-  BlogModel.find({ _id: blogId })
+  await BlogModel.find({ _id: blogId })
     .then((response) => {
       res.send(response);
     })
