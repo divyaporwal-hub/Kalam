@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 require("./db/config.js");
 const cors = require("cors");
 
 
+// mongoose.set('strictQuery',false);
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -29,5 +31,5 @@ app.get("/", (req, res) => {
     res.send("server is running...");
 })
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log("Server is running on port 8000"));
