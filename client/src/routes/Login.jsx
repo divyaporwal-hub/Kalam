@@ -14,6 +14,7 @@ const Login = () => {
   function handleSubmit(e) {
     // API call
     e.preventDefault();
+    
     Axios.post(`${BASE_URL}/user/login`, {
       userEmail: userEmail,
       userPassword: userPassword,

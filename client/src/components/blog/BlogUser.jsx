@@ -107,7 +107,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
             <div>{blogSaveTime}</div> ・<div>{minuteRead}</div>
           </div>
         </div>
-        {localData.userName !== userName && (
+        {(localData && (localData.userName !== userName)) && (
           <div className="followButtonContainer" onClick={handleFollow}>
             <button className={follow ? "follow" : "unfollow"}>
               {follow ? "Followed" : "Follow"}

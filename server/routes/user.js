@@ -14,7 +14,7 @@ router.post("/saveUser", async (req, res) => {
   const userPassword = req.body.userPassword;
   const userEmail = req.body.userEmail;
 
-  console.log(userName, fullName, userPassword, userEmail);
+  // console.log(userName, fullName, userPassword, userEmail);
 
   // make a object-model to save the data
   const user = new UserModel({
@@ -38,6 +38,8 @@ router.post("/saveUser", async (req, res) => {
   try {
     let userSaveResult = await user.save();
     await updatedProfile.save();
+
+    
     const userFollowers = new FollowerModel({
       userId: userSaveResult._id,
       followers: [],
@@ -49,8 +51,7 @@ router.post("/saveUser", async (req, res) => {
   }
 });
 
-//post request for loin....
-
+//post request for login
 router.post("/login", (req, res) => {
   const userEmail = req.body.userEmail;
   const userPassword = req.body.userPassword;
