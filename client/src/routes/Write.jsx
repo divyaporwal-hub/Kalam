@@ -16,48 +16,54 @@ const Write = () => {
   const localDataObject = JSON.parse(localStorage.getItem("userInfo"));
   const userId = localDataObject.userId;
   function saveContent() {
-    Axios.post(`${BASE_URL}/blog/saveBlog`, {
-      blogHeading: heading,
-      blogText: blogText,
-      userId: userId,
-      saveDate: moment(new Date()).format("ll"),
-    })
-      .then((response) => {
-        console.log(response);
-        navigate("/");
+    if (heading) {
+      Axios.post(`${BASE_URL}/blog/saveBlog`, {
+        blogHeading: heading,
+        blogText: blogText,
+        userId: userId,
+        saveDate: moment(new Date()).format("ll"),
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((response) => {
+          console.log(response);
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Please Add the title of the blog");
+    }
   }
 
   return (
     <>
       <Header />
-
+      <Navbar />
       <div className="Write">
-        <div className="left">
-          <Navbar />
-        </div>
         <div className="right">
-          <div>
-            <textarea
-              className="blogHeading"
-              placeholder="New post title here..."
-              value={heading}
-              onChange={(e) => setHeading(e.target.value)}
-            ></textarea>
-          </div>
-          <div className="editorContainer">
-            <EditorConvertToHTML
-              blogText={blogText}
-              setBlogText={setBlogText}
-              updateCall={false}
-            />
+          <div className="rightEditorContainer">
+            <div className="blogHeadingContainer">
+              <textarea
+                className="blogHeading"
+                placeholder="New post title here..."
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+              ></textarea>
+            </div>
+            <div className="tagAreaContainer">
+              input
+            </div>
+            <div className="editorContainer">
+              <EditorConvertToHTML
+                blogText={blogText}
+                setBlogText={setBlogText}
+                updateCall={false}
+              />
+            </div>
           </div>
           <div className="btn-cnt">
-            <button className="btn" onClick={saveContent}>
-              Submit
+            <button className="btn publish-btn" onClick={saveContent}>
+              Publish
             </button>
           </div>
         </div>
