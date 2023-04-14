@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
+
 .Home {
   display: flex;
   flex-direction: column;
@@ -8,19 +9,20 @@
 
 .Home .main {
   display: flex;
-  margin-top: 54px;
+  /* margin-top: 54px; */
 }
 
 .Home .main .left {
   width: 20%;
   position: fixed;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .Home .main .right {
   width: calc(100% - 200px);
   margin-left: 200px;
   display: flex;
+  margin-top: 60px;
 }
 
 .Home .main .informationContainer {

@@ -3,7 +3,6 @@ import { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {BASE_URL} from "../helper/ref.js";
-
 import "../styles/Login.css";
 
 const Register = () => {
