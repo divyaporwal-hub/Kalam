@@ -11,6 +11,7 @@ import Logout from "./routes/Logout";
 import BlogInfo from "./routes/BlogInfo"
 import EditProfile from "./routes/EditProfile"
 import EditBlog from "./routes/EditBlog";
+import Otp from "./routes/Otp"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/otp" element={<Otp />} />
           <Route path="/profile/:userName" element={<Profile />} />
           <Route path="/forgetPass" element={<ForgetPass />} />
           <Route path="/confirmforget" element={<ConfirmForget />} />

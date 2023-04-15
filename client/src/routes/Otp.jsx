@@ -5,7 +5,7 @@ import Axios from "axios";
 import { BASE_URL } from "../helper/ref.js";
 
 function Otp() {
-  function handelSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     let userEmail = localStorage.getItem("userEmailForOtp");
     Axios.post(`${BASE_URL}/user/userInfo`, {
@@ -18,6 +18,9 @@ function Otp() {
         console.log(err);
       });
   }
+
+
+
   return (
     <>
       <form className="otp">
@@ -25,10 +28,11 @@ function Otp() {
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
-        <button type="submit" onClick={handleResend}>
-          Resend
-        </button>
+        {/* s */}
       </form>
     </>
   );
 }
+
+
+export default Otp;

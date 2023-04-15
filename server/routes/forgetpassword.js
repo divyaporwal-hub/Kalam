@@ -1,26 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const ForgetModel = require("../models/User.js");
+const UserModel = require("../models/User.js");
 const nodemailer = require("nodemailer");
 //post request
 
-router.post("/checkUser", (req, res) => {
-  ForgetModel.find({ userEmail: req.body.userEmail })
+router.get("/checkUser", async(req, res) => {
+  ForgetModel.find({ userEmail: req.query.userEmail })
     .then((result) => {
-      if (result.length) {
-        res.send("OK");
-      } else res.send("NO");
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
     });
 });
 
-const sendMail = "shikhapandey0238@gmail.com";
-const sendPassword = "";
+const sendMail = "authenticinfo2008@gmail.com";
+const sendPassword = "kaniyqfmvzhkuoba";
 
 // post req to save the generated otp
-router.post("/generate", (req, res) => {
+router.post("/generate", async (req, res) => {
   const userEmail = req.body.userEmail;
   try {
     // main code of nodemailer to send OTP
@@ -40,7 +39,7 @@ router.post("/generate", (req, res) => {
     });
 
     // generate the OTP
-    const generateOtp = generateOtp();
+    const generateOtp = "6383";
 
     // initialize the object and add the otp in message
     const mailOptions = {
@@ -51,16 +50,18 @@ router.post("/generate", (req, res) => {
     };
 
     // send the OTP
-    transporter.sendMail(mailOptions).then((response) => {
-      ForgrtetModel.find({ userEmail: userEmail }, (err, result) => {
-        result[0].userOtp = generateOtp;
-        result[0].save();
-        res.send(generateOtp);
-      });
-    });
+    let otpResponse = await transporter.sendMail(mailOptions)
+    console.log(otpResponse)
+
+
+    let userResponse = await UserModel.find({userEmail: userEmail});
+    userResponse[0].userOtp = generateOtp;
+    userResponse[0].save();
+
+
   } catch (e) {
     console.log("e", "sorry we can't send OTP");
-  }
+  }   
 });
 const generateOtp = () => {
   return Math.floor(Math.random() * (9999 - 1000)) + 1000 + "";
