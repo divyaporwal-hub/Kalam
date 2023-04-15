@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import "../styles/Write.css";
 import { BASE_URL } from "../helper/ref";
+import TagSuggestion from "../components/TagSuggestion";
 
 const Write = () => {
   const [heading, setHeading] = useState("");
@@ -51,7 +52,7 @@ const Write = () => {
               ></textarea>
             </div>
             <div className="tagAreaContainer">
-              input
+              <TagSuggestion />
             </div>
             <div className="editorContainer">
               <EditorConvertToHTML
