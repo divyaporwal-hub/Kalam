@@ -5,7 +5,7 @@ const UserModel = require("../models/User.js");
 const nodemailer = require("nodemailer");
 //post request
 
-router.get("/checkUser", async(req, res) => {
+router.get("/checkUser", async (req, res) => {
   ForgetModel.find({ userEmail: req.query.userEmail })
     .then((result) => {
       res.send(result);
@@ -39,7 +39,7 @@ router.post("/generate", async (req, res) => {
     });
 
     // generate the OTP
-    const generateOtp = "6383";
+    const generateOtp = generateOTP();
 
     // initialize the object and add the otp in message
     const mailOptions = {
@@ -50,22 +50,30 @@ router.post("/generate", async (req, res) => {
     };
 
     // send the OTP
-    let otpResponse = await transporter.sendMail(mailOptions)
-    console.log(otpResponse)
-
-
-    let userResponse = await UserModel.find({userEmail: userEmail});
-    userResponse[0].userOtp = generateOtp;
-    userResponse[0].save();
-
-
+    let otpResponse = await transporter.sendMail(mailOptions);
+    res.send(generateOtp);
   } catch (e) {
     console.log("e", "sorry we can't send OTP");
-  }   
+  }
 });
-const generateOtp = () => {
+const generateOTP = () => {
   return Math.floor(Math.random() * (9999 - 1000)) + 1000 + "";
 };
+
+//update users password after changing the password
+
+router.put("/updatepassword", async (req, res) => {
+  const userEmail = req.body.userEmail;
+  const updatedPassword = req.body.updatedPassword;
+  //find the user to update the password
+
+  let result = await UserModel.find({ userEmail: userEmail });
+  result[0].userPassword = updatedPassword;
+
+  result[0].save();
+
+  res.send("OK");
+});
 
 module.exports = router;
 

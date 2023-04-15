@@ -1,48 +1,55 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-function ConfirmForget() {
-  const [inputvalue, setInputvalue] = useState("");
-  console.log(inputvalue);
-  const sayHi = (event) => {
-    let x = event.target.value;
-    setInputvalue(x);
-  };
-  const [inputpass, setInputpass] = useState();
-  const changepass = (event) => {
-    let y = event.target.value;
-    setInputpass(y);
-  };
-  const [confirmpass, setConfirmpass] = useState();
-  const changeconfirmpass = (event) => {
-    let y = event.target.value;
-    setConfirmpass(y);
-  };
+import Axios from "axios";
+import { BASE_URL } from "../helper/ref.js";
+import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
-  console.log("rendering...");
+const ConfirmForget = ({ userEmail }) => {
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+   if(userPassword === confirmPassword) {
+    Axios.put(`${BASE_URL}/forget/updatepassword`, {
+      userEmail: userEmail,
+      updatedPassword: userPassword,
+    })
+      .then((response) => {
+        console.log(response);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+   } else {
+    alert("Password not matched.");
+   }
+  }
 
   return (
     <>
-      <h5>Data: {inputvalue}</h5>
-      <h5>data:{inputpass}</h5>
-      <h5>data:{confirmpass}</h5>
-      <form className="confirm">
+      <form className="form" onSubmit={handleSubmit}>
+        <h1 className="formHeading">Update password 🔑</h1>
         <input
-          type="email"
-          placeholder="enter your registered email"
-          onChange={sayHi}
+          type="password"
+          placeholder="Password"
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
         />
-        <br />
-        <h5>New password</h5>
-        <input type="password" onChange={changepass} />
-        <br />
-        <h5>Confirm Password</h5>
-        <input type="password" onChange={changeconfirmpass} />
-        <Link to={"/login"}>
-          <button type="submit">Sumbit</button>
-        </Link>
+        <input
+          type="password"
+          placeholder="confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <button type="submit"> Update </button>
       </form>
     </>
   );
-}
+};
+
 export default ConfirmForget;
