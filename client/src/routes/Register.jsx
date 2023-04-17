@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {BASE_URL} from "../helper/ref.js";
+import { BASE_URL } from "../helper/ref.js";
 import "../styles/Login.css";
+import { passwordStrength } from "check-password-strength";
+// import { off } from "../../../server/models/User.js";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -11,24 +13,36 @@ const Register = () => {
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [validPass, setValidPass] = useState(false);
+  const [warningMsg, setWarningMsg] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    Axios.post(`${BASE_URL}/user/saveUser`, {
-      userEmail: userEmail,
-      userName: userName,
-      fullName: fullName,
-      userPassword: password,
-    })
-      .then((response) => {
-        console.log(response.data);
-        navigate("/login");
+
+    // checking for password strength
+
+    if (validPass && password === confirmPassword) {
+      Axios.post(`${BASE_URL}/user/saveUser`, {
+        userEmail: userEmail,
+        userName: userName,
+        fullName: fullName,
+        userPassword: password,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((response) => {
+          console.log(response.data);
+          navigate("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if(!validPass) {
+      setWarningMsg("password should be strong.")
+    }else if(password!==confirmPassword){
+     setWarningMsg("confirm password is not matched")
+    }
   }
+
   return (
     <>
       <div className="formContainer">
@@ -63,7 +77,17 @@ const Register = () => {
             type="password"
             placeholder="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setValidPass(passwordStrength(e.target.value).value === "Medium" || passwordStrength(e.target.value).value === "Strong");
+            }}
+            style={password ? (validPass ? {
+              borderBottom: "2px solid green"
+            } : {
+              borderBottom: "2px solid red"
+            }) : {
+              borderBottom: "2px solid white"
+            }}
           />
           <label htmlFor="cpassword">Confirm Password</label>
           <input
@@ -73,9 +97,10 @@ const Register = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+          <p>{warningMsg}</p>
           <button type="submit">Sign Up</button>
           <p>already have a account?</p>
-          <button type="button" onClick={()=>{
+          <button type="button" onClick={() => {
             navigate("/login");
           }}>Login</button>
         </form>
