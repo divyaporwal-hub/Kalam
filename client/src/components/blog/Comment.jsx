@@ -3,16 +3,27 @@ import { BASE_URL } from "../../helper/ref.js";
 import axios from "axios";
 import DisplayComment from "./DisplayComment.jsx";
 import "../../styles/Comment.css";
+import { useNavigate } from "react-router-dom";
 
 function Comment({ blogId, allComments, setCommentCount }) {
   const [comment, setComment] = useState("");
+  let localData = JSON.parse(localStorage.getItem("userInfo"));
+  let userId = localData ? localData.userId : "-1";
+
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
 
+    if (userId === "-1") {
+      let userConfirm = window.confirm("Please login to comment");
+      if (userConfirm) {
+        navigate("/login");
+      }
+    }
+
     // Post request to save comment in DB
-    console.log("hello");
-    if (comment.length) {
+    else if (comment.length) {
       axios
         .post(`${BASE_URL}/comment/saveComment`, {
           comment: comment,
@@ -29,12 +40,8 @@ function Comment({ blogId, allComments, setCommentCount }) {
           console.log(err);
         });
     }
-
     //get request to fetch all the comments
   }
-
-  let localData = JSON.parse(localStorage.getItem("userInfo"));
-  let userId = localData.userId;
 
   return (
     <>
