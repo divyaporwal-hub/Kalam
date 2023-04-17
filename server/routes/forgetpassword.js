@@ -26,11 +26,11 @@ router.post("/generate", async (req, res) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
-      secure: false,
+      secure: true,
       requireTLS: true,
       tls: {
         ciphers: "SSLv3",
-        rejectUnauthorized: false,
+        rejectUnauthorized: true,
       },
       auth: {
         user: sendMail,
@@ -53,7 +53,7 @@ router.post("/generate", async (req, res) => {
     let otpResponse = await transporter.sendMail(mailOptions);
     res.send(generateOtp);
   } catch (e) {
-    console.log("e", "sorry we can't send OTP");
+    console.log(e, "sorry we can't send OTP");
   }
 });
 const generateOTP = () => {
