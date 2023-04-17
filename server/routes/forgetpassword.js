@@ -3,6 +3,9 @@ const router = express.Router();
 const ForgetModel = require("../models/User.js");
 const UserModel = require("../models/User.js");
 const nodemailer = require("nodemailer");
+const mailFrom=process.env.MAIL_USER;
+const mailPassword=process.env.MAIL_PASSWORD;
+
 //post request
 
 router.get("/checkUser", async (req, res) => {
@@ -15,8 +18,8 @@ router.get("/checkUser", async (req, res) => {
     });
 });
 
-const sendMail = "authenticinfo2008@gmail.com";
-const sendPassword = "kaniyqfmvzhkuoba";
+const sendMail = mailFrom;
+const sendPassword = mailPassword;
 
 // post req to save the generated otp
 router.post("/generate", async (req, res) => {
@@ -45,8 +48,14 @@ router.post("/generate", async (req, res) => {
     const mailOptions = {
       from: sendMail,
       to: userEmail,
-      subject: "OTP for reset password",
-      html: `Your OTP is: ${generateOtp}`,
+      subject: "reset password",
+      html: `<div  style="text-align: center;">
+      <h1> blogging with KALAM </h1>
+      <br/> 
+      <p> Hi, Let's reset your password. </p>
+      <p> To reset the password, use the given OTP <p>
+      <h2>${generateOtp}</h2>
+    </div>`,
     };
 
     // send the OTP
