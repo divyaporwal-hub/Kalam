@@ -36,10 +36,10 @@ const Register = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else if(!validPass) {
-      setWarningMsg("password should be strong.")
-    }else if(password!==confirmPassword){
-     setWarningMsg("confirm password is not matched")
+    } else if (!validPass) {
+      setWarningMsg("password should be strong.");
+    } else if (password !== confirmPassword) {
+      setWarningMsg("confirm password is not matched");
     }
   }
 
@@ -47,6 +47,7 @@ const Register = () => {
     <>
       <div className="formContainer">
         <form className="register" onSubmit={handleSubmit}>
+          <h1 className="formHeading">Register</h1>
           <label htmlFor="fullName">Full Name</label>
           <input
             id="fullName"
@@ -79,15 +80,24 @@ const Register = () => {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setValidPass(passwordStrength(e.target.value).value === "Medium" || passwordStrength(e.target.value).value === "Strong");
+              setValidPass(
+                passwordStrength(e.target.value).value === "Medium" ||
+                  passwordStrength(e.target.value).value === "Strong"
+              );
             }}
-            style={password ? (validPass ? {
-              borderBottom: "2px solid green"
-            } : {
-              borderBottom: "2px solid red"
-            }) : {
-              borderBottom: "2px solid white"
-            }}
+            style={
+              password
+                ? validPass
+                  ? {
+                      borderBottom: "2px solid green",
+                    }
+                  : {
+                      borderBottom: "2px solid red",
+                    }
+                : {
+                    borderBottom: "2px solid white",
+                  }
+            }
           />
           <label htmlFor="cpassword">Confirm Password</label>
           <input
@@ -97,12 +107,17 @@ const Register = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <p>{warningMsg}</p>
+          <p className="warningMsg">{warningMsg}</p>
           <button type="submit">Sign Up</button>
           <p>already have a account?</p>
-          <button type="button" onClick={() => {
-            navigate("/login");
-          }}>Login</button>
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Login
+          </button>
         </form>
       </div>
     </>
