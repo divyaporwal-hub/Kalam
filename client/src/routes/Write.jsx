@@ -12,6 +12,7 @@ import TagSuggestion from "../components/TagSuggestion";
 const Write = () => {
   const [heading, setHeading] = useState("");
   const [blogText, setBlogText] = useState("");
+  const [blogTags,setBlogTags] = useState([""]);
   const navigate = useNavigate();
 
   const localDataObject = JSON.parse(localStorage.getItem("userInfo"));
@@ -20,6 +21,7 @@ const Write = () => {
     if (heading) {
       Axios.post(`${BASE_URL}/blog/saveBlog`, {
         blogHeading: heading,
+        blogTags: blogTags,
         blogText: blogText,
         userId: userId,
         saveDate: moment(new Date()).format("ll"),
@@ -52,7 +54,10 @@ const Write = () => {
               ></textarea>
             </div>
             <div className="tagAreaContainer">
-              <TagSuggestion />
+              <TagSuggestion 
+                blogTags={blogTags}
+                setBlogTags={setBlogTags}
+              />
             </div>
             <div className="editorContainer">
               <EditorConvertToHTML

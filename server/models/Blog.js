@@ -4,6 +4,11 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  blogTags:
+  {
+    type:String,
+    required:false
+  },
   blogText: {
     type: String,
     required: true,

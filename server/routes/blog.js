@@ -10,17 +10,18 @@ router.post("/saveBlog", async (req, res) => {
   const blogText = req.body.blogText;
   const saveDate = req.body.saveDate;
   const userId = req.body.userId;
+  const blogTags= req.body.blogTags;
 
   const stats = readingTime(blogText);
 
   const blog = new BlogModel({
     blogHeading: blogHeading,
+    blogTags: blogTags,
     blogText: blogText,
     blogSaveTime: saveDate,
     userId: userId,
     minuteRead: stats.text,
   });
-
   
 
   try {
@@ -78,6 +79,7 @@ router.put("/updateBlog", async (req, res) => {
   let blogHeading = req.body.blogHeading;
   let blogText = req.body.blogText;
   let saveDate = req.body.saveDate;
+  let blogTags=req.body.blogTags;
 
   let result = await BlogModel.find({_id: blogId});
   const stats = readingTime(blogText);
@@ -86,6 +88,7 @@ router.put("/updateBlog", async (req, res) => {
   result[0].blogText = blogText;
   result[0].minuteRead = stats.text;
   result[0].blogSaveTime = saveDate; 
+  result[0].blogTags= blogTags;
   
   let updatedData = await result[0].save();
   res.send(updatedData);

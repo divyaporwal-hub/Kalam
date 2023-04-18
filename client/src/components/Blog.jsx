@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_URL } from "../helper/ref";
 import "../styles/Blog.css";
 import parse from "html-react-parser";
+import TagSuggestion from "./TagSuggestion";
 
 const Blog = ({
   blogImage,
@@ -11,6 +12,7 @@ const Blog = ({
   uploadTime,
   userId,
   minuteRead,
+  blogTags,
   blogPreview,
   blogId,
 }) => {

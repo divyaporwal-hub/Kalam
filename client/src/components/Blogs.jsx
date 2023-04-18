@@ -35,6 +35,7 @@ const Blogs = () => {
               <Blog
                 blogImage={BlogImage}
                 heading={value.blogHeading}
+                blogTags={value.blogTags}
                 uploadTime={value.blogSaveTime}
                 userId={value.userId}
                 minuteRead={value.minuteRead}
