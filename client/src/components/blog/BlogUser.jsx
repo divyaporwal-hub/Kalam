@@ -31,7 +31,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
             }
           );
 
-          if (followerResult.data.length) {
+          if (localData && followerResult.data.length) {
             setFollow(
               followerResult.data[0].followers.includes(localData.userId)
             );
@@ -50,6 +50,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
     setFollow(!follow);
 
     let localData = JSON.parse(localStorage.getItem("userInfo"));
+
     // followed by
     let followerId = localData.userId;
 
@@ -77,15 +78,12 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
           blogId: blogId,
         },
       });
-
-      console.log(response);
       navigate("/");
     }
   }
 
-
   function handleEdit() {
-    navigate("/editblog/"+blogId);
+    navigate("/editblog/" + blogId);
   }
 
   return (
@@ -107,7 +105,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
             <div>{blogSaveTime}</div> ・<div>{minuteRead}</div>
           </div>
         </div>
-        {(localData && (localData.userName !== userName)) && (
+        {localData && localData.userName !== userName && (
           <div className="followButtonContainer" onClick={handleFollow}>
             <button className={follow ? "follow" : "unfollow"}>
               {follow ? "Followed" : "Follow"}
@@ -115,7 +113,7 @@ const BlogUser = ({ blogId, userName, blogSaveTime, minuteRead }) => {
           </div>
         )}
 
-        {localData.userName === userName && (
+        {localData && localData.userName === userName && (
           <>
             <div className="followButtonContainer" onClick={handleDelete}>
               <button className="deleteButton">Delete</button>

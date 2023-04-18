@@ -5,6 +5,7 @@ import Axios from "axios";
 import { BASE_URL } from "../helper/ref.js";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import {passwordStrength}from  'check-password-strength';
 
 const ConfirmForget = ({ userEmail }) => {
   const [confirmPassword, setConfirmPassword] = useState("");

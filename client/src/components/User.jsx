@@ -49,7 +49,9 @@ const User = (props) => {
         to={`/profile/edit/${props.userName}`}
         className="editButtonLink"
       >
-        {localData.userName === props.userName && <button>edit</button>}
+        {localData && localData.userName === props.userName && (
+          <button>edit</button>
+        )}
       </NavLink>
     </div>
   );

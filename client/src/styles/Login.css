@@ -12,10 +12,6 @@
   overflow: hidden;
   background-size: cover;
   background-position: center;
-
-  /* filter: blur(8px);
-  -webkit-filter: blur(8px);
-  z-index: -1; */
 }
 
 .formContainer form {
@@ -24,12 +20,12 @@
   border-radius: 6px;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-top: 10vh;
+  margin-top: 30px;
   background-color: white;
 }
 
 .formContainer form .formHeading {
-  margin: 10px 0;
+  text-align: center;
 }
 
 .formContainer form input {
@@ -50,4 +46,10 @@
 .formContainer form a button {
   width: 100%;
   margin: 10px 0;
+}
+
+.warningMsg {
+  color: red;
+  margin-bottom: 10px;
+  /* font-style: italic; */
 }
