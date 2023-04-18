@@ -1,19 +1,30 @@
-.BlogInfoContainer{
-    display: flex;
-    flex-direction: row;
-    margin-top: 60px;
+.BlogInfoContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 60px;
 }
 
-.BlogInfoContainer .left{
-    width: 80%;
+.BlogInfoContainer .left {
+  width: 80%;
 }
 
-.BlogInfoContainer .left .blogDetailContainer{
-    width: 80%;
-    margin: 40px auto;
+.BlogInfoContainer .left .blogDetailContainer {
+  width: 80%;
+  margin: 40px auto;
 }
 
+.BlogInfoContainer .right {
+  width: 20%;
+}
 
-.BlogInfoContainer .right{
-    width: 20%;
+.BlogInfoContainer .blogTagsContainer {
+  display: flex;
+  margin-top: 25px;
+}
+
+.BlogInfoContainer .blogTagsContainer .blogTag {
+  margin-right: 10px;
+  background-color: #70809054;
+  padding: 2px 5px;
+  border-radius: 5px;
 }

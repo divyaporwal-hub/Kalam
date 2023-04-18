@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../helper/ref.js";
 import "../styles/Login.css";
 import { passwordStrength } from "check-password-strength";
-// import { off } from "../../../server/models/User.js";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -55,6 +54,7 @@ const Register = () => {
             placeholder="FullName"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <label htmlFor="userName">User Name</label>
           <input
@@ -63,6 +63,7 @@ const Register = () => {
             placeholder="username"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
+            required
           />
           <label htmlFor="userEmail">Email</label>
           <input
@@ -71,6 +72,7 @@ const Register = () => {
             placeholder="Email"
             value={userEmail}
             onChange={(e) => setUserEmail(e.target.value)}
+            required
           />
           <label htmlFor="password">Password</label>
           <input
@@ -78,6 +80,7 @@ const Register = () => {
             type="password"
             placeholder="password"
             value={password}
+            required
             onChange={(e) => {
               setPassword(e.target.value);
               setValidPass(
@@ -106,6 +109,7 @@ const Register = () => {
             placeholder="confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
           <p className="warningMsg">{warningMsg}</p>
           <button type="submit">Sign Up</button>

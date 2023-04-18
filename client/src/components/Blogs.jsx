@@ -30,7 +30,8 @@ const Blogs = () => {
         {fetchError && allBlogs ? (
           <div>Please wait, Trying to fetch the blogs...</div>
         ) : (
-          allBlogs && allBlogs.map((value, index) => {
+          allBlogs &&
+          allBlogs.map((value, index) => {
             return (
               <Blog
                 blogImage={BlogImage}

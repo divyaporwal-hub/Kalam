@@ -4,10 +4,9 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  blogTags:
-  {
-    type:String,
-    required:false
+  blogTags: {
+    type: Array,
+    required: false,
   },
   blogText: {
     type: String,
