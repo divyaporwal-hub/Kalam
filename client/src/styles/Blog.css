@@ -11,7 +11,7 @@
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
-.Blog a{
+.Blog a {
   text-decoration: none;
   color: black;
 }
@@ -51,4 +51,15 @@
 .Blog .blogPreview {
   margin: 0px 5px;
   font-size: 1.2rem;
+}
+
+.Blog .blogTagsContainer {
+  display: flex;
+}
+
+.Blog .blogTagsContainer .blogTag {
+  margin-right: 10px;
+  background-color: #70809054;
+  padding: 2px 5px;
+  border-radius: 5px;
 }

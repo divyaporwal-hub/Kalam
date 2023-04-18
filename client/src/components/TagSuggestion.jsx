@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import { TagsInput } from "react-tag-input-component";
 
-const TagSuggestion = () => {
-  const [blogTags, setBlogTags] = useState([""]);
-
-  // let localData = JSON.parse(localStorage.getItem("userInfo"));
-  // let userId = localData.userId;
-
-
+const TagSuggestion = ({ blogTags, setBlogTags }) => {
   return (
     <div>
-      {/* <pre>{JSON.stringify(selected)}</pre> */}
       <TagsInput
         value={blogTags}
         onChange={setBlogTags}

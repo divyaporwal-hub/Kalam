@@ -12,7 +12,7 @@ import TagSuggestion from "../components/TagSuggestion";
 const Write = () => {
   const [heading, setHeading] = useState("");
   const [blogText, setBlogText] = useState("");
-  const [blogTags,setBlogTags] = useState([""]);
+  const [blogTags, setBlogTags] = useState([]);
   const navigate = useNavigate();
 
   const localDataObject = JSON.parse(localStorage.getItem("userInfo"));
@@ -54,10 +54,7 @@ const Write = () => {
               ></textarea>
             </div>
             <div className="tagAreaContainer">
-              <TagSuggestion 
-                blogTags={blogTags}
-                setBlogTags={setBlogTags}
-              />
+              <TagSuggestion blogTags={blogTags} setBlogTags={setBlogTags} />
             </div>
             <div className="editorContainer">
               <EditorConvertToHTML

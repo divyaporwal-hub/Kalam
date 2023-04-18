@@ -37,7 +37,7 @@ const BlogInfo = () => {
           .get(`${BASE_URL}/user/userInfoById`, {
             params: {
               userId: userId,
-            }
+            },
           })
           .then((userResponse) => {
             setUserName(userResponse.data[0].userName);
@@ -45,7 +45,7 @@ const BlogInfo = () => {
           .catch((err) => {
             console.log(err);
           });
-          // end userInfo request
+        // end userInfo request
       })
       .catch((err) => {
         console.log(err);
@@ -68,9 +68,20 @@ const BlogInfo = () => {
             <BlogHeading blogHeading={blogData.blogHeading} />
             {/* <BlogTags /> */}
             <BlogContent blogText={blogData.blogText} />
-            {
-              blogId && <BlogFooter id={blogId}/>
-            }
+            {blogData.blogTags ? (
+              <div className="blogTagsContainer">
+                {blogData.blogTags.map((tag, index) => {
+                  return (
+                    <div className="blogTag" key={index}>
+                      #{tag}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              ""
+            )}
+            {blogId && <BlogFooter id={blogId} />}
           </div>
         </div>
         <div className="right">nothing</div>

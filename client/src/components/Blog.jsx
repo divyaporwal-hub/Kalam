@@ -45,6 +45,19 @@ const Blog = ({
             <div>{uploadTime}</div> • <div>{userName ? userName : ""}</div> •
             <div>{minuteRead}</div>
           </div>
+          {blogTags ? (
+            <div className="blogTagsContainer">
+              {blogTags.map((tag, index) => {
+                return (
+                  <div className="blogTag" key={index}>
+                    #{tag}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="blogPreview">
             {parse(blogPreview.slice(0, 150) + "...")}
           </div>
