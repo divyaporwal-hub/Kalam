@@ -10,7 +10,17 @@ import {passwordStrength}from  'check-password-strength';
 const ConfirmForget = ({ userEmail }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [showPassword, setShowPassword]=useState(false);
+  const [showCnfpassword, setShowCnfpassword]=useState(false);
   const navigate = useNavigate();
+  function handlepassword(e){
+    e.preventDefault();
+    setShowPassword(!showPassword);
+   }
+   function handleCnfpassword(e){
+    e.preventDefault();
+    setShowCnfpassword(!showCnfpassword);
+   }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -35,18 +45,25 @@ const ConfirmForget = ({ userEmail }) => {
     <>
       <form className="form" onSubmit={handleSubmit}>
         <h1 className="formHeading">Update password 🔑</h1>
+        <div>
         <input
           type="password"
           placeholder="Password"
           value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
         />
+       <button  onClick={handlepassword}>{showPassword? "hide":"show"}</button>
+        </div>
+        <div>
         <input
           type="password"
           placeholder="confirm password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
+        <button  onClick={handleCnfpassword}>{showCnfpassword? "hide":"show"}</button>
+        </div>
+        
         <button type="submit"> Update </button>
       </form>
     </>

@@ -14,8 +14,17 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validPass, setValidPass] = useState(false);
   const [warningMsg, setWarningMsg] = useState("");
+  const [showPassword, setShowPassword]=useState(false);
+  const [showCnfpassword, setShowCnfpassword]=useState(false);
   const navigate = useNavigate();
-
+ function handlepassword(e){
+  e.preventDefault();
+  setShowPassword(!showPassword);
+ }
+ function handelCnfpassword(e){
+  e.preventDefault();
+  setShowCnfpassword(!showCnfpassword);
+ }
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -75,9 +84,10 @@ const Register = () => {
             required
           />
           <label htmlFor="password">Password</label>
+          <div className="formGroup">
           <input
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="password"
             value={password}
             required
@@ -102,15 +112,21 @@ const Register = () => {
                   }
             }
           />
+          <button  onClick={handlepassword}>{showPassword? "hide":"show"}</button>
+          </div>
+          
           <label htmlFor="cpassword">Confirm Password</label>
+          <div className="formGroup">
           <input
             id="cpassword"
-            type="password"
+            type={showCnfpassword ? "text" : "password"}
             placeholder="confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+            <button onClick={handelCnfpassword}>{showCnfpassword?"hide":"show"}</button>
+          </div>
           <p className="warningMsg">{warningMsg}</p>
           <button type="submit">Sign Up</button>
           <p>already have a account?</p>
