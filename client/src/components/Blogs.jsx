@@ -33,17 +33,20 @@ const Blogs = () => {
           allBlogs &&
           allBlogs.map((value, index) => {
             return (
-              <Blog
-                blogImage={BlogImage}
-                heading={value.blogHeading}
-                blogTags={value.blogTags}
-                uploadTime={value.blogSaveTime}
-                userId={value.userId}
-                minuteRead={value.minuteRead}
-                blogPreview={value.blogText}
-                blogId={value._id}
-                key={index}
-              />
+              <>
+                <div className="blogLine"></div>
+                <Blog
+                  blogImage={BlogImage}
+                  heading={value.blogHeading}
+                  blogTags={value.blogTags}
+                  uploadTime={value.blogSaveTime}
+                  userId={value.userId}
+                  minuteRead={value.minuteRead}
+                  blogPreview={value.blogText}
+                  blogId={value._id}
+                  key={index}
+                />
+              </>
             );
           })
         )}

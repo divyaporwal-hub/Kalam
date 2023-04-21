@@ -50,7 +50,7 @@ const Blog = ({
               {blogTags.map((tag, index) => {
                 return (
                   <div className="blogTag" key={index}>
-                    #{tag}
+                    {tag}
                   </div>
                 );
               })}
@@ -58,9 +58,7 @@ const Blog = ({
           ) : (
             ""
           )}
-          <div className="blogPreview">
-            {parse(blogPreview.slice(0, 150) + "...")}
-          </div>
+          <div className="blogPreview">{parse(blogPreview.slice(0, 100))}</div>
         </div>
       </NavLink>
     </div>
