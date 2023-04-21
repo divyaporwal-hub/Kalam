@@ -1,9 +1,14 @@
 .Tag {
   display: flex;
-  background-color: #4682b4;
-  padding: 3px 7px;
-  border-radius: 5px;
+  background-color: #45aaff;
+  padding: 7px 15px;
+  border-radius: 20px;
   margin: 5px 0;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.Tag:hover {
+  background-color: #379bec;
 }

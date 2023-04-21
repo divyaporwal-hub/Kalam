@@ -6,7 +6,7 @@ import "../styles/Tags.css";
 const Tags = () => {
   return (
     <div className="Tags">
-      <h1> Trending ⚡</h1>
+      <h1> Recommened Topics</h1>
       <div className="allTags">
         <Tag tagName="javaScript" />
         <Tag tagName="python" />
