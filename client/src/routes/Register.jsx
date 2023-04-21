@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../helper/ref.js";
 import "../styles/Login.css";
 import { passwordStrength } from "check-password-strength";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -14,6 +16,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validPass, setValidPass] = useState(false);
   const [warningMsg, setWarningMsg] = useState("");
+
   const [showPassword, setShowPassword] = useState(false);
   const [showCnfpassword, setShowCnfpassword] = useState(false);
   const navigate = useNavigate();
@@ -55,9 +58,10 @@ const Register = () => {
     <>
       <div className="formContainer">
         <form className="register" onSubmit={handleSubmit}>
-          <h1 className="formHeading">Register</h1>
           <div className="formGroup">
-            <label htmlFor="fullName">Full Name</label>
+            <h1 className="formHeading">Register</h1>
+          </div>
+          <div className="formGroup">
             <input
               id="fullName"
               type="text"
@@ -68,7 +72,6 @@ const Register = () => {
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="userName">User Name</label>
             <input
               id="userName"
               type="text"
@@ -79,7 +82,6 @@ const Register = () => {
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="userEmail">Email</label>
             <input
               id="userEmail"
               type="email"
@@ -90,7 +92,6 @@ const Register = () => {
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="password">Password</label>
             <input
               id="password"
               type={showPassword ? "text" : "password"}
@@ -108,23 +109,26 @@ const Register = () => {
                 password
                   ? validPass
                     ? {
-                        borderBottom: "2px solid green",
+                        backgroundColor: "#81d581",
                       }
                     : {
-                        borderBottom: "2px solid red",
+                        backgroundColor: "#ffa2a2",
                       }
                   : {
-                      borderBottom: "2px solid white",
+                      backgroundColor: "#e2e2e2",
                     }
               }
             />
-            <button onClick={handlepassword}>
-              {showPassword ? "hide" : "show"}
-            </button>
+            <div onClick={handlepassword} className="passwordShowHide">
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
+            </div>
           </div>
 
           <div className="formGroup">
-            <label htmlFor="cpassword">Confirm Password</label>
             <input
               id="cpassword"
               type={showCnfpassword ? "text" : "password"}
@@ -133,23 +137,30 @@ const Register = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <button onClick={handelCnfpassword}>
-              {showCnfpassword ? "hide" : "show"}
-            </button>
+            <div onClick={handelCnfpassword} className="passwordShowHide">
+              {showCnfpassword ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
+            </div>
           </div>
 
           <div className="formGroup">
             <p className="warningMsg">{warningMsg}</p>
+          </div>
+          <div className="formGroup">
+            <p>Make you account ✨</p>
             <button type="submit">Sign Up</button>
-            <p>already have a account?</p>
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
+          </div>
+          <div className="formGroup">
+            <div className="lineSeperator"></div>
+          </div>
+          <div className="formGroup">
+            <p>Already have an account?</p>
+            <Link to={"/login"} className="registerLink">
               Login
-            </button>
+            </Link>
           </div>
         </form>
       </div>

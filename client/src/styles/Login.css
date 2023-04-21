@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 200ms linear;
 }
 
 .formContainer {
@@ -23,34 +24,50 @@
   margin-top: 30px;
   background-color: white;
   font-weight: 500;
+  transition: all 200ms linear;
 }
 
-.formContainer form .formHeading {
-  text-align: center;
+.formContainer form .formGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
-.formContainer form input {
+.formContainer form .formGroup input {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 8px 10px;
   outline: none;
   border: none;
-  font-size: 1.4rem;
-  padding: 5px 10px;
-  margin: 10px 0;
-  background-color: #80808033;
+  background-color: #e2e2e2;
+  /* border-radius: 3px; */
 }
 
-.formContainer form a {
+.formContainer form .formGroup .passwordShowHide {
+  background-color: rgb(226, 226, 226);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 45px;
+  cursor: pointer;
+}
+
+.formContainer form .formGroup a {
   text-decoration: none;
-  margin: 5px 0;
-  width: 100%;
 }
 
-.formContainer form a button {
+.formContainer form .formGroup .lineSeperator {
+  height: 1px;
   width: 100%;
-  margin: 10px 0;
+  background-color: rgb(192, 191, 191);
 }
 
-.warningMsg {
-  color: red;
-  margin-bottom: 10px;
-  /* font-style: italic; */
+.formContainer form .formGroup .registerLink {
+  color: white;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: black;
 }

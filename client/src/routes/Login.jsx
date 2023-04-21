@@ -5,6 +5,8 @@ import Axios from "axios";
 import { BASE_URL } from "../helper/ref.js";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -55,7 +57,9 @@ const Login = () => {
     <>
       <div className="formContainer">
         <form className="form" onSubmit={handleSubmit}>
-          <h1 className="formHeading">Login ✍</h1>
+          <div className="formGroup">
+            <h1 className="formHeading">Login ✍</h1>
+          </div>
           <div className="formGroup">
             <input
               type="email"
@@ -71,17 +75,30 @@ const Login = () => {
               value={userPassword}
               onChange={(e) => setUserPassword(e.target.value)}
             />
-            <button onClick={handleShowhide}>
-              {showPassword ? "Hide" : "Show"}
-            </button>
+            <div onClick={handleShowhide} className="passwordShowHide">
+              {showPassword ? (
+                <FontAwesomeIcon icon={faEyeSlash} />
+              ) : (
+                <FontAwesomeIcon icon={faEye} />
+              )}
+            </div>
           </div>
-          <Link to={"/forgetPass"}>
-            <p>Forget Password?</p>
-          </Link>
-          <button type="submit"> Login </button>
-          <Link to={"/register"}>
+          <div className="formGroup">
+            <Link to={"/forgetPass"}>Forgot Password?</Link>
+            <button type="submit"> Login </button>
+          </div>
+          <div className="formGroup">
+            <div className="lineSeperator"></div>
+          </div>
+          <div className="formGroup">
+            <p>Not Have Account?</p>
+            <Link to={"/register"} className="registerLink">
+              Register
+            </Link>
+          </div>
+          {/* <Link to={"/register"}>
             <button>Register</button>
-          </Link>
+          </Link> */}
         </form>
       </div>
     </>
