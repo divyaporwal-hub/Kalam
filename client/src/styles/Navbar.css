@@ -1,40 +1,45 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap"); */
 .Navbar {
   display: flex;
   flex-direction: column;
   width: 200px;
-  background-color: #a7c7e7;
-  background-color: #6098d1;
   height: 100vh;
   position: fixed;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    margin-top: 59px;
-
+  margin-top: 59px;
 }
 
 .Navbar .navbarContainer {
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  padding-top: 10px;
 }
 
-.Navbar .navbarContainer .menuItem {
-  padding: 15px 10px;
+.Navbar .navbarContainer .itemLink .menuItem {
+  padding: 10px 10px;
   font-size: 1.4rem;
+  border-radius: 10px;
+  margin: 5px 10px;
+  transition: all 200ms linear;
+  display: flex;
+  align-items: center;
 }
-.Navbar .navbarContainer .menuItem .itemLink {
-  color: white;
-  cursor: pointer;
-  transition: all 140ms linear;
+.Navbar .navbarContainer .itemLink .menuItem svg {
+  color: #565252;
+  font-size: 1.3rem;
+}
+
+.Navbar .navbarContainer .itemLink .menuItem .menuItemText {
+  margin-left: 10px;
 }
 
 .Navbar .navbarContainer .menuItem:hover {
-  background-color: #355ca7c2;
+  background-color: #c4c4c4c2;
 }
 
 .Navbar .navbarContainer .itemLink {
   text-decoration: none;
   font-weight: 600;
-  color: white;
+  color: black;
 }
