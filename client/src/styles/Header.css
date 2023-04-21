@@ -1,31 +1,76 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script:wght@700&family=Josefin+Sans:wght@200&family=Kanit&family=Oswald:wght@200&family=Roboto:wght@100&display=swap");
-.main__header{
-    display: flex;
+.main__header {
+  display: flex;
   flex-direction: column;
   font-family: "Acme", sans-serif;
 }
 
 .main__header .header {
-    display: flex;
-    align-items: center;
-    background: #191970;
-    justify-content: space-between;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    padding: 5px 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-  }
-  
-  .main__header .header h1 {
-    color: white;
-    font-family: "Dancing Script", cursive;
-  }
-  
-  .main__header .header .userInfo img {
-    height: 40px;
-    width: 40px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  z-index: 10;
+}
+
+.main__header .header .leftSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main__header .header .leftSection input[type="search"] {
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: #f5f2f2;
+  border-radius: 20px;
+  margin-left: 30px;
+  width: 500px;
+  padding-left: 20px;
+}
+.main__header .header .leftSection input[type="search"]::placeholder {
+  color: rgb(179, 179, 179);
+  font-weight: 300;
+}
+
+.main__header .header .leftSection .logoName {
+  color: black;
+  font-family: "Dancing Script", cursive;
+}
+
+.main__header .header .rightSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.main__header .header .rightSection .writeLink {
+  text-decoration: none;
+  color: rgb(151, 151, 151);
+  transition: all 200ms linear;
+  margin-right: 25px;
+  font-size: 1.2rem;
+}
+
+.main__header .header .rightSection .writeLink svg {
+  margin-right: 5px;
+}
+
+.main__header .header .rightSection .writeLink:hover {
+  color: black;
+}
+
+.main__header .header .rightSection img {
+  height: 40px;
+  width: 40px;
+}

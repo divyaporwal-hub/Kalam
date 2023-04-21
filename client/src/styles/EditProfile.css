@@ -1,77 +1,80 @@
 .EditProfile {
-    width: calc(100% - 200px);
-    margin-left: 200px;
-    background-color: #f1f1f1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 60px;
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 60px; */
 }
 
 .EditProfile form {
-    width: 60%;
+  width: 60%;
 }
 
-.EditProfile form .formGroup{
-    display: flex;
-    margin: 20px 0;
+.EditProfile form .formGroup {
+  display: flex;
+  margin: 20px 0;
 }
 
-.EditProfile form .formGroup label{
-    width: 20%;
-    text-align: right;
-    font-size: 1.4rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.EditProfile form .formGroup label {
+  width: 20%;
+  text-align: right;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
 }
 
-.EditProfile form .formGroup label .icon-hover{
-    cursor: pointer;
-    color: rgb(140, 141, 141);
-    font-size: 2rem;
-    transition: all 200ms linear;
+.EditProfile form .formGroup label .icon-hover {
+  cursor: pointer;
+  color: rgb(140, 141, 141);
+  font-size: 2rem;
+  transition: all 200ms linear;
 }
 
-.EditProfile form .formGroup label .icon-hover:hover{
-    color: rgb(71, 71, 71);
+.EditProfile form .formGroup label .icon-hover:hover {
+  color: rgb(71, 71, 71);
 }
 
-.EditProfile form .formGroup input,.EditProfile form .formGroup textarea, .EditProfile form .formGroup button#submit{
-    width: 80%;
-    font-size: 1.4rem;
-    outline: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    margin-left: 30px;
-    background: rgb(255, 255, 255);
-    border: 2px solid transparent;
-    transition: all 200ms linear;
+.EditProfile form .formGroup input,
+.EditProfile form .formGroup textarea,
+.EditProfile form .formGroup button#submit {
+  width: 80%;
+  font-size: 1.4rem;
+  outline: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 30px;
+  background: rgb(255, 255, 255);
+  border: 2px solid transparent;
+  transition: all 200ms linear;
 }
 
-.EditProfile form .formGroup input:focus,.EditProfile form .formGroup textarea:focus{
-    border: 2px solid rgb(21, 161, 243);
+.EditProfile form .formGroup input:focus,
+.EditProfile form .formGroup textarea:focus {
+  border: 2px solid rgb(21, 161, 243);
 }
 
-.EditProfile form .formGroup #countryName{
-    font-size: 1.4rem;
-    outline: none;
-    border: none;
-    padding: 5px 10px;
-    margin-left: 10px;
+.EditProfile form .formGroup #countryName {
+  font-size: 1.4rem;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
 }
 
 .EditProfile form .formGroup button#submit {
-    background-color: #191970;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 200ms linear;
+  background-color: #191970;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 200ms linear;
 }
 
 .EditProfile form .formGroup button#submit:hover {
-    background-color: #01014e;
+  background-color: #01014e;
 }

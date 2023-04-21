@@ -10,12 +10,12 @@ const Home = () => {
   return (
     <div className="Home">
       {/* Header will contain userprofile icons and name of the website */}
-      <Header />
+      {/* <Header /> */}
       {/* main will contain entire page information */}
       <div className="main">
         {/* Left seciton will contain the Navbar */}
         <div className="left">
-          <Navbar />
+          <Navbar active={"home"} />
         </div>
 
         {/* Right section will contain Blog + Tags */}

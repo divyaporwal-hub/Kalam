@@ -12,8 +12,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-const EditUser=() =>
-{
+const EditUser = () => {
   const [fullName, setFullName] = useState("");
   const [newUserName, setNewUserName] = useState("");
   const [userBio, setUserBio] = useState("");
@@ -29,8 +28,8 @@ const EditUser=() =>
   useEffect(() => {
     Axios.get(`${BASE_URL}/profile/getProfile`, {
       params: {
-        userName: userName
-      }
+        userName: userName,
+      },
     })
       .then((response) => {
         const user = response.data[0];
@@ -44,15 +43,7 @@ const EditUser=() =>
       .catch((err) => {
         console.log(err);
       });
-    }
-  )
-
-
-    //   return (
-    //     <>
-    //     </>
-    //   );
+  });
 };
-
 
 export default EditUser;

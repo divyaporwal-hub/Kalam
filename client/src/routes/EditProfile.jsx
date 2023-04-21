@@ -104,7 +104,7 @@ function Editprofile() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Navbar />
       <div className="EditProfile">
         <form onSubmit={handleSubmit}>

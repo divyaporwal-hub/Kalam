@@ -40,8 +40,8 @@ const Write = () => {
 
   return (
     <>
-      <Header />
-      <Navbar />
+      {/* <Header /> */}
+      <Navbar active={"write"} />
       <div className="Write">
         <div className="right">
           <div className="rightEditorContainer">

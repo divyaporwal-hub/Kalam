@@ -4,9 +4,8 @@
   width: 200px;
   height: 100vh;
   position: fixed;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  margin-top: 59px;
+  border-right: 1px solid #c0c0c081;
+  background-color: #c0c0c02e;
 }
 
 .Navbar .navbarContainer {
@@ -25,6 +24,15 @@
   display: flex;
   align-items: center;
 }
+
+.Navbar .navbarContainer .itemLink .menuItemLogo {
+  padding-bottom: 0 !important;
+}
+
+.Navbar .navbarContainer .itemLink .menuItemLogo:hover {
+  background-color: rgb(240, 239, 239);
+}
+
 .Navbar .navbarContainer .itemLink .menuItem svg {
   color: #565252;
   font-size: 1.3rem;
@@ -34,12 +42,21 @@
   margin-left: 10px;
 }
 
-.Navbar .navbarContainer .menuItem:hover {
-  background-color: #c4c4c4c2;
+.Navbar .navbarContainer .itemLink .menuItem .activeNav {
+  font-weight: 700;
+}
+
+.Navbar .navbarContainer .itemLink .menuItem:hover {
+  background-color: #c4c4c4ab;
 }
 
 .Navbar .navbarContainer .itemLink {
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   color: black;
+}
+
+.Navbar .navbarContainer .itemLinkUser {
+  position: absolute;
+  bottom: 20px;
 }

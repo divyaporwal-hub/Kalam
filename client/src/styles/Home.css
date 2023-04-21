@@ -9,20 +9,18 @@
 
 .Home .main {
   display: flex;
-  /* margin-top: 54px; */
 }
 
 .Home .main .left {
   width: 20%;
   position: fixed;
-  /* margin-top: 5px; */
 }
 
 .Home .main .right {
   width: calc(100% - 200px);
   margin-left: 200px;
   display: flex;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 
 .Home .main .informationContainer {

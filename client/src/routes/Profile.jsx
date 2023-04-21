@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Profile.css";
 import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import User from "../components/User";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -86,7 +87,8 @@ const Profile = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      <Navbar active={"profile"} />
       <div className="Profile">
         <section className="userSection">
           {Object.keys(profileData).length !== 0 ? (
