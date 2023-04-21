@@ -114,19 +114,23 @@ const Profile = () => {
           )}
         </section>
         <section className="blogSection">
+          <div className="blogContextHeading">My Blogs</div>
           {userBlogs &&
             userBlogs.map((blog, index) => {
               return (
-                <Blog
-                  blogImage={BlogImage}
-                  heading={blog.blogHeading}
-                  uploadTime={blog.blogSaveTime}
-                  userId={blog.userId}
-                  minuteRead={blog.minuteRead}
-                  blogPreview={blog.blogText}
-                  blogId={blog._id}
-                  key={index}
-                />
+                <>
+                  <div className="blogLine"></div>
+                  <Blog
+                    blogImage={BlogImage}
+                    heading={blog.blogHeading}
+                    uploadTime={blog.blogSaveTime}
+                    userId={blog.userId}
+                    minuteRead={blog.minuteRead}
+                    blogPreview={blog.blogText}
+                    blogId={blog._id}
+                    key={index}
+                  />
+                </>
               );
             })}
         </section>
