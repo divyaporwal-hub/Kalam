@@ -1,63 +1,70 @@
 .BlogUserContainer {
-    display: flex;
-    align-items: center;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
-.BlogUserContainer .imageContainer img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.BlogUserContainer .imageContainer img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #80808030;
 }
 
-.BlogUserContainer .userInfoContainer{
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    justify-content: space-between;
-    height: 50px;
+.BlogUserContainer .userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  justify-content: space-between;
+  height: 50px;
 }
 
-
-.BlogUserContainer .userInfoContainer .blogSecondaryInfo{
-    display: flex;
-    color: grey;
+.BlogUserContainer .userInfoContainer .blogPrimaryInfo a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: black;
+  text-transform: capitalize;
 }
 
-.BlogUserContainer .followButtonContainer{
-    display: flex;
-    margin-left: 30px;
+.BlogUserContainer .userInfoContainer .blogSecondaryInfo {
+  display: flex;
+  color: grey;
 }
 
-.BlogUserContainer .followButtonContainer button{
-    border-radius: 20px;
-    font-size: 1.2rem;
-    padding: 3px 10px;
+.BlogUserContainer .followButtonContainer {
+  display: flex;
+  margin-left: 30px;
 }
 
-.BlogUserContainer .followButtonContainer button.unfollow{
-    border: 2px solid blue;
-    background-color: white;
-    color: blue;
+.BlogUserContainer .followButtonContainer button {
+  border-radius: 20px;
+  font-size: 1.2rem;
+  padding: 5px 10px;
 }
 
-.BlogUserContainer .followButtonContainer button.follow{
-    border: 2px solid blue;
-    background-color: blue;
-    color: white;
+.BlogUserContainer .followButtonContainer button.unfollow {
+  border: 2px solid blue;
+  background-color: white;
+  color: blue;
 }
 
-.BlogUserContainer .followButtonContainer button.deleteButton{
-    border: 2px solid coral;
-    background-color: coral;
-    color: white;
-    width: 90px;
+.BlogUserContainer .followButtonContainer button.follow {
+  border: 2px solid blue;
+  background-color: blue;
+  color: white;
 }
 
+.BlogUserContainer .followButtonContainer button.deleteButton {
+  border: 2px solid coral;
+  background-color: coral;
+  color: white;
+  width: 90px;
+}
 
-.BlogUserContainer .followButtonContainer button.editButton{
-    border: 2px solid green;
-    background-color: green;
-    color: white;
-    width: 90px;
+.BlogUserContainer .followButtonContainer button.editButton {
+  border: 2px solid green;
+  background-color: green;
+  color: white;
+  width: 90px;
 }

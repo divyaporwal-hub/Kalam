@@ -13,6 +13,23 @@
   margin: 40px auto;
 }
 
+.BlogInfoContainer .left .blogDetailContainer .BlogMainImage {
+  width: 100%;
+  display: flex;
+}
+
+.BlogInfoContainer .left .blogDetailContainer .BlogMainImage img {
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 10px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.BlogInfoContainer .left .blogDetailContainer .blogContent p {
+  font-family: "Merriweather", serif;
+}
+
 .BlogInfoContainer .right {
   width: 20%;
 }
@@ -24,7 +41,15 @@
 
 .BlogInfoContainer .blogTagsContainer .blogTag {
   margin-right: 10px;
-  background-color: #70809054;
-  padding: 2px 5px;
-  border-radius: 5px;
+  background-color: #6e6c5230;
+  padding: 7px 15px;
+  font-size: 20px;
+  border-radius: 22px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+
+.BlogInfoContainer .blogTagsContainer .blogTag:hover {
+  background-color: #6e6c5270;
 }

@@ -14,17 +14,17 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validPass, setValidPass] = useState(false);
   const [warningMsg, setWarningMsg] = useState("");
-  const [showPassword, setShowPassword]=useState(false);
-  const [showCnfpassword, setShowCnfpassword]=useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showCnfpassword, setShowCnfpassword] = useState(false);
   const navigate = useNavigate();
- function handlepassword(e){
-  e.preventDefault();
-  setShowPassword(!showPassword);
- }
- function handelCnfpassword(e){
-  e.preventDefault();
-  setShowCnfpassword(!showCnfpassword);
- }
+  function handlepassword(e) {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  }
+  function handelCnfpassword(e) {
+    e.preventDefault();
+    setShowCnfpassword(!showCnfpassword);
+  }
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -56,88 +56,101 @@ const Register = () => {
       <div className="formContainer">
         <form className="register" onSubmit={handleSubmit}>
           <h1 className="formHeading">Register</h1>
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            id="fullName"
-            type="text"
-            placeholder="FullName"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            required
-          />
-          <label htmlFor="userName">User Name</label>
-          <input
-            id="userName"
-            type="text"
-            placeholder="username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-          />
-          <label htmlFor="userEmail">Email</label>
-          <input
-            id="userEmail"
-            type="email"
-            placeholder="Email"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-            required
-          />
-          <label htmlFor="password">Password</label>
           <div className="formGroup">
-          <input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="password"
-            value={password}
-            required
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setValidPass(
-                passwordStrength(e.target.value).value === "Medium" ||
-                  passwordStrength(e.target.value).value === "Strong"
-              );
-            }}
-            style={
-              password
-                ? validPass
-                  ? {
-                      borderBottom: "2px solid green",
-                    }
+            <label htmlFor="fullName">Full Name</label>
+            <input
+              id="fullName"
+              type="text"
+              placeholder="FullName"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="userName">User Name</label>
+            <input
+              id="userName"
+              type="text"
+              placeholder="username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="userEmail">Email</label>
+            <input
+              id="userEmail"
+              type="email"
+              placeholder="Email"
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="formGroup">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="password"
+              value={password}
+              required
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setValidPass(
+                  passwordStrength(e.target.value).value === "Medium" ||
+                    passwordStrength(e.target.value).value === "Strong"
+                );
+              }}
+              style={
+                password
+                  ? validPass
+                    ? {
+                        borderBottom: "2px solid green",
+                      }
+                    : {
+                        borderBottom: "2px solid red",
+                      }
                   : {
-                      borderBottom: "2px solid red",
+                      borderBottom: "2px solid white",
                     }
-                : {
-                    borderBottom: "2px solid white",
-                  }
-            }
-          />
-          <button  onClick={handlepassword}>{showPassword? "hide":"show"}</button>
+              }
+            />
+            <button onClick={handlepassword}>
+              {showPassword ? "hide" : "show"}
+            </button>
           </div>
-          
-          <label htmlFor="cpassword">Confirm Password</label>
+
           <div className="formGroup">
-          <input
-            id="cpassword"
-            type={showCnfpassword ? "text" : "password"}
-            placeholder="confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-            <button onClick={handelCnfpassword}>{showCnfpassword?"hide":"show"}</button>
+            <label htmlFor="cpassword">Confirm Password</label>
+            <input
+              id="cpassword"
+              type={showCnfpassword ? "text" : "password"}
+              placeholder="confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <button onClick={handelCnfpassword}>
+              {showCnfpassword ? "hide" : "show"}
+            </button>
           </div>
-          <p className="warningMsg">{warningMsg}</p>
-          <button type="submit">Sign Up</button>
-          <p>already have a account?</p>
-          <button
-            type="button"
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Login
-          </button>
+
+          <div className="formGroup">
+            <p className="warningMsg">{warningMsg}</p>
+            <button type="submit">Sign Up</button>
+            <p>already have a account?</p>
+            <button
+              type="button"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </>

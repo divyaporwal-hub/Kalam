@@ -66,14 +66,13 @@ const BlogInfo = () => {
             />
             <BlogImage />
             <BlogHeading blogHeading={blogData.blogHeading} />
-            {/* <BlogTags /> */}
             <BlogContent blogText={blogData.blogText} />
             {blogData.blogTags ? (
               <div className="blogTagsContainer">
                 {blogData.blogTags.map((tag, index) => {
                   return (
                     <div className="blogTag" key={index}>
-                      #{tag}
+                      {tag}
                     </div>
                   );
                 })}

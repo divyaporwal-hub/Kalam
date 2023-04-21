@@ -1,12 +1,10 @@
 import React from "react";
-import parse from "html-react-parser"
-// var parse = require('html-react-parser');
+import parse from "html-react-parser";
 
-
-const BlogContent = ({blogText}) => {
+const BlogContent = ({ blogText }) => {
   return (
     <>
-      {blogText && parse(blogText)}
+      <p className="blogContent">{blogText && parse(blogText)}</p>
     </>
   );
 };
