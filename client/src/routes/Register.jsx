@@ -59,7 +59,7 @@ const Register = () => {
       <div className="formContainer">
         <form className="register" onSubmit={handleSubmit}>
           <div className="formGroup">
-            <h1 className="formHeading">Register</h1>
+            <h1 className="formHeading">Register 📃</h1>
           </div>
           <div className="formGroup">
             <input
@@ -150,7 +150,7 @@ const Register = () => {
             <p className="warningMsg">{warningMsg}</p>
           </div>
           <div className="formGroup">
-            <p>Make you account ✨</p>
+            <p>Make your account</p>
             <button type="submit">Sign Up</button>
           </div>
           <div className="formGroup">

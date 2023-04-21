@@ -58,7 +58,7 @@ const Login = () => {
       <div className="formContainer">
         <form className="form" onSubmit={handleSubmit}>
           <div className="formGroup">
-            <h1 className="formHeading">Login ✍</h1>
+            <h1 className="formHeading">Login 🔐</h1>
           </div>
           <div className="formGroup">
             <input
