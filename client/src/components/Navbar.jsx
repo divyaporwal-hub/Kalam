@@ -22,7 +22,6 @@ const Navbar = ({ active }) => {
       <ul className="navbarContainer">
         <Link className="itemLink" to={"/"}>
           <li className="menuItem menuItemLogo">
-            {/* <FontAwesomeIcon icon={faPenFancy} /> */}
             <div className="menuItemText">
               <img src={LogoImage} alt="" height={50} />
             </div>

@@ -17,8 +17,13 @@ const Profile = () => {
   const [postCount, setPostCount] = useState(0);
   const [userFollower, setUserFollower] = useState(0);
 
-  /// used in future
-  // const [followerCount, setFollowersCount] = useState(0);
+  // useEffect(() => {
+  //   let userResult = await axios.get(`${BASE_URL}/user/userInfo`, {
+  //     params: {
+  //       userName: userName,
+  //     },
+  //   });
+  // })
 
   useEffect(() => {
     async function fetchUserBlogs(id) {
@@ -84,34 +89,20 @@ const Profile = () => {
     fetchUserInfo();
     fetchUserProfile();
   }, [userName]);
-
   return (
     <>
-      {/* <Header /> */}
       <Navbar active={"profile"} />
       <div className="Profile">
         <section className="userSection">
-          {Object.keys(profileData).length !== 0 ? (
-            <User
-              fullName={profileData.fullName}
-              userName={profileData.userName}
-              userBio={profileData.userBio}
-              location={profileData.userCountry}
-              postCount={postCount}
-              followers={userFollower}
-              userSocialLinks={profileData.userSocialLinks}
-            />
-          ) : (
-            <User
-              fullName={userData.fullName}
-              userName={userData.userName}
-              userBio={""}
-              location={""}
-              postCount={0}
-              followers={0}
-              userSocialLinks={""}
-            />
-          )}
+          <User
+            fullName={profileData ? profileData.fullName : userData.fullName}
+            userName={profileData ? profileData.userName : userData.userName}
+            userBio={profileData ? profileData.userBio : ""}
+            location={profileData ? profileData.userCountry : "India"}
+            postCount={postCount}
+            followers={userFollower}
+            userSocialLinks={profileData ? profileData.userSocialLinks : ""}
+          />
         </section>
         <section className="blogSection">
           <div className="blogContextHeading">My Blogs</div>

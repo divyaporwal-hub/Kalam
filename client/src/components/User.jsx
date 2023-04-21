@@ -22,29 +22,33 @@ const User = (props) => {
       <p className="username">@{props.userName}</p>
       <p className="bio">{props.userBio}</p>
       <div className="secondaryInfo">
-        <p className="location">{props.location.label} </p>
+        <p className="location">
+          {props.location ? props.location.label : "India"}
+        </p>
         <p>●</p>
         <p className="postCount">{props.postCount} posts</p>
         <p>●</p>
         <p className="followers">{props.followers} followers</p>
       </div>
-      <div className="socialMedia">
-        {props.userSocialLinks[0] && (
-          <Link to={props.userSocialLinks[0]}>
-            <FontAwesomeIcon icon={faLinkedin} />
-          </Link>
-        )}
-        {props.userSocialLinks[1] && (
-          <Link to={props.userSocialLinks[1]}>
-            <FontAwesomeIcon icon={faGithub} />
-          </Link>
-        )}
-        {props.userSocialLinks[2] && (
-          <Link to={props.userSocialLinks[2]}>
-            <FontAwesomeIcon icon={faInstagram} />
-          </Link>
-        )}
-      </div>
+      {props.userSocialLinks && (
+        <div className="socialMedia">
+          {props.userSocialLinks[0] && (
+            <Link to={props.userSocialLinks[0]}>
+              <FontAwesomeIcon icon={faLinkedin} />
+            </Link>
+          )}
+          {props.userSocialLinks[1] && (
+            <Link to={props.userSocialLinks[1]}>
+              <FontAwesomeIcon icon={faGithub} />
+            </Link>
+          )}
+          {props.userSocialLinks[2] && (
+            <Link to={props.userSocialLinks[2]}>
+              <FontAwesomeIcon icon={faInstagram} />
+            </Link>
+          )}
+        </div>
+      )}
       <NavLink
         to={`/profile/edit/${props.userName}`}
         className="editButtonLink"
