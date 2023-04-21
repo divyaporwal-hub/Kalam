@@ -4,7 +4,7 @@ import parse from "html-react-parser";
 const BlogContent = ({ blogText }) => {
   return (
     <>
-      <p className="blogContent">{blogText && parse(blogText)}</p>
+      <div className="blogContent">{blogText && parse(blogText)}</div>
     </>
   );
 };

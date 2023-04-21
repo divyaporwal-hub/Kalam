@@ -26,8 +26,15 @@
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
-.BlogInfoContainer .left .blogDetailContainer .blogContent p {
-  font-family: "Merriweather", serif;
+.BlogInfoContainer .left .blogDetailContainer .BlogHeading {
+  /* font-family: "Merriweather", serif; */
+}
+
+.BlogInfoContainer .left .blogDetailContainer .blogContent * {
+  /* font-family: "Merriweather", serif; */
+  line-height: 30px;
+  font-size: 1.2rem;
+  margin: 10px 0;
 }
 
 .BlogInfoContainer .right {

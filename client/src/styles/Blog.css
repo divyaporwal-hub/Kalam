@@ -7,11 +7,6 @@
   flex-direction: row;
   transition: all 200ms linear;
 }
-
-/* .Blog:hover {
-  background-color: #70809010;
-} */
-
 .Blog a {
   text-decoration: none;
   color: black;
