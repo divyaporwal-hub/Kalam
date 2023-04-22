@@ -4,6 +4,10 @@ const UserImage = new mongoose.Schema({
         type: String, 
         required:true, 
     },
+    username: {
+        type: String, 
+        required:true, 
+    },
     userImage: {
         data:Buffer,
         type: String, 
