@@ -28,12 +28,36 @@ function Editprofile() {
   const [instagram, setInstagram] = useState("");
   const [github, setGithub] = useState("");
   const [country, setCountry] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const options = useMemo(() => countryList().getData(), []);
 
   const changeHandler = (country) => {
     setCountry(country);
   };
+
+  //post request to save the profile Image
+
+  function handleProfileImage(e) {
+    e.preventDefault();
+
+    // to send the profile image into data
+
+    const data = new FormData();
+    //console.log(data);
+    //console.log(e.target.files[0]);
+    data.append("profileImage", e.target.files[0]);
+    data.append('userName', userData.userName);
+    //console.log(data.get('profileImage'));
+
+    Axios.post(`${BASE_URL}/profileImage/profileImageUpload`, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   function allLinkAreValid() {
     if (facebook && !isUrl(facebook)) {
@@ -76,7 +100,9 @@ function Editprofile() {
         .catch((err) => {
           console.log(err);
         });
+
     }
+
   }
 
   useEffect(() => {
@@ -114,7 +140,7 @@ function Editprofile() {
               type="file"
               id="Image"
               placeholder="UserName"
-              onChange={(e) => setNewuserName(e.target.value)}
+              onChange={handleProfileImage}
             ></input>
           </div>
           <div className="formGroup">
