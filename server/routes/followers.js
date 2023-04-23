@@ -19,12 +19,14 @@ router.put("/setFollower", async (req, res) => {
       result[0].save();
     } else {
       let newFollowerArray = result[0].followers;
-      let updatedFollowerArray = newFollowerArray.filter((fID) => fID !== followerId)
+      let updatedFollowerArray = newFollowerArray.filter(
+        (fID) => fID !== followerId
+      );
       result[0].followers = updatedFollowerArray;
       result[0].save();
     }
 
-    res.send("OK");
+    res.send(result);
   } catch (e) {
     res.send(e);
   }

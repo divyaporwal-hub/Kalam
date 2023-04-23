@@ -10,6 +10,7 @@ import BlogContent from "../components/blog/BlogContent";
 import BlogFooter from "../components/blog/BlogFooter";
 import BlogImage from "../components/blog/BlogImage";
 import BlogHeading from "../components/blog/BlogHeading";
+import BlogInfoUser from "../components/blog/BlogInfoUser";
 
 import Header from "../components/Header";
 
@@ -19,6 +20,7 @@ const BlogInfo = () => {
   const [blogData, setBlogData] = useState({});
   const [userName, setUserName] = useState("");
   const [blogId, setBlogId] = useState("");
+  const [userIdForFollowers, setUserIdForFollowers] = useState("");
 
   useEffect(() => {
     axios
@@ -63,6 +65,7 @@ const BlogInfo = () => {
               blogSaveTime={blogData.blogSaveTime}
               minuteRead={blogData.minuteRead}
               blogId={blogId}
+              setUserIdForFollowers={setUserIdForFollowers}
             />
             <BlogImage />
             <BlogHeading blogHeading={blogData.blogHeading} />
@@ -83,7 +86,14 @@ const BlogInfo = () => {
             {blogId && <BlogFooter id={blogId} />}
           </div>
         </div>
-        <div className="right">nothing</div>
+        <div className="right">
+          {userName && userIdForFollowers && (
+            <BlogInfoUser
+              userName={userName}
+              userIdForFollowers={userIdForFollowers}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
