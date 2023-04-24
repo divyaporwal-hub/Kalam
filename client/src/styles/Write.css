@@ -5,6 +5,11 @@
   flex-direction: column;
 }
 
+.Write .left {
+  position: absolute;
+  left: 0;
+}
+
 .Write .right .rightEditorContainer {
   background-color: #f5f5f5;
   display: flex;
