@@ -47,26 +47,33 @@ function Comment({ blogId, allComments, setCommentCount }) {
     <>
       <div className="commentInput">
         <form onSubmit={handleSubmit}>
-          <textarea
-            placeholder="Write your comment..."
-            name=""
-            id=""
-            cols="30"
-            rows="2"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          ></textarea>
-          <button
-            type="submit"
-            disabled={comment.length ? false : true}
-            style={
-              comment.length
-                ? { backgroundColor: "blue" }
-                : { backgroundColor: "grey" }
-            }
-          >
-            comment
-          </button>
+          <div className="top">
+            <textarea
+              placeholder="Write your comment..."
+              name=""
+              id=""
+              cols="30"
+              rows="5"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="bottom">
+            <div className="commentBy">
+              Comment by: <strong>{localData.fullName}</strong>
+            </div>
+            <button
+              type="submit"
+              disabled={comment.length ? false : true}
+              style={
+                comment.length
+                  ? { backgroundColor: "#379bec" }
+                  : { backgroundColor: "grey" }
+              }
+            >
+              comment
+            </button>
+          </div>
         </form>
       </div>
       <div className="displayComment">

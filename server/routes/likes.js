@@ -5,10 +5,14 @@ const router = express.Router();
 const LikeModel = require("../models/Like.js");
 
 router.put("/addLike", async (req, res) => {
+  // blogId is required to update the likes for a particular blog
   const blogId = req.body.blogId;
+
+  // these both are used to store as LIKE, {user, like}
   const userId = req.body.userId;
   const like = req.body.like;
 
+  // find the blog
   let result = await LikeModel.find({ blogId: blogId });
 
   try {
@@ -19,11 +23,10 @@ router.put("/addLike", async (req, res) => {
       result[0].save();
     } else {
       let newLikeArray = result[0].likes;
-      let updatedLikeArray = newLikeArray.filter((uID) => uID !== userId)
+      let updatedLikeArray = newLikeArray.filter((uID) => uID !== userId);
       result[0].likes = updatedLikeArray;
       result[0].save();
     }
-
     res.send("OK");
   } catch (e) {
     res.send(e);

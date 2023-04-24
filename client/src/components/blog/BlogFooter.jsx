@@ -8,6 +8,7 @@ import {
   faThumbsUp,
   faComments,
   faShare,
+  faCommentAlt,
 } from "@fortawesome/free-solid-svg-icons";
 // import {
 //   EmailShareButton,
@@ -46,7 +47,7 @@ const BlogFooter = ({ id }) => {
 
       try {
         // check whether the user has already liked the blog or not when the user is loggedin (means, localData is not null)
-        if (userId != "-1") {
+        if (userId !== "-1") {
           setLike(response.data[0].likes.includes(userId));
         }
         setLikeCount(response.data[0].likes.length);
@@ -85,7 +86,6 @@ const BlogFooter = ({ id }) => {
       });
 
       try {
-        console.log(response);
         setLikeCount(!like ? likeCount + 1 : likeCount - 1);
       } catch (e) {
         console.log(e);
@@ -109,7 +109,7 @@ const BlogFooter = ({ id }) => {
       <div className="footerContainer">
         <div className="likeContainer">
           <div className="likeCount">{likeCount}</div>
-          <div className="likeIcon" onClick={handleLike}>
+          <div className="likeIcon icon" onClick={handleLike}>
             <FontAwesomeIcon
               icon={faThumbsUp}
               className={like ? "liked" : "notliked"}
@@ -118,13 +118,15 @@ const BlogFooter = ({ id }) => {
         </div>
         <div className="commentSection" onClick={handleComment}>
           <div className="commentCount">{commentCount}</div>
-          <div className="commentIcon">
-            <FontAwesomeIcon icon={faComments} />
+          <div className="commentIcon icon">
+            <FontAwesomeIcon icon={faCommentAlt} />
           </div>
         </div>
 
         <div className="shareSection">
-          <FontAwesomeIcon icon={faShare} />
+          <div className="icon">
+            <FontAwesomeIcon icon={faShare} />
+          </div>
         </div>
       </div>
 

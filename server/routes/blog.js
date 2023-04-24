@@ -10,7 +10,7 @@ router.post("/saveBlog", async (req, res) => {
   const blogText = req.body.blogText;
   const saveDate = req.body.saveDate;
   const userId = req.body.userId;
-  const blogTags= req.body.blogTags;
+  const blogTags = req.body.blogTags;
 
   const stats = readingTime(blogText);
 
@@ -22,7 +22,6 @@ router.post("/saveBlog", async (req, res) => {
     userId: userId,
     minuteRead: stats.text,
   });
-  
 
   try {
     let result = await blog.save();
@@ -52,7 +51,7 @@ router.get("/getblogs", (req, res) => {
 // to send information about specific blog by its ID
 
 router.get("/getBlogInfo", async (req, res) => {
-  const blogId = req.query.id;  
+  const blogId = req.query.id;
 
   await BlogModel.find({ _id: blogId })
     .then((response) => {
@@ -79,26 +78,26 @@ router.put("/updateBlog", async (req, res) => {
   let blogHeading = req.body.blogHeading;
   let blogText = req.body.blogText;
   let saveDate = req.body.saveDate;
-  let blogTags=req.body.blogTags;
+  let blogTags = req.body.blogTags;
 
-  let result = await BlogModel.find({_id: blogId});
+  let result = await BlogModel.find({ _id: blogId });
   const stats = readingTime(blogText);
 
   result[0].blogHeading = blogHeading;
   result[0].blogText = blogText;
   result[0].minuteRead = stats.text;
-  result[0].blogSaveTime = saveDate; 
-  result[0].blogTags= blogTags;
-  
+  result[0].blogSaveTime = saveDate;
+  result[0].blogTags = blogTags;
+
   let updatedData = await result[0].save();
   res.send(updatedData);
-})
+});
 
 router.delete("/deleteBlog", async (req, res) => {
   let blogId = req.query.blogId;
 
-  let result = await BlogModel.findByIdAndDelete({_id: blogId});
+  let result = await BlogModel.findByIdAndDelete({ _id: blogId });
   res.send(result);
-})
+});
 
 module.exports = router;

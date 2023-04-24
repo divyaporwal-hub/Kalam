@@ -2,14 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../../helper/ref";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 import "../../styles/DisplayComment.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDotCircle,
+  faRemove,
+  faTrashAlt,
+  faTrashCan,
+  faTrashCanArrowUp,
+  faTrashRestore,
+} from "@fortawesome/free-solid-svg-icons";
 
 function DisplayComment({ comment, setCommentCount }) {
   const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
   const [isDeleted, setIsDeleted] = useState(false);
 
   //get request to display the fullname of user who did the comment
@@ -25,6 +34,7 @@ function DisplayComment({ comment, setCommentCount }) {
       })
       .then((response) => {
         setFullName(response.data[0].fullName);
+        setUserName(response.data[0].userName);
       })
       .catch((e) => {
         console.log(e);
@@ -58,22 +68,23 @@ function DisplayComment({ comment, setCommentCount }) {
     >
       <div className="container">
         <div className="infoContainer">
-          <p className="fullName">{fullName} </p>
-          <p className="timerEmoji">🕑 </p>
+          <p className="fullName">
+            <NavLink to={`/profile/${userName}`}>{fullName}</NavLink>
+          </p>
+          <p className="timerEmoji"> • </p>
           <p className="postedTime">{moment(comment.postedDate).fromNow()}</p>
         </div>
-        {userId !== "-1" && (
-          <div className="deleteButtonContainer">
-            {comment.postId ===
-              JSON.parse(localStorage.getItem("userInfo")).userId && (
+        {userId !== "-1" &&
+          comment.postId ===
+            JSON.parse(localStorage.getItem("userInfo")).userId && (
+            <div className="deleteButtonContainer">
               <FontAwesomeIcon
                 icon={faTrashCan}
                 className="fa-2x icon-hover"
                 onClick={handleDelete}
               />
-            )}
-          </div>
-        )}
+            </div>
+          )}
       </div>
       <p className="comment">{comment.commentText}</p>
     </div>

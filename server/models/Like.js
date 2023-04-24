@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 const LikeSchema = new mongoose.Schema({
-    userId: {
-        type: String, 
-    },
-    Likes: {
-        type: Array,
-    }
+  blogId: {
+    type: String,
+    required: true,
+  },
+  likes: {
+    type: Array,
+  },
 });
 
 const Likes = mongoose.model("likes", LikeSchema);
