@@ -33,7 +33,7 @@ const Blogs = () => {
           allBlogs &&
           allBlogs.map((value, index) => {
             return (
-              <>
+              <div key={index}>
                 <div className="blogLine"></div>
                 <Blog
                   blogImage={BlogImage}
@@ -44,9 +44,8 @@ const Blogs = () => {
                   minuteRead={value.minuteRead}
                   blogPreview={value.blogText}
                   blogId={value._id}
-                  key={index}
                 />
-              </>
+              </div>
             );
           })
         )}

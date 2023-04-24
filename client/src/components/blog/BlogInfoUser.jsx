@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 import { BASE_URL } from "../../helper/ref";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function BlogInfoUser({ userName, userIdForFollowers }) {
   const [follow, setFollow] = useState(false);
@@ -69,7 +69,6 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
       console.log(e);
     }
   }
-
   return (
     <div className="BlogInfoUser">
       <section className="top">
@@ -99,9 +98,27 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
           </div>
         )}
         <div className="socialMediaLinkContainer">
-          <FontAwesomeIcon icon={faLinkedin} />
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faGithub} />
+          {profileData.userSocialLinks && profileData.userSocialLinks.length ? (
+            <>
+              {profileData.userSocialLinks[0] && (
+                <Link to={profileData.userSocialLinks[0]}>
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </Link>
+              )}
+              {profileData.userSocialLinks[1] && (
+                <Link to={profileData.userSocialLinks[1]}>
+                  <FontAwesomeIcon icon={faInstagram} />
+                </Link>
+              )}
+              {profileData.userSocialLinks[2] && (
+                <Link to={profileData.userSocialLinks[2]}>
+                  <FontAwesomeIcon icon={faGithub} />
+                </Link>
+              )}
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </section>
       <div className="bottom">
