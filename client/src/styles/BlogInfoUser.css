@@ -16,7 +16,7 @@
 }
 
 .BlogInfoUser .top .fullName {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-left: 10px;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .BlogInfoUser .top .followers {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-left: 10px;
   color: grey;
 }
@@ -39,15 +39,36 @@
 
 .BlogInfoUser .middle button {
   border-radius: 20px;
-  background-color: #7767bb;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 6px 15px;
+  transition: all 170ms linear;
 }
 
-.BlogInfoUser .middle button:hover {
-  background-color: #684ca8;
+.BlogInfoUser .middle button.follow {
+  background-color: #45aaff;
+  color: white;
 }
+
+.BlogInfoUser .middle button.follow:hover {
+  background-color: #288bdb;
+}
+
+.BlogInfoUser .middle button.following {
+  background-color: #d1d1d1c9;
+  color: #565656;
+}
+
+.BlogInfoUser .middle button.following:hover {
+  background-color: #aaaaaac9;
+}
+
+/* .BlogInfoUser .middle button:hover {
+  background-color: #684ca8;
+} */
 
 .BlogInfoUser .middle .socialMediaLinkContainer {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .BlogInfoUser .middle .socialMediaLinkContainer svg {
@@ -62,5 +83,5 @@
 }
 
 .BlogInfoUser .bottom .userBio {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }

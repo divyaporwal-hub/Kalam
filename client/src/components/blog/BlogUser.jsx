@@ -4,6 +4,8 @@ import "../../styles/BlogUser.css";
 import axios from "axios";
 import { BASE_URL } from "../../helper/ref";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const BlogUser = ({
   blogId,
@@ -13,6 +15,7 @@ const BlogUser = ({
   setUserIdForFollowers,
 }) => {
   const [userId, setUserId] = useState("");
+  const [fullName, setFullName] = useState("");
   const navigate = useNavigate();
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
@@ -28,6 +31,7 @@ const BlogUser = ({
       try {
         if (userResult.data.length) {
           setUserId(userResult.data[0]._id);
+          setFullName(userResult.data[0].fullName);
           setUserIdForFollowers(userResult.data[0]._id);
         }
       } catch (e) {
@@ -57,20 +61,22 @@ const BlogUser = ({
   return (
     <>
       <div className="BlogUserContainer">
-        <div className="imageContainer">
-          <NavLink to={`/profile/${userName}`}>
-            <img
-              src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
-              alt="blog"
-            />
-          </NavLink>
-        </div>
-        <div className="userInfoContainer">
-          <div className="blogPrimaryInfo">
-            <NavLink to={`/profile/${userName}`}>{userName}</NavLink>
+        <div className="blogUserPrimaryDetailsContainer">
+          <div className="imageContainer">
+            <NavLink to={`/profile/${userName}`}>
+              <img
+                src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
+                alt="blog"
+              />
+            </NavLink>
           </div>
-          <div className="blogSecondaryInfo">
-            <div>{blogSaveTime}</div> ・<div>{minuteRead}</div>
+          <div className="userInfoContainer">
+            <div className="blogPrimaryInfo">
+              <NavLink to={`/profile/${userName}`}>{fullName}</NavLink>
+            </div>
+            <div className="blogSecondaryInfo">
+              <div>{blogSaveTime}</div> ・<div>{minuteRead}</div>
+            </div>
           </div>
         </div>
         {/* {localData && localData.userName !== userName && (
@@ -82,15 +88,19 @@ const BlogUser = ({
         )} */}
 
         {localData && localData.userName === userName && (
-          <>
+          <div className="blogEditButtonsContainer">
             <div className="followButtonContainer" onClick={handleDelete}>
-              <button className="deleteButton">Delete</button>
+              <button className="deleteButton">
+                <FontAwesomeIcon icon={faTrashCan} />
+              </button>
             </div>
 
             <div className="followButtonContainer" onClick={handleEdit}>
-              <button className="editButton">Edit</button>
+              <button className="editButton">
+                <FontAwesomeIcon icon={faEdit} />
+              </button>
             </div>
-          </>
+          </div>
         )}
       </div>
     </>

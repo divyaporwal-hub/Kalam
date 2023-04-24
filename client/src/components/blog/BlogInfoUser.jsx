@@ -74,10 +74,12 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
     <div className="BlogInfoUser">
       <section className="top">
         <div className="imageContainer">
-          <img
-            src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
-            alt="blog"
-          />
+          <NavLink to={`/profile/${profileData.userName}`}>
+            <img
+              src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
+              alt="blog"
+            />
+          </NavLink>
         </div>
         <div className="userInfoContainer">
           <div className="fullName">
@@ -91,7 +93,7 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
       <section className="middle">
         {localData && localData.userName !== userName && (
           <div className="followButtonContainer" onClick={handleFollow}>
-            <button className={follow ? "follow" : "unfollow"}>
+            <button className={!follow ? "follow" : "following"}>
               {follow ? "Following" : "Follow"}
             </button>
           </div>
