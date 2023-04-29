@@ -32,14 +32,13 @@ router.post("/saveUser", async (req, res) => {
     userCountry: "",
     userSocialLinks: [],
     userFollower: 0,
-  })
+  });
 
   // save the data
   try {
     let userSaveResult = await user.save();
     await updatedProfile.save();
 
-    
     const userFollowers = new FollowerModel({
       userId: userSaveResult._id,
       followers: [],
@@ -59,7 +58,7 @@ router.post("/login", (req, res) => {
   UserModel.find({ userEmail: userEmail, userPassword: userPassword })
     .then((result) => {
       // ok response (user found)
-      res.status(200).send(result); 
+      res.status(200).send(result);
     })
     .catch((err) => {
       res.send("ERR");
@@ -78,22 +77,40 @@ router.post("/userInfo", (req, res) => {
 
 router.get("/userInfo", async (req, res) => {
   let userName = req.query.userName;
-  try{
+  try {
     const user = await UserModel.find({ userName: userName });
     res.send(user);
+  } catch (err) {
+    console.log(err);
   }
-  catch(err){
+});
+
+router.get("/checkusername", async (req, res) => {
+  let userName = req.query.userName;
+  try {
+    const user = await UserModel.find({ userName: userName });
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.get("/checkuseremail", async (req, res) => {
+  let userEmail = req.query.userEmail;
+  try {
+    const user = await UserModel.find({ userEmail: userEmail });
+    res.send(user);
+  } catch (err) {
     console.log(err);
   }
 });
 
 router.get("/userInfoById", async (req, res) => {
   let userId = req.query.userId;
-  try{
+  try {
     const user = await UserModel.find({ _id: userId });
     res.send(user);
-  }
-  catch(err){
+  } catch (err) {
     console.log(err);
   }
 });

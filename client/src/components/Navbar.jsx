@@ -54,13 +54,13 @@ const Navbar = ({ active }) => {
 
         {localData === null ? (
           <>
-            <Link className="itemLink" to={"/login"}>
+            <Link className="itemLink" to={"/register"}>
               <li className="menuItem">
                 <FontAwesomeIcon icon={faSignInAlt} />
                 <div className="menuItemText">Signup</div>
               </li>
             </Link>
-            <Link className="itemLink" to={"/register"}>
+            <Link className="itemLink" to={"/login"}>
               <li className="menuItem">
                 <FontAwesomeIcon icon={faUserLock} />
                 <div className="menuItemText">Login</div>

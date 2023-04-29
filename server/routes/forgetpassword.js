@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const ForgetModel = require("../models/User.js");
 const UserModel = require("../models/User.js");
 const nodemailer = require("nodemailer");
-const mailFrom=process.env.MAIL_USER;
-const mailPassword=process.env.MAIL_PASSWORD;
+const mailFrom = process.env.MAIL_USER;
+const mailPassword = process.env.MAIL_PASSWORD;
 
 //post request
 

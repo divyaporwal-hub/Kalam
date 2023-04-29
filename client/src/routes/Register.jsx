@@ -34,6 +34,11 @@ const Register = () => {
     // checking for password strength
 
     if (validPass && password === confirmPassword) {
+      // let userNameResponse = Axios.get();
+      // if (userNameResponse.data.length) {
+      //   alert("Username already exist");
+      //   return;
+      // }
       Axios.post(`${BASE_URL}/user/saveUser`, {
         userEmail: userEmail,
         userName: userName,
@@ -47,6 +52,7 @@ const Register = () => {
         .catch((err) => {
           console.log(err);
         });
+      // let userName;
     } else if (!validPass) {
       setWarningMsg("password should be strong.");
     } else if (password !== confirmPassword) {
