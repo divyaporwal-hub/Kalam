@@ -10,9 +10,9 @@ import isUrl from "is-url";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebook,
   faInstagram,
   faGithub,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
 import "../styles/EditProfile.css";
@@ -24,7 +24,7 @@ function Editprofile() {
   const [newUserName, setNewuserName] = useState(userData.userName);
   const [fullName, setFullName] = useState(userData.fullName);
   const [userBio, setUserBio] = useState("");
-  const [facebook, setFacebook] = useState("");
+  const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [github, setGithub] = useState("");
   const [country, setCountry] = useState("");
@@ -47,7 +47,7 @@ function Editprofile() {
     //console.log(data);
     //console.log(e.target.files[0]);
     data.append("profileImage", e.target.files[0]);
-    data.append('userName', userData.userName);
+    data.append("userName", userData.userName);
     //console.log(data.get('profileImage'));
 
     Axios.post(`${BASE_URL}/profileImage/profileImageUpload`, data)
@@ -56,12 +56,12 @@ function Editprofile() {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
 
   function allLinkAreValid() {
-    if (facebook && !isUrl(facebook)) {
-      alert("Invalid Facebook Profile Link");
+    if (linkedin && !isUrl(linkedin)) {
+      alert("Invalid Linkedin Profile Link");
       return 0;
     } else if (instagram && !isUrl(instagram)) {
       alert("Invalid Instagram Profile Link");
@@ -85,7 +85,7 @@ function Editprofile() {
         userBio: userBio,
         userCountry: country,
         userInstagram: instagram,
-        userFacebook: facebook,
+        userFacebook: linkedin,
         userGithub: github,
       })
         .then((response) => {
@@ -100,9 +100,7 @@ function Editprofile() {
         .catch((err) => {
           console.log(err);
         });
-
     }
-
   }
 
   useEffect(() => {
@@ -118,7 +116,7 @@ function Editprofile() {
           setFullName(user.fullName);
           setUserBio(user.userBio);
           setCountry(user.userCountry);
-          setFacebook(user.userSocialLinks[0]);
+          setLinkedin(user.userSocialLinks[0]);
           setInstagram(user.userSocialLinks[1]);
           setGithub(user.userSocialLinks[2]);
         }
@@ -182,15 +180,15 @@ function Editprofile() {
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="facebook">
-              <FontAwesomeIcon icon={faFacebook} className="fa-2x icon-hover" />
+            <label htmlFor="linkedin">
+              <FontAwesomeIcon icon={faLinkedin} className="fa-2x icon-hover" />
             </label>
             <input
               type="text"
-              id="facebook"
-              placeholder="facebook url"
-              value={facebook}
-              onChange={(e) => setFacebook(e.target.value)}
+              id="linkedin"
+              placeholder="linkedin url"
+              value={linkedin}
+              onChange={(e) => setLinkedin(e.target.value)}
               autoComplete="off"
             />
           </div>

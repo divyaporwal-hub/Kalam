@@ -39,12 +39,12 @@ const User = (props) => {
           )}
           {props.userSocialLinks[1] && (
             <Link to={props.userSocialLinks[1]}>
-              <FontAwesomeIcon icon={faGithub} />
+              <FontAwesomeIcon icon={faInstagram} />
             </Link>
           )}
           {props.userSocialLinks[2] && (
             <Link to={props.userSocialLinks[2]}>
-              <FontAwesomeIcon icon={faInstagram} />
+              <FontAwesomeIcon icon={faGithub} />
             </Link>
           )}
         </div>
