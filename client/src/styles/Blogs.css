@@ -1,3 +1,21 @@
+.Blogs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Blogs .loaderContainer{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Blogs .loaderContainer .loadingText{
+  margin-top: 10px;
+}
+
 .Blogs .mainHeading {
   text-align: center;
 }
