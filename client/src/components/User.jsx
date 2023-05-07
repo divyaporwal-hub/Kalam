@@ -1,5 +1,6 @@
 import React from "react";
-import Avatar from "../images/userAvatar.png";
+import AvatarImage from "../images/userAvatar.png";
+import Avatar from "react-avatar";
 import { NavLink } from "react-router-dom";
 
 import "../styles/User.css";
@@ -17,7 +18,18 @@ const User = (props) => {
 
   return (
     <div className="profileContainer">
-      <img src={Avatar} alt="user" />
+      {props.userSocialLinks && props.userSocialLinks[2] ? (
+        <Avatar
+          githubHandle={props.userSocialLinks[2].slice(
+            props.userSocialLinks[2].lastIndexOf("/") + 1
+          )}
+          size={150}
+          round="100px"
+        />
+      ) : (
+        <Avatar name={props.fullName} size={150} round="100px" />
+      )}
+
       <h2 className="fullname">{props.fullName}</h2>
       <p className="username">@{props.userName}</p>
       <p className="bio">{props.userBio}</p>

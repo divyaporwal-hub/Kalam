@@ -30,11 +30,21 @@
   /* font-family: "Merriweather", serif; */
 }
 
+.BlogInfoContainer .left .blogDetailContainer .blogContent p {
+  margin-bottom: 1rem;
+}
+
 .BlogInfoContainer .left .blogDetailContainer .blogContent * {
+  font-family: "Karla", sans-serif;
+  font-family: 'Rubik', sans-serif;
   /* font-family: "Merriweather", serif; */
-  line-height: 30px;
-  font-size: 1.2rem;
-  margin: 10px 0;
+  font-family: "Lato", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  /* font-family: "Source Sans Pro", sans-serif; */
+  line-height: 28px;
+  font-size: 1.15rem;
+  /* font-weight: 450; */
+  /* letter-spacing: -0.5px; */
 }
 
 .BlogInfoContainer .right {

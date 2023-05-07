@@ -1,3 +1,7 @@
+.Blogs .mainHeading {
+  text-align: center;
+}
+
 .allBlogs {
   display: flex;
   flex-direction: column;

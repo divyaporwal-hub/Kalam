@@ -7,25 +7,42 @@ import { useState, useEffect } from "react";
 
 import "../styles/Blogs.css";
 
-const Blogs = () => {
+const Blogs = ({ searchTitle, setSearchTitle }) => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     // make your API call here...
-    axios
-      .get(`${BASE_URL}/blog/getblogs`)
-      .then((response) => {
-        setAllBlogs(response.data.reverse());
-      })
-      .catch((err) => {
-        setFetchError(true);
-      });
-  }, []);
+    console.log(searchTitle);
+    if (searchTitle.length > 0) {
+      axios
+        .get(`${BASE_URL}/blog/getsearchblogs`, {
+          params: {
+            searchTitle,
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+        })
+        .catch((err) => {
+          setFetchError(true);
+        });
+    } else {
+      console.log("2");
+      axios
+        .get(`${BASE_URL}/blog/getblogs`)
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+        })
+        .catch((err) => {
+          setFetchError(true);
+        });
+    }
+  }, [searchTitle]);
 
   return (
     <div className="Blogs">
-      <h1> All Blogs </h1>
+      <h1 className="mainHeading"> Recent Articles </h1>
       <div className="allBlogs">
         {fetchError && allBlogs ? (
           <div>Please wait, Trying to fetch the blogs...</div>

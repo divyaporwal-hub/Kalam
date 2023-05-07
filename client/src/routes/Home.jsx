@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Tags from "../components/Tags";
 import Intro from "../components/Intro";
 import Navbar from "../components/Navbar";
 import Blogs from "../components/Blogs";
 import Header from "../components/Header";
 import "../styles/Home.css";
+import HomeSearch from "../components/HomeSearch";
 
 const Home = () => {
+  const [searchTitle, setSearchTitle] = useState("");
   return (
     <div className="Home">
       {/* Header will contain userprofile icons and name of the website */}
@@ -23,15 +25,23 @@ const Home = () => {
           <div className="informationContainer">
             <div className="introContainer">
               {/* Here may be a slider or just a image to introduce the website */}
-              <Intro />
+              {/* <Intro /> */}
             </div>
             <div className="blogsContainer">
               {/* We have to map all the blogs here... */}
-              <Blogs />
+              <Blogs
+                searchTitle={searchTitle}
+                setSearchTitle={setSearchTitle}
+              />
             </div>
           </div>
           <div className="tagContainer">
             {/* Render a component of tags */}
+            <HomeSearch
+              setSearchTitle={setSearchTitle}
+              searchTitle={searchTitle}
+            />
+            {/* <hr /> */}
             <Tags />
           </div>
         </div>

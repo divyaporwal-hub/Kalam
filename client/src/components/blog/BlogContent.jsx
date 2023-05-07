@@ -2,9 +2,16 @@ import React from "react";
 import parse from "html-react-parser";
 
 const BlogContent = ({ blogText }) => {
+  let filteredText = "";
+  if (blogText) {
+    filteredText = parse(blogText).filter((data) => {
+      return data.props.children.type !== "br";
+    });
+  }
+
   return (
     <>
-      <div className="blogContent">{blogText && parse(blogText)}</div>
+      <div className="blogContent">{blogText && filteredText}</div>
     </>
   );
 };

@@ -48,6 +48,20 @@ router.get("/getblogs", (req, res) => {
     });
 });
 
+// to show all the searched blogs
+router.get("/getsearchblogs", (req, res) => {
+  const regex = new RegExp(req.query.searchTitle, "i");
+  const filter = { blogHeading: regex };
+  BlogModel.find(filter)
+    .then((response) => {
+      console.log(response);
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // to send information about specific blog by its ID
 
 router.get("/getBlogInfo", async (req, res) => {

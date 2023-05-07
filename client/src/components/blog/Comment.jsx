@@ -60,7 +60,14 @@ function Comment({ blogId, allComments, setCommentCount }) {
           </div>
           <div className="bottom">
             <div className="commentBy">
-              Comment by: <strong>{localData.fullName}</strong>
+              Comment by:
+              <strong>
+                {userId !== "-1" ? (
+                  <span style={{ color: "black" }}> {localData.fullName}</span>
+                ) : (
+                  <span style={{ color: "red" }}>login to comment</span>
+                )}
+              </strong>
             </div>
             <button
               type="submit"

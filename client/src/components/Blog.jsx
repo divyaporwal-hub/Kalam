@@ -5,6 +5,8 @@ import { BASE_URL } from "../helper/ref";
 import "../styles/Blog.css";
 import parse from "html-react-parser";
 import TagSuggestion from "./TagSuggestion";
+import Avatar from "react-avatar";
+import randomColor from "randomcolor";
 
 const Blog = ({
   blogImage,
@@ -17,6 +19,26 @@ const Blog = ({
   blogId,
 }) => {
   const [userName, setUserName] = useState("");
+  // console.log("PRS: ", parse(blogPreview.slice(0, 100)));
+
+  let blogContentPreview = "";
+  // remove the new line objects
+  // if (blogPreview) {
+  //   let allData = parse(blogPreview);
+  //   console.log("AD:", blogPreview, allData, parse(blogPreview));
+
+  //   blogContentPreview = allData.filter((data) => {
+  //     return data.props.children.type !== "br";
+  //   });
+
+  //   // concatnated the strings to make the string longer in preview
+  //   blogContentPreview = blogContentPreview
+  //     .map((tag) => tag.props.children)
+  //     .join(" ");
+
+  //   // slice the string upto 100 characters
+  //   blogContentPreview = blogContentPreview.slice(0, 100) + "...";
+  // }
 
   useEffect(() => {
     axios
@@ -37,7 +59,22 @@ const Blog = ({
     <div className="Blog">
       <NavLink to={`/bloginfo/${blogId}`}>
         <div className="blogImage">
-          <img src={blogImage} alt="blogImage" />
+          {/* <img src={blogImage} alt="blogImage" /> */}
+          {/* <Avatar name={headingName} size="200" /> */}
+          <div
+            className="headingContainer"
+            style={{
+              backgroundColor: randomColor({
+                luminosity: "dark",
+                format: "rgba",
+                alpha: 0.5, // e.g. 'rgba(9, 1, 107, 0.5)',
+              }),
+            }}
+          >
+            {heading[0].length > 30
+              ? heading[0].slice(0, 30) + "..."
+              : heading[0]}
+          </div>
         </div>
         <div className="blogDetails">
           <h1>{heading}</h1>
@@ -58,7 +95,9 @@ const Blog = ({
           ) : (
             ""
           )}
-          <div className="blogPreview">{parse(blogPreview.slice(0, 100))}</div>
+          {/* <div className="blogPreview">
+            {blogContentPreview && blogContentPreview}
+          </div> */}
         </div>
       </NavLink>
     </div>

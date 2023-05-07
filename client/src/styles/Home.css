@@ -20,7 +20,6 @@
   width: calc(100% - 200px);
   margin-left: 200px;
   display: flex;
-  /* margin-top: 60px; */
 }
 
 .Home .main .informationContainer {
@@ -28,12 +27,12 @@
 }
 
 .Home .main .right .informationContainer .blogsContainer {
-  margin: 30px 10px 10px 10px;
+  margin: 30px 10px 10px 0px;
 }
 
 .Home .main .tagContainer {
-  width: 17%;
-  margin: 10px 5px 0px 0px;
+  width: 18%;
+  margin: 0px 5px 0px 0px;
   border-radius: 10px;
   position: fixed;
   right: 0;

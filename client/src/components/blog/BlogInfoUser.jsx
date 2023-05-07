@@ -16,7 +16,6 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
   const [userFollower, setUserFollower] = useState(0);
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
-
   useEffect(() => {
     async function fetchUserFollowers() {
       let followerResult = await axios.get(
@@ -28,7 +27,9 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
         }
       );
       setUserFollower(followerResult.data[0].followers.length);
-      setFollow(followerResult.data[0].followers.includes(localData.userId));
+      if (localData) {
+        setFollow(followerResult.data[0].followers.includes(localData.userId));
+      }
     }
     async function fetchUserProfile() {
       let profileResult = await axios.get(`${BASE_URL}/profile/getProfile`, {
