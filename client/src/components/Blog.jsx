@@ -23,22 +23,22 @@ const Blog = ({
 
   let blogContentPreview = "";
   // remove the new line objects
-  // if (blogPreview) {
-  //   let allData = parse(blogPreview);
-  //   console.log("AD:", blogPreview, allData, parse(blogPreview));
+  if (blogPreview) {
+    // added "<p><br/></p>" because, if there is only one element in the blogPreview then parse will not return array, and then we can't use the .filter() method inside the function.
+    let allData = parse(blogPreview + "<p><br/></p>");
 
-  //   blogContentPreview = allData.filter((data) => {
-  //     return data.props.children.type !== "br";
-  //   });
+    blogContentPreview = allData.filter((data) => {
+      return data.props.children.type !== "br";
+    });
 
-  //   // concatnated the strings to make the string longer in preview
-  //   blogContentPreview = blogContentPreview
-  //     .map((tag) => tag.props.children)
-  //     .join(" ");
+    // concatnated the strings to make the string longer in preview
+    blogContentPreview = blogContentPreview
+      .map((tag) => tag.props.children)
+      .join(" ");
 
-  //   // slice the string upto 100 characters
-  //   blogContentPreview = blogContentPreview.slice(0, 100) + "...";
-  // }
+    // slice the string upto 100 characters
+    blogContentPreview = blogContentPreview.slice(0, 100) + "...";
+  }
 
   useEffect(() => {
     axios
@@ -95,9 +95,9 @@ const Blog = ({
           ) : (
             ""
           )}
-          {/* <div className="blogPreview">
+          <div className="blogPreview">
             {blogContentPreview && blogContentPreview}
-          </div> */}
+          </div>
         </div>
       </NavLink>
     </div>
