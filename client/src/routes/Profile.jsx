@@ -8,7 +8,7 @@ import axios from "axios";
 import BlogImage from "../images/blog1.jpg";
 import { BASE_URL } from "../helper/ref";
 import Blog from "../components/Blog";
-
+import ReactLoading from "react-loading";
 const Profile = () => {
   const { userName } = useParams();
   const [userData, setUserData] = useState({});
@@ -16,16 +16,10 @@ const Profile = () => {
   const [userBlogs, setUserBlogs] = useState([]);
   const [postCount, setPostCount] = useState(0);
   const [userFollower, setUserFollower] = useState(0);
-
-  // useEffect(() => {
-  //   let userResult = await axios.get(`${BASE_URL}/user/userInfo`, {
-  //     params: {
-  //       userName: userName,
-  //     },
-  //   });
-  // })
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     async function fetchUserBlogs(id) {
       let userBlogResult = await axios.get(
         `${BASE_URL}/blog/blogFindByUserId`,
@@ -39,6 +33,7 @@ const Profile = () => {
       try {
         setUserBlogs(userBlogResult.data.reverse());
         setPostCount(userBlogResult.data.length);
+        setLoading(false);
       } catch (err) {
         console.log("Error: blogs can't be feched due to", err);
       }
@@ -67,6 +62,7 @@ const Profile = () => {
         setUserData(userResult.data[0]);
         fetchUserBlogs(userResult.data[0]._id);
         fetchUserFollowers(userResult.data[0]._id);
+        setLoading(false);
       } catch (err) {
         console.log("Error: User can't be fetched due to", err);
       }
@@ -94,15 +90,27 @@ const Profile = () => {
       <Navbar active={"profile"} />
       <div className="Profile">
         <section className="userSection">
-          <User
-            fullName={profileData ? profileData.fullName : userData.fullName}
-            userName={profileData ? profileData.userName : userData.userName}
-            userBio={profileData ? profileData.userBio : ""}
-            location={profileData ? profileData.userCountry : "India"}
-            postCount={postCount}
-            followers={userFollower}
-            userSocialLinks={profileData ? profileData.userSocialLinks : ""}
-          />
+          {loading ? (
+            <div className="loaderContainer">
+              <ReactLoading
+                type={"spin"}
+                color={"#45aaff"}
+                height={50}
+                width={50}
+              />
+              <div>Fetching the blog...</div>
+            </div>
+          ) : (
+            <User
+              fullName={profileData ? profileData.fullName : userData.fullName}
+              userName={profileData ? profileData.userName : userData.userName}
+              userBio={profileData ? profileData.userBio : ""}
+              location={profileData ? profileData.userCountry : "India"}
+              postCount={postCount}
+              followers={userFollower}
+              userSocialLinks={profileData ? profileData.userSocialLinks : ""}
+            />
+          )}
         </section>
         <section className="blogSection">
           <div className="blogContextHeading">My Blogs</div>

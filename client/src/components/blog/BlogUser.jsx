@@ -62,14 +62,14 @@ const BlogUser = ({
     <>
       <div className="BlogUserContainer">
         <div className="blogUserPrimaryDetailsContainer">
-          <div className="imageContainer">
+          {/* <div className="imageContainer">
             <NavLink to={`/profile/${userName}`}>
               <img
                 src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
                 alt="blog"
               />
             </NavLink>
-          </div>
+          </div> */}
           <div className="userInfoContainer">
             <div className="blogPrimaryInfo">
               <NavLink to={`/profile/${userName}`}>{fullName}</NavLink>
