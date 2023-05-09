@@ -54,7 +54,6 @@ router.get("/getsearchblogs", (req, res) => {
   const filter = { blogHeading: regex };
   BlogModel.find(filter)
     .then((response) => {
-      console.log(response);
       res.send(response);
     })
     .catch((err) => {
