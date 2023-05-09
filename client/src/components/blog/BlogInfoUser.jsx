@@ -9,14 +9,17 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../helper/ref";
 import { NavLink, Link } from "react-router-dom";
+import ReactLoading from "react-loading";
 
 function BlogInfoUser({ userName, userIdForFollowers }) {
   const [follow, setFollow] = useState(false);
   const [profileData, setProfileData] = useState({});
   const [userFollower, setUserFollower] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
+    setLoading(true);
     async function fetchUserFollowers() {
       let followerResult = await axios.get(
         `${BASE_URL}/follower/getFollowers`,
@@ -29,6 +32,7 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
       setUserFollower(followerResult.data[0].followers.length);
       if (localData) {
         setFollow(followerResult.data[0].followers.includes(localData.userId));
+        setLoading(false);
       }
     }
     async function fetchUserProfile() {
@@ -72,59 +76,74 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
   }
   return (
     <div className="BlogInfoUser">
-      <section className="top">
-        <div className="imageContainer">
-          <NavLink to={`/profile/${profileData.userName}`}>
-            <img
-              src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
-              alt="blog"
-            />
-          </NavLink>
+      {loading ? (
+        <div className="loaderContainer">
+          <ReactLoading
+            type={"spin"}
+            color={"#45aaff"}
+            height={50}
+            width={50}
+          />
+          <div>Loading user profile...</div>
         </div>
-        <div className="userInfoContainer">
-          <div className="fullName">
-            <NavLink to={`/profile/${profileData.userName}`}>
-              {profileData.fullName}
-            </NavLink>
+      ) : (
+        <>
+          <section className="top">
+            <div className="imageContainer">
+              <NavLink to={`/profile/${profileData.userName}`}>
+                <img
+                  src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
+                  alt="blog"
+                />
+              </NavLink>
+            </div>
+            <div className="userInfoContainer">
+              <div className="fullName">
+                <NavLink to={`/profile/${profileData.userName}`}>
+                  {profileData.fullName}
+                </NavLink>
+              </div>
+              <div className="followers">{userFollower} Followers</div>
+            </div>
+          </section>
+          <section className="middle">
+            {localData && localData.userName !== userName && (
+              <div className="followButtonContainer" onClick={handleFollow}>
+                <button className={!follow ? "follow" : "following"}>
+                  {follow ? "Following" : "Follow"}
+                </button>
+              </div>
+            )}
+            <div className="socialMediaLinkContainer">
+              {profileData.userSocialLinks &&
+              profileData.userSocialLinks.length ? (
+                <>
+                  {profileData.userSocialLinks[0] && (
+                    <Link to={profileData.userSocialLinks[0]}>
+                      <FontAwesomeIcon icon={faLinkedin} />
+                    </Link>
+                  )}
+                  {profileData.userSocialLinks[1] && (
+                    <Link to={profileData.userSocialLinks[1]}>
+                      <FontAwesomeIcon icon={faInstagram} />
+                    </Link>
+                  )}
+                  {profileData.userSocialLinks[2] && (
+                    <Link to={profileData.userSocialLinks[2]}>
+                      <FontAwesomeIcon icon={faGithub} />
+                    </Link>
+                  )}
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+          </section>
+          <div className="bottom">
+            <div className="userBio">{profileData.userBio}</div>
           </div>
-          <div className="followers">{userFollower} Followers</div>
-        </div>
-      </section>
-      <section className="middle">
-        {localData && localData.userName !== userName && (
-          <div className="followButtonContainer" onClick={handleFollow}>
-            <button className={!follow ? "follow" : "following"}>
-              {follow ? "Following" : "Follow"}
-            </button>
-          </div>
-        )}
-        <div className="socialMediaLinkContainer">
-          {profileData.userSocialLinks && profileData.userSocialLinks.length ? (
-            <>
-              {profileData.userSocialLinks[0] && (
-                <Link to={profileData.userSocialLinks[0]}>
-                  <FontAwesomeIcon icon={faLinkedin} />
-                </Link>
-              )}
-              {profileData.userSocialLinks[1] && (
-                <Link to={profileData.userSocialLinks[1]}>
-                  <FontAwesomeIcon icon={faInstagram} />
-                </Link>
-              )}
-              {profileData.userSocialLinks[2] && (
-                <Link to={profileData.userSocialLinks[2]}>
-                  <FontAwesomeIcon icon={faGithub} />
-                </Link>
-              )}
-            </>
-          ) : (
-            ""
-          )}
-        </div>
-      </section>
-      <div className="bottom">
-        <div className="userBio">{profileData.userBio}</div>
-      </div>
+        </>
+      )}
     </div>
   );
 }

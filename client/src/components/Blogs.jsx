@@ -7,6 +7,7 @@ import ReactLoading from "react-loading";
 import { useState, useEffect } from "react";
 
 import "../styles/Blogs.css";
+import NoBlogs from "./NoBlogs";
 
 const Blogs = ({ searchTitle, setSearchTitle }) => {
   const [allBlogs, setAllBlogs] = useState([]);
@@ -44,7 +45,7 @@ const Blogs = ({ searchTitle, setSearchTitle }) => {
         });
     }
   }, [searchTitle]);
-
+  // console.log(allBlogs, fetchError);
   return (
     <div className="Blogs">
       <h1 className="mainHeading"> Recent Articles </h1>
@@ -60,10 +61,9 @@ const Blogs = ({ searchTitle, setSearchTitle }) => {
         </div>
       ) : (
         <div className="allBlogs">
-          {fetchError && allBlogs ? (
+          {fetchError ? (
             <div>Please wait, Trying to fetch the blogs...</div>
-          ) : (
-            allBlogs &&
+          ) : allBlogs.length > 0 ? (
             allBlogs.map((value, index) => {
               return (
                 <div key={index}>
@@ -81,6 +81,8 @@ const Blogs = ({ searchTitle, setSearchTitle }) => {
                 </div>
               );
             })
+          ) : (
+            <NoBlogs />
           )}
         </div>
       )}

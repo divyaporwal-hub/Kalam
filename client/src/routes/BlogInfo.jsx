@@ -11,7 +11,7 @@ import BlogFooter from "../components/blog/BlogFooter";
 import BlogImage from "../components/blog/BlogImage";
 import BlogHeading from "../components/blog/BlogHeading";
 import BlogInfoUser from "../components/blog/BlogInfoUser";
-
+import ReactLoading from "react-loading";
 import Header from "../components/Header";
 
 const BlogInfo = () => {
@@ -21,8 +21,10 @@ const BlogInfo = () => {
   const [userName, setUserName] = useState("");
   const [blogId, setBlogId] = useState("");
   const [userIdForFollowers, setUserIdForFollowers] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${BASE_URL}/blog/getBlogInfo`, {
         params: {
@@ -43,58 +45,75 @@ const BlogInfo = () => {
           })
           .then((userResponse) => {
             setUserName(userResponse.data[0].userName);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
+            setLoading(false);
           });
         // end userInfo request
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }, []);
 
   return (
     <div>
       <Header />
-      <div className="BlogInfoContainer">
-        <div className="left">
-          <div className="blogDetailContainer">
-            <BlogUser
-              userName={userName}
-              blogSaveTime={blogData.blogSaveTime}
-              minuteRead={blogData.minuteRead}
-              blogId={blogId}
-              setUserIdForFollowers={setUserIdForFollowers}
+      {loading ? (
+        <div className="BlogInfoContainer">
+          <div className="loaderContainer">
+            <ReactLoading
+              type={"spin"}
+              color={"#45aaff"}
+              height={50}
+              width={50}
             />
-            <BlogImage />
-            <BlogHeading blogHeading={blogData.blogHeading} />
-            <BlogContent blogText={blogData.blogText} />
-            {blogData.blogTags ? (
-              <div className="blogTagsContainer">
-                {blogData.blogTags.map((tag, index) => {
-                  return (
-                    <div className="blogTag" key={index}>
-                      {tag}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              ""
-            )}
-            {blogId && <BlogFooter id={blogId} />}
+            <div>Fetching the blog...</div>
           </div>
         </div>
-        <div className="right">
-          {userName && userIdForFollowers && (
-            <BlogInfoUser
-              userName={userName}
-              userIdForFollowers={userIdForFollowers}
-            />
-          )}
+      ) : (
+        <div className="BlogInfoContainer">
+          <div className="left">
+            <div className="blogDetailContainer">
+              <BlogUser
+                userName={userName}
+                blogSaveTime={blogData.blogSaveTime}
+                minuteRead={blogData.minuteRead}
+                blogId={blogId}
+                setUserIdForFollowers={setUserIdForFollowers}
+              />
+              <BlogImage />
+              <BlogHeading blogHeading={blogData.blogHeading} />
+              <BlogContent blogText={blogData.blogText} />
+              {blogData.blogTags ? (
+                <div className="blogTagsContainer">
+                  {blogData.blogTags.map((tag, index) => {
+                    return (
+                      <div className="blogTag" key={index}>
+                        {tag}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                ""
+              )}
+              {blogId && <BlogFooter id={blogId} />}
+            </div>
+          </div>
+          <div className="right">
+            {userName && userIdForFollowers && (
+              <BlogInfoUser
+                userName={userName}
+                userIdForFollowers={userIdForFollowers}
+              />
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

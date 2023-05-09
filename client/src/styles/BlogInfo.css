@@ -4,6 +4,15 @@
   margin-top: 55px;
 }
 
+.BlogInfoContainer .loaderContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+
 .BlogInfoContainer .left {
   width: 75%;
 }
@@ -36,7 +45,7 @@
 
 .BlogInfoContainer .left .blogDetailContainer .blogContent * {
   font-family: "Karla", sans-serif;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   /* font-family: "Merriweather", serif; */
   font-family: "Lato", sans-serif;
   /* font-family: "Open Sans", sans-serif; */

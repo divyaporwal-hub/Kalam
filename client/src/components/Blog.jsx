@@ -41,18 +41,20 @@ const Blog = ({
   }
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/user/userInfoById`, {
-        params: {
-          userId: userId,
-        },
-      })
-      .then((response) => {
-        setUserName(response.data[0].userName);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (userId) {
+      axios
+        .get(`${BASE_URL}/user/userInfoById`, {
+          params: {
+            userId: userId,
+          },
+        })
+        .then((response) => {
+          setUserName(response.data[0].userName);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
