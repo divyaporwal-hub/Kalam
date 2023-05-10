@@ -25,35 +25,96 @@
   justify-content: center;
 }
 
+.main__header .header .leftSection .searchContainer {
+  position: absolute;
+  left: 10%;
+}
 
-.main__header .header .leftSection .searchContainer .searchResultContainer{
+.main__header .header .leftSection .allSearchResults {
+  position: absolute;
+  left: 10%;
   margin-left: 30px;
-  margin-top: 20px;
+  top: 60px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5px;
+  transition: all 200ms linear;
+}
+.main__header .header .leftSection .allSearchResults .searchResultContainer a {
+  text-decoration: none;
+}
+.main__header
+  .header
+  .leftSection
+  .allSearchResults
+  .searchResultContainer
+  .searchResult {
+  width: 500px;
+  display: flex;
+  font-size: 1.2rem;
+  padding: 10px 5px;
+  cursor: pointer;
+  border-bottom: 1px solid #e7e7e7;
+  flex-direction: column;
+  margin: 5px 0;
+  background: rgba(255, 255, 255, 0.7);
+  /* box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.37); */
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.144);
+  transition: all 200ms linear;
+}
+
+.main__header
+  .header
+  .leftSection
+  .allSearchResults
+  .searchResultContainer
+  .searchResult:hover {
+  background: rgba(206, 205, 205, 0.514);
+}
+
+/* .main__header .header .leftSection .searchContainer .searchResultContainer {
+  margin-left: 30px;
   width: 500px;
   display: flex;
   flex-direction: column;
   background-color: lightblue;
-}
+} */
 
-.main__header .header .leftSection .searchContainer .searchResultContainer .searchResult{
+.main__header
+  .header
+  .leftSection
+  .searchContainer
+  .searchResultContainer
+  .searchResult {
   padding: 10px;
   margin: 3px 0;
   cursor: pointer;
 }
 
 .main__header .header .leftSection input[type="search"] {
-  background-color: #ebe7e7;
+  background-color: #eeeeee;
   border: none;
   border-radius: 6px;
   font-size: 1.2rem;
   margin-left: 30px;
   outline: none;
-  padding: 5px 10px;
   width: 500px;
+  padding: 7px 15px;
   transition: all 200ms linear;
 }
 .main__header .header .leftSection input[type="search"]:focus {
   box-shadow: 0 0 0 2px rgb(44, 44, 44);
+  background-color: #eeeeee08;
+  box-shadow: rgba(50, 50, 93, 0.164) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.212) 0px 8px 16px -8px, 0 0 0 2px #00000025;
 }
 .main__header .header .leftSection input[type="search"]::placeholder {
   color: rgb(179, 179, 179);

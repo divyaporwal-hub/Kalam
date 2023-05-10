@@ -7,12 +7,11 @@ import Avatar from "../images/userAvatar.png";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+
 const Header = () => {
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   const [searchText, setSearchText] = useState("");
   const [allBlogs, setAllBlogs] = useState([]);
-  const navigate = useNavigate();
 
   function handleSearch(e) {
     e.preventDefault();
@@ -20,7 +19,7 @@ const Header = () => {
     axios
       .get(`${BASE_URL}/blog/getsearchblogs`, {
         params: {
-          searchTitle: searchText,
+          searchTitle: e.target.value,
         },
       })
       .then((response) => {
@@ -53,6 +52,8 @@ const Header = () => {
               placeholder="Search a blog..."
               onChange={handleSearch}
             />
+          </div>
+          <div className="allSearchResults">
             {searchText && (
               <div className="searchResultContainer">
                 {allBlogs &&
