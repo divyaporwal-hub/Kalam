@@ -10,27 +10,23 @@ import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   let localData = JSON.parse(localStorage.getItem("userInfo"));
-  const [searchresult, setSearchresult] = useState("");
-  const [searchedblog, setSearchedblog] = useState();
+  const [searchText, setSearchText] = useState("");
+  const [allBlogs, setAllBlogs] = useState([]);
 
   function handleSearch(e) {
     e.preventDefault();
-    setSearchresult(e.target.value);
-    // console.log(searchresult);
+    setSearchText(e.target.value);
     axios
       .get(`${BASE_URL}/blog/getsearchblogs`, {
         params: {
-          searchresult,
+          searchTitle: searchText,
         },
       })
       .then((response) => {
         console.log(response.data);
-        setSearchedblog(response.data.reverse());
-        // setLoading(false);
+        setAllBlogs(response.data.reverse());
       })
       .catch((err) => {
-        // setFetchError(true);
-        //setLoading(false);
         console.log(err);
       });
   }
@@ -48,13 +44,14 @@ const Header = () => {
               type="search"
               name=""
               id=""
+              value={searchText}
               placeholder="Search a blog..."
               onChange={handleSearch}
             />
-            {searchresult && (
+            {searchText && (
               <div className="searchResultContainer">
-                {searchedblog &&
-                  searchedblog.map((blog, index) => {
+                {allBlogs &&
+                  allBlogs.map((blog, index) => {
                     return (
                       <div className="searchResult" key={index}>
                         {blog.blogHeading}
