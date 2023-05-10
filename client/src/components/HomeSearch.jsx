@@ -3,12 +3,14 @@ import "../styles/HomeSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-function HomeSearch({ searchTitle, setSearchTitle }) {
+function HomeSearch({ searchTitle, setSearchTitle, searchTags,setSearchTags }) {
   const [search, setSearch] = useState("");
+  const[tagsearch,setTagsearch]=useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearchTitle(search);
+    setSearchTags(tagsearch)
   };
 
   const handleSearchControl = (e) => {
@@ -16,6 +18,13 @@ function HomeSearch({ searchTitle, setSearchTitle }) {
     setSearch(e.target.value);
     if (!e.target.value.length) {
       setSearchTitle("");
+    }
+  };
+  const handleTagsearch = (e) => {
+    e.preventDefault();
+    setTagsearch(e.target.value);
+    if (!e.target.value.length) {
+      setSearchTags("");
     }
   };
 
@@ -28,7 +37,7 @@ function HomeSearch({ searchTitle, setSearchTitle }) {
         </div>
         <div className="formGroup">
           <label htmlFor="blogtag">Search By Tags</label>
-          <input type="search" name="" id="" />
+          <input type="search" name="" id="" onChange={handleTagsearch}/>
         </div>
         <div className="formGroup">
           <button>

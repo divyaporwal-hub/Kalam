@@ -9,6 +9,7 @@ import HomeSearch from "../components/HomeSearch";
 
 const Home = () => {
   const [searchTitle, setSearchTitle] = useState("");
+  const [searchTags,setSearchTags]=useState("");
   return (
     <div className="Home">
       {/* Header will contain userprofile icons and name of the website */}
@@ -32,6 +33,8 @@ const Home = () => {
               <Blogs
                 searchTitle={searchTitle}
                 setSearchTitle={setSearchTitle}
+                searchTags={searchTags}
+                setSearchTags={setSearchTags}
               />
             </div>
           </div>
@@ -40,6 +43,8 @@ const Home = () => {
             <HomeSearch
               setSearchTitle={setSearchTitle}
               searchTitle={searchTitle}
+              searchTags={searchTags}
+              setSearchTags={setSearchTags}
             />
             {/* <hr /> */}
             <Tags />

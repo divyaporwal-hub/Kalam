@@ -61,6 +61,22 @@ router.get("/getsearchblogs", (req, res) => {
     });
 });
 
+// to show all the blogs searched by tag
+
+router.get("/getsearchtagsblog", (req, res) => {
+  console.log(req.query)
+  const regex = new RegExp(req.query.searchTags, "i");
+  const filter = { blogTags: regex };
+  BlogModel.find(filter)
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+
 // to send information about specific blog by its ID
 
 router.get("/getBlogInfo", async (req, res) => {

@@ -17,6 +17,10 @@ import Header from "../components/Header";
 const BlogInfo = () => {
   const { id } = useParams();
 
+  console.log(id);
+
+  const [searchBgId, setSearchBgId] = useState("");
+  //const [emptysearch, setEmptysearch] = useState(false);
   const [blogData, setBlogData] = useState({});
   const [userName, setUserName] = useState("");
   const [blogId, setBlogId] = useState("");
@@ -25,6 +29,9 @@ const BlogInfo = () => {
 
   useEffect(() => {
     setLoading(true);
+    setSearchBgId(id);
+    //setEmptysearch(true);
+
     axios
       .get(`${BASE_URL}/blog/getBlogInfo`, {
         params: {
@@ -57,7 +64,7 @@ const BlogInfo = () => {
         console.log(err);
         setLoading(false);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>

@@ -9,19 +9,54 @@ import { useState, useEffect } from "react";
 import "../styles/Blogs.css";
 import NoBlogs from "./NoBlogs";
 
-const Blogs = ({ searchTitle, setSearchTitle }) => {
+const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  console.log("Tag:", searchTags);
+
   useEffect(() => {
     // make your API call here...
     setLoading(true);
+    console.log(searchTags);
     if (searchTitle.length > 0) {
       axios
         .get(`${BASE_URL}/blog/getsearchblogs`, {
           params: {
             searchTitle,
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+          setLoading(false);
+        })
+        .catch((err) => {
+          setFetchError(true);
+          setLoading(false);
+        });
+    } else if (searchTags.length > 0) {
+      console.log("Shikha: ", searchTags);
+      axios
+        .get(`${BASE_URL}/blog/getsearchtagsblog`, {
+          params: {
+            searchTags,
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+          setLoading(false);
+        })
+        .catch((err) => {
+          setFetchError(true);
+          setLoading(false);
+        });
+    } else if (searchTitle.length > 0 && searchTags.length > 0) {
+      axios
+        .get(`${BASE_URL}/blog/getsearch_TT_blog`, {
+          params: {
+            searchTitle,
+            searchTags,
           },
         })
         .then((response) => {

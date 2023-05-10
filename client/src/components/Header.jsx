@@ -7,11 +7,12 @@ import Avatar from "../images/userAvatar.png";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 const Header = () => {
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   const [searchText, setSearchText] = useState("");
   const [allBlogs, setAllBlogs] = useState([]);
+  const navigate = useNavigate();
 
   function handleSearch(e) {
     e.preventDefault();
@@ -29,6 +30,10 @@ const Header = () => {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  function openBlog() {
+    setSearchText("");
   }
 
   return (
@@ -53,9 +58,14 @@ const Header = () => {
                 {allBlogs &&
                   allBlogs.map((blog, index) => {
                     return (
-                      <div className="searchResult" key={index}>
-                        {blog.blogHeading}
-                      </div>
+                      <NavLink
+                        to={`/bloginfo/${blog._id}`}
+                        onClick={() => openBlog(blog._id)}
+                      >
+                        <div className="searchResult" key={index}>
+                          {blog.blogHeading}
+                        </div>
+                      </NavLink>
                     );
                   })}
               </div>
