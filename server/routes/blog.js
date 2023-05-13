@@ -76,6 +76,24 @@ router.get("/getsearchtagsblog", (req, res) => {
     });
 });
 
+//to show all the blogs that matched with tags as well tittle both
+
+router.get("/getsearch_TT_blog",(req,res)=>{
+  const searchtitle=req.query.searchTitle;
+  const searchTags=req.query.sarchTags;
+  const regex=new RegExp(req.query.searchTitle);
+  const regex1=new RegExp(req.query.searchTags);
+  
+  const filter = {blogHeading: regex, blogTags: regex1}
+  BlogModel.find(filter)
+  .then((response) => {
+    res.send(response);
+  })
+  .catch((err) => {
+    res.send(err);
+  });
+})
+
 
 // to send information about specific blog by its ID
 

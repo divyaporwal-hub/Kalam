@@ -20,7 +20,24 @@ const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
     // make your API call here...
     setLoading(true);
     console.log(searchTags);
-    if (searchTitle.length > 0) {
+    console.log("usee efftect ke andr aa gye...");
+    if (searchTitle.length > 0 && searchTags.length > 0) {
+      axios
+        .get(`${BASE_URL}/blog/getsearch_TT_blog`, {
+          params: {
+            searchTitle,
+            searchTags,
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+          setLoading(false);
+        })
+        .catch((err) => {
+          setFetchError(true);
+          setLoading(false);
+        });
+    } else if (searchTitle.length > 0) {
       axios
         .get(`${BASE_URL}/blog/getsearchblogs`, {
           params: {
@@ -51,22 +68,6 @@ const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
           setFetchError(true);
           setLoading(false);
         });
-    } else if (searchTitle.length > 0 && searchTags.length > 0) {
-      axios
-        .get(`${BASE_URL}/blog/getsearch_TT_blog`, {
-          params: {
-            searchTitle,
-            searchTags,
-          },
-        })
-        .then((response) => {
-          setAllBlogs(response.data.reverse());
-          setLoading(false);
-        })
-        .catch((err) => {
-          setFetchError(true);
-          setLoading(false);
-        });
     } else {
       axios
         .get(`${BASE_URL}/blog/getblogs`)
@@ -79,7 +80,7 @@ const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
           setLoading(false);
         });
     }
-  }, [searchTitle]);
+  }, [searchTitle, searchTags]);
   // console.log(allBlogs, fetchError);
   return (
     <div className="Blogs">
