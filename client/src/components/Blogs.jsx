@@ -19,8 +19,6 @@ const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
   useEffect(() => {
     // make your API call here...
     setLoading(true);
-    console.log(searchTags);
-    console.log("usee efftect ke andr aa gye...");
     if (searchTitle.length > 0 && searchTags.length > 0) {
       axios
         .get(`${BASE_URL}/blog/getsearch_TT_blog`, {

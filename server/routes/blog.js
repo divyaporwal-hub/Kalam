@@ -79,10 +79,12 @@ router.get("/getsearchtagsblog", (req, res) => {
 //to show all the blogs that matched with tags as well tittle both
 
 router.get("/getsearch_TT_blog",(req,res)=>{
-  const searchtitle=req.query.searchTitle;
-  const searchTags=req.query.sarchTags;
-  const regex=new RegExp(req.query.searchTitle);
-  const regex1=new RegExp(req.query.searchTags);
+  
+
+  const regex=new RegExp(req.query.searchTitle, "i");
+  const regex1=new RegExp(req.query.searchTags, "i");
+
+
   
   const filter = {blogHeading: regex, blogTags: regex1}
   BlogModel.find(filter)
