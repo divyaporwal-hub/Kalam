@@ -80,11 +80,8 @@ router.get("/getsearchtagsblog", (req, res) => {
 
 router.get("/getsearch_TT_blog",(req,res)=>{
   
-
   const regex=new RegExp(req.query.searchTitle, "i");
   const regex1=new RegExp(req.query.searchTags, "i");
-
-
   
   const filter = {blogHeading: regex, blogTags: regex1}
   BlogModel.find(filter)

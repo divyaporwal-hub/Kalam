@@ -1,13 +1,20 @@
+.tagNav{
+  text-decoration: none;
+  color: white;
+}
+
 .Tag {
   display: flex;
-  background-color: #45aaff;
+  background-color: #45abffc9;
   padding: 7px 15px;
-  border-radius: 20px;
+  border-radius: 7px;
   margin: 5px 0;
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 200ms linear;
 }
+
+
 
 .Tag:hover {
   background-color: #379bec;

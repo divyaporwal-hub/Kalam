@@ -9,7 +9,13 @@ import { useState, useEffect } from "react";
 import "../styles/Blogs.css";
 import NoBlogs from "./NoBlogs";
 
-const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
+const Blogs = ({
+  searchTitle,
+  setSearchTitle,
+  searchTags,
+  setSearchTags,
+  setRecBlogs,
+}) => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -71,6 +77,7 @@ const Blogs = ({ searchTitle, setSearchTitle, searchTags, setSearchTags }) => {
         .get(`${BASE_URL}/blog/getblogs`)
         .then((response) => {
           setAllBlogs(response.data.reverse());
+          setRecBlogs(response.data);
           setLoading(false);
         })
         .catch((err) => {
