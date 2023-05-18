@@ -9,15 +9,27 @@ import {
   faComments,
   faShare,
   faCommentAlt,
+  faMailBulk,
 } from "@fortawesome/free-solid-svg-icons";
-// import {
-//   EmailShareButton,
-//   FacebookShareButton,
-//   InstapaperShareButton,
-//   LinkedinShareButton,
-//   TelegramShareButton,
-//   TwitterShareButton,
-// } from "react-share";
+
+import {
+  faLinkedin,
+  faGithub,
+  faInstagram,
+  faFacebook,
+  faWhatsapp,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  InstapaperShareButton,
+  WhatsappShareButton,
+} from "react-share";
 
 import { BASE_URL } from "../../helper/ref.js";
 import axios from "axios";
@@ -29,11 +41,13 @@ const BlogFooter = ({ id }) => {
   const [showComment, setShowComment] = useState(false);
   const [allComments, setAllComments] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
-
+  const [showShare, setShowShare] = useState(false);
   // getting local data from localStorag
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   let userId = localData ? localData.userId : "-1";
+
+  let siteLink = `https://kalam-blog.netlify.app/bloginfo/${id}`
 
   const navigate = useNavigate();
 
@@ -124,9 +138,31 @@ const BlogFooter = ({ id }) => {
         </div>
 
         <div className="shareSection">
-          <div className="icon">
+          <div className="icon" onClick={() => setShowShare(!showShare)}>
             <FontAwesomeIcon icon={faShare} />
           </div>
+          {showShare && (
+            <div className="shareOptions">
+              <FacebookShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faFacebook} />
+              </FacebookShareButton>
+              <WhatsappShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faWhatsapp} />
+              </WhatsappShareButton>
+              <TwitterShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faTwitter} />
+              </TwitterShareButton>
+              <InstapaperShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faInstagram} />
+              </InstapaperShareButton>
+              <LinkedinShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faLinkedin} />
+              </LinkedinShareButton>
+              <EmailShareButton url={siteLink}>
+                <FontAwesomeIcon icon={faMailBulk} />
+              </EmailShareButton>
+            </div>
+          )}
         </div>
       </div>
 

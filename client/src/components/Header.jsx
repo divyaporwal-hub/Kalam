@@ -53,25 +53,27 @@ const Header = () => {
               onChange={handleSearch}
             />
           </div>
-          <div className="allSearchResults">
-            {searchText && (
-              <div className="searchResultContainer">
-                {allBlogs &&
-                  allBlogs.map((blog, index) => {
-                    return (
-                      <NavLink
-                        to={`/bloginfo/${blog._id}`}
-                        onClick={() => openBlog(blog._id)}
-                      >
-                        <div className="searchResult" key={index}>
-                          {blog.blogHeading}
-                        </div>
-                      </NavLink>
-                    );
-                  })}
-              </div>
-            )}
-          </div>
+          {searchText && (
+            <div className="allSearchResults">
+              {searchText && (
+                <div className="searchResultContainer">
+                  {allBlogs &&
+                    allBlogs.map((blog, index) => {
+                      return (
+                        <NavLink
+                          to={`/bloginfo/${blog._id}`}
+                          onClick={() => openBlog(blog._id)}
+                        >
+                          <div className="searchResult" key={index}>
+                            {blog.blogHeading}
+                          </div>
+                        </NavLink>
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+          )}
           {/* </form> */}
         </div>
         <div className="rightSection">

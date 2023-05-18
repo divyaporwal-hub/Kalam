@@ -5,9 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHouseUser,
   faPenAlt,
-  faPenFancy,
-  faRegistered,
-  faSignIn,
   faSignInAlt,
   faSignOut,
   faUser,

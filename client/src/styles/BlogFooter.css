@@ -37,3 +37,12 @@
 .footerContainer .likeContainer .likeIcon .liked {
   color: blue;
 }
+.footerContainer .shareSection .shareOptions button {
+  margin-left:10px;
+  color:grey;
+
+}
+.footerContainer .shareSection .shareOptions button svg {
+  color:rgb(116, 110, 110);
+}
+
