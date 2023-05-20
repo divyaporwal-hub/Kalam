@@ -44,8 +44,6 @@ function Editprofile() {
     // to send the profile image into data
 
     const data = new FormData();
-    //console.log(data);
-    //console.log(e.target.files[0]);
     data.append("profileImage", e.target.files[0]);
     data.append("userName", userData.userName);
     //console.log(data.get('profileImage'));
@@ -74,32 +72,51 @@ function Editprofile() {
     }
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    let regex = /^[a-zA-Z0-9]+$/;
+    console.log(newUserName);
 
     if (allLinkAreValid()) {
-      Axios.put(`${BASE_URL}/profile/updateProfile`, {
-        userName: userData.userName,
-        newUserName: newUserName,
-        fullName: fullName,
-        userBio: userBio,
-        userCountry: country,
-        userInstagram: instagram,
-        userFacebook: linkedin,
-        userGithub: github,
-      })
-        .then((response) => {
-          console.log(response);
-          // update the username and ufullname from localstorage
-          let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-          userInfo.userName = newUserName;
-          userInfo.fullName = fullName;
-          localStorage.setItem("userInfo", JSON.stringify(userInfo));
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
+      console.log(newUserName);
+      if (regex.test(newUserName)) {
+        let response = await Axios.get(`${BASE_URL}/user/userInfo`, {
+          params: {
+            userName: newUserName,
+          },
         });
+        console.log(response.data.length);
+        if (response.data.length === 0) {
+          Axios.put(`${BASE_URL}/profile/updateProfile`, {
+            userName: userData.userName,
+            newUserName: newUserName,
+            fullName: fullName,
+            userBio: userBio,
+            userCountry: country,
+            userInstagram: instagram,
+            userFacebook: linkedin,
+            userGithub: github,
+          })
+            .then((response) => {
+              console.log(response);
+              // update the username and ufullname from localstorage
+              let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+              userInfo.userName = newUserName;
+              userInfo.fullName = fullName;
+              localStorage.setItem("userInfo", JSON.stringify(userInfo));
+              navigate("/");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("This username is already exist");
+        }
+      }
+    } else {
+      alert(
+        "Invalid Username\nUsername must contain only alphabet and digits."
+      );
     }
   }
 
