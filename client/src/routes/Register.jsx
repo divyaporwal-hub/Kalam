@@ -28,31 +28,43 @@ const Register = () => {
     e.preventDefault();
     setShowCnfpassword(!showCnfpassword);
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     // checking for password strength
 
     if (validPass && password === confirmPassword) {
-      // let userNameResponse = Axios.get();
-      // if (userNameResponse.data.length) {
-      //   alert("Username already exist");
-      //   return;
-      // }
-      Axios.post(`${BASE_URL}/user/saveUser`, {
-        userEmail: userEmail,
-        userName: userName,
-        fullName: fullName,
-        userPassword: password,
-      })
-        .then((response) => {
-          console.log(response.data);
-          navigate("/login");
-        })
-        .catch((err) => {
-          console.log(err);
+      let regex = /^[a-zA-Z0-9]+$/;
+
+      if (regex.test(userName)) {
+        let response = await Axios.get(`${BASE_URL}/user/userInfo`, {
+          params: {
+            userName,
+          },
         });
-      // let userName;
+
+        if (response.data.length === 0) {
+          Axios.post(`${BASE_URL}/user/saveUser`, {
+            userEmail: userEmail,
+            userName: userName,
+            fullName: fullName,
+            userPassword: password,
+          })
+            .then((response) => {
+              console.log(response.data);
+              navigate("/login");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("This username is already exist");
+        }
+      } else {
+        alert(
+          "Invalid Username\nUsername must contain only alphabet and digits."
+        );
+      }
     } else if (!validPass) {
       setWarningMsg("password should be strong.");
     } else if (password !== confirmPassword) {
