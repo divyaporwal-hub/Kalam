@@ -127,6 +127,7 @@ const Profile = () => {
                     minuteRead={blog.minuteRead}
                     blogPreview={blog.blogText}
                     blogId={blog._id}
+                    blogTags={blog.blogTags}
                     key={index}
                   />
                 </>

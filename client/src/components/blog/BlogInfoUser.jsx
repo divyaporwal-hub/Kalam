@@ -10,6 +10,7 @@ import axios from "axios";
 import { BASE_URL } from "../../helper/ref";
 import { NavLink, Link } from "react-router-dom";
 import ReactLoading from "react-loading";
+import Avatar from "react-avatar";
 
 function BlogInfoUser({ userName, userIdForFollowers }) {
   const [follow, setFollow] = useState(false);
@@ -91,10 +92,19 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
           <section className="top">
             <div className="imageContainer">
               <NavLink to={`/profile/${profileData.userName}`}>
-                <img
-                  src="https://cdn3.vectorstock.com/i/1000x1000/23/22/new-woman-avatar-icon-flat-vector-19152322.jpg"
-                  alt="blog"
-                />
+                {profileData &&
+                profileData.userSocialLinks &&
+                profileData.userSocialLinks[2] ? (
+                  <Avatar
+                    githubHandle={profileData.userSocialLinks[2].slice(
+                      profileData.userSocialLinks[2].lastIndexOf("/") + 1
+                    )}
+                    size={50}
+                    round="50px"
+                  />
+                ) : (
+                  <Avatar name={profileData.fullName} size={50} round="50px" />
+                )}
               </NavLink>
             </div>
             <div className="userInfoContainer">
