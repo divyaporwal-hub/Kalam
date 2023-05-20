@@ -18,7 +18,7 @@ const Blog = ({
   blogPreview,
   blogId,
 }) => {
-  const [userName, setUserName] = useState("");
+  const [fullName, setFullName] = useState("");
   // console.log("PRS: ", parse(blogPreview.slice(0, 100)));
 
   let blogContentPreview = "";
@@ -49,7 +49,7 @@ const Blog = ({
           },
         })
         .then((response) => {
-          setUserName(response.data[0].userName);
+          setFullName(response.data[0].fullName);
         })
         .catch((err) => {
           console.log(err);
@@ -81,7 +81,7 @@ const Blog = ({
         <div className="blogDetails">
           <h1>{heading}</h1>
           <div className="blogInfo">
-            <div>{uploadTime}</div> • <div>{userName ? userName : ""}</div> •
+            <div>{uploadTime}</div> • <div>{fullName && fullName}</div> •
             <div>{minuteRead}</div>
           </div>
           {blogTags ? (
