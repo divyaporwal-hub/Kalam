@@ -45,9 +45,11 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
       try {
         if (profileResult.data.length) {
           setProfileData(profileResult.data[0]);
+          setLoading(false);
         }
       } catch (err) {
         console.log("Error: Profile can't be feched due to", err);
+        setLoading(false);
       }
     }
     fetchUserProfile();
@@ -150,7 +152,9 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
             </div>
           </section>
           <div className="bottom">
-            <div className="userBio">{profileData.userBio}</div>
+            {profileData && profileData.userBio && (
+              <div className="userBio">{profileData.userBio}</div>
+            )}
           </div>
         </>
       )}

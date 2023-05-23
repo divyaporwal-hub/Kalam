@@ -26,9 +26,14 @@
   flex-wrap: wrap;
   margin: 30px 20px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .allBlogs .blogLine {
   height: 1px;
   background-color: #dddddd;
+}
+
+.allBlogs .allBlogInfoContainer{
+  width: 100%;
 }

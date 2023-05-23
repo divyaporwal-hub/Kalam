@@ -107,7 +107,7 @@ const Blogs = ({
           ) : allBlogs.length > 0 ? (
             allBlogs.map((value, index) => {
               return (
-                <div key={index}>
+                <div key={index} className="allBlogInfoContainer">
                   <div className="blogLine"></div>
                   <Blog
                     blogImage={BlogImage}

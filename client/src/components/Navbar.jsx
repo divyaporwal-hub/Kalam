@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,13 +9,19 @@ import {
   faSignOut,
   faUser,
   faUserLock,
+  faHamburger,
+  faBars,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
+import useWindowDimensions from "./useWindowDimensions";
 import LogoImage from "../helper/kalamlogo2.png";
 
 const Navbar = ({ active }) => {
+  const { height, width } = useWindowDimensions();
+  const [navOpen, setNavOpen] = useState(false);
   const localData = JSON.parse(localStorage.getItem("userInfo"));
   return (
-    <nav className="Navbar">
+    <nav className={(navOpen) ? "Navbar showNav" : "Navbar hideNav"} >
       <ul className="navbarContainer">
         <Link className="itemLink" to={"/"}>
           <li className="menuItem menuItemLogo">
@@ -69,6 +75,21 @@ const Navbar = ({ active }) => {
             <li className="menuItem">
               <FontAwesomeIcon icon={faSignOut} />
               <div className="menuItemText">Logout</div>
+            </li>
+          </Link>
+        )}
+        {width < 481 && (
+          <Link
+            className="itemLink hamburger"
+            to={"/"}
+            onClick={() => setNavOpen(!navOpen)}
+          >
+            <li className="menuItem">
+              {navOpen ? (
+                <FontAwesomeIcon icon={faX} />
+              ) : (
+                <FontAwesomeIcon icon={faBars} />
+              )}
             </li>
           </Link>
         )}

@@ -42,14 +42,12 @@ const Home = () => {
             </div>
           </div>
           <div className="tagContainer">
-            {/* Render a component of tags */}
             <HomeSearch
               setSearchTitle={setSearchTitle}
               searchTitle={searchTitle}
               searchTags={searchTags}
               setSearchTags={setSearchTags}
             />
-            {/* <hr /> */}
             <Tags recBlogs={recBlogs}/>
           </div>
         </div>

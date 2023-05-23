@@ -17,6 +17,7 @@
   color: black;
   display: flex;
   flex-direction: row;
+  
 }
 
 .Blog h1 {
@@ -24,7 +25,6 @@
 }
 
 .Blog .blogImage {
-  width: 30%;
   display: flex;
 }
 
@@ -92,3 +92,38 @@
   font-size: 15px;
   cursor: pointer;
 }
+
+@media (min-width:320px){
+  .Blog a {
+    width:100%;
+    flex-direction: column;
+  }
+  .Blog .blogImage {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+  }
+  .Blog .blogDetails{
+    width: 85%;
+    margin:0 auto;
+
+  }
+}
+
+@media (min-width:481px){
+  
+.Blog a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.Blog .blogImage {
+  width: 30%;
+  margin: 0 auto;
+  display: flex;
+}
+
+  }

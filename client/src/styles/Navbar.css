@@ -5,7 +5,7 @@
   height: 100vh;
   position: fixed;
   border-right: 1px solid #c0c0c081;
-  background-color: #c0c0c02e;
+  background-color: #f8f8f8;
 }
 
 .Navbar .navbarContainer {
@@ -56,7 +56,46 @@
   color: black;
 }
 
+.Navbar .navbarContainer .hamburger .menuItem svg{
+  position: relative;
+  top: -221px;
+  left: 165px;
+  width: 50px;
+  font-size: 1.3rem;
+  background-color: #ffffff00;
+}
+
 .Navbar .navbarContainer .itemLinkUser {
   position: absolute;
   bottom: 20px;
 }
+
+.showNav{
+  left: 0;
+}
+
+.hideNav{
+  left: -200px;
+}
+
+
+@media (min-width:320px)  { 
+  /* smartphones, iPhone, portrait 480x320 phones */ 
+  .showNav{
+    left: 0px;
+  }
+  
+  .hideNav{
+    left: -200px;
+  }
+}
+
+
+@media (min-width:481px)  { 
+  /* smartphones, iPhone, portrait 480x320 phones */ 
+  .hideNav{
+    left: 0px;
+  }
+}
+
+
