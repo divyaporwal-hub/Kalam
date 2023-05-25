@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin-top: 60px; */
+  height: 100vh;
 }
 
 .EditProfile form {
@@ -77,4 +77,35 @@
 
 .EditProfile form .formGroup button#submit:hover {
   background-color: #01014e;
+}
+
+@media screen and (min-width:320px){
+  .EditProfile {
+  width: calc(100%);
+  margin-left: 0px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-top: 60px; */
+}
+.EditProfile form {
+  width: 90%;
+}
+}
+
+@media screen and (min-width:481px){
+  .EditProfile {
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 60px; */
+}
+.EditProfile form {
+  width: 60%;
+}
 }

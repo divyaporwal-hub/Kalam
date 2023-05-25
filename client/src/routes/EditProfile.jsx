@@ -169,7 +169,7 @@ function Editprofile() {
             />
           </div>
           <div className="formGroup">
-            <label htmlFor="fullName">Full Name</label>
+            <label htmlFor="fullName">Fullname</label>
             <input
               type="text"
               id="fullName"

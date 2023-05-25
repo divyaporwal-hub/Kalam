@@ -15,12 +15,13 @@ const Blogs = ({
   searchTags,
   setSearchTags,
   setRecBlogs,
+  raonSearch,
+  setRaonSearch,
 }) => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  console.log("Tag:", searchTags);
 
   useEffect(() => {
     // make your API call here...
@@ -88,7 +89,7 @@ const Blogs = ({
   }, [searchTitle, searchTags]);
   // console.log(allBlogs, fetchError);
   return (
-    <div className="Blogs">
+    <div className={raonSearch?"Blogs searchBlogs":"Blogs"}>
       <h1 className="mainHeading"> Recent Articles </h1>
       {loading ? (
         <div className="loaderContainer">

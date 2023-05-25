@@ -6,11 +6,22 @@ import Blogs from "../components/Blogs";
 import Header from "../components/Header";
 import "../styles/Home.css";
 import HomeSearch from "../components/HomeSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouseUser, faSearch, faX } from "@fortawesome/free-solid-svg-icons";
+import useWindowDimensions from "../components/useWindowDimensions";
 
 const Home = () => {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchTags, setSearchTags] = useState("");
   const [recBlogs, setRecBlogs] = useState([]);
+  const [showSearch, setShowSearch] = useState(false);
+  const [raonSearch, setRaonSearch] = useState(false);
+  const { height, width } = useWindowDimensions();
+
+  function handleSearchOpen() {
+    setShowSearch(!showSearch);
+    setRaonSearch(!raonSearch);
+  }
 
   return (
     <div className="Home">
@@ -38,17 +49,32 @@ const Home = () => {
                 searchTags={searchTags}
                 setSearchTags={setSearchTags}
                 setRecBlogs={setRecBlogs}
+                raonSearch={raonSearch}
               />
             </div>
           </div>
-          <div className="tagContainer">
-            <HomeSearch
-              setSearchTitle={setSearchTitle}
-              searchTitle={searchTitle}
-              searchTags={searchTags}
-              setSearchTags={setSearchTags}
-            />
-            <Tags recBlogs={recBlogs}/>
+
+          <div className="showHideSearch">
+            {showSearch || width >= 481 ? (
+              <div className="tagContainer">
+                <HomeSearch
+                  setSearchTitle={setSearchTitle}
+                  searchTitle={searchTitle}
+                  searchTags={searchTags}
+                  setSearchTags={setSearchTags}
+                />
+                <Tags recBlogs={recBlogs} />
+                {width < 481 && (
+                  <div className="searchCloseIcon" onClick={handleSearchOpen}>
+                    <FontAwesomeIcon icon={faX} />
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="searchIconContainer" onClick={handleSearchOpen}>
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+            )}
           </div>
         </div>
       </div>

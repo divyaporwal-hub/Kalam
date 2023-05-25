@@ -21,7 +21,7 @@ const Navbar = ({ active }) => {
   const [navOpen, setNavOpen] = useState(false);
   const localData = JSON.parse(localStorage.getItem("userInfo"));
   return (
-    <nav className={(navOpen) ? "Navbar showNav" : "Navbar hideNav"} >
+    <nav className={navOpen ? "Navbar showNav" : "Navbar hideNav"}>
       <ul className="navbarContainer">
         <Link className="itemLink" to={"/"}>
           <li className="menuItem menuItemLogo">
@@ -79,19 +79,18 @@ const Navbar = ({ active }) => {
           </Link>
         )}
         {width < 481 && (
-          <Link
-            className="itemLink hamburger"
-            to={"/"}
+          <div
+            className="itemLink hamburger menuItem"
             onClick={() => setNavOpen(!navOpen)}
           >
-            <li className="menuItem">
+            <li>
               {navOpen ? (
                 <FontAwesomeIcon icon={faX} />
               ) : (
                 <FontAwesomeIcon icon={faBars} />
               )}
             </li>
-          </Link>
+          </div>
         )}
         {localData && (
           <Link

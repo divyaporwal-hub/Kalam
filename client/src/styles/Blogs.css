@@ -37,3 +37,8 @@
 .allBlogs .allBlogInfoContainer{
   width: 100%;
 }
+
+.searchBlogs{
+  position: relative;
+  top: 250px;
+}

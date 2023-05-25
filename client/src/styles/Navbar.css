@@ -56,13 +56,16 @@
   color: black;
 }
 
-.Navbar .navbarContainer .hamburger .menuItem svg{
+.Navbar .navbarContainer .hamburger svg{
   position: relative;
-  top: -221px;
-  left: 165px;
+  top: -255px;
+  left: 200px;
   width: 50px;
-  font-size: 1.3rem;
-  background-color: #ffffff00;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color:white;
+  border-radius: 0px 4px 4px 0px;
+  padding: 7px 0px;
 }
 
 .Navbar .navbarContainer .itemLinkUser {

@@ -37,3 +37,23 @@
   width: 100%;
   background-color: #dddddd;
 }
+
+@media screen and (min-width:320px) {
+  .Profile {
+    width: calc(100%);
+    margin-left:0px;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+@media screen and(min-width:481px){
+  .Profile {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+  }
+}

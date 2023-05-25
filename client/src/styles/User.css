@@ -60,3 +60,16 @@
 .profileContainer .editButtonLink{
   margin-top: 10px;
 }
+ 
+@media screen and (min-width:320px) {
+  .profileContainer .bio{
+
+  width: 100%;
+  }
+}
+@media screen and (min-width:481px){
+  .profileContainer .bio{
+
+  width: 35%;
+  }
+} 
