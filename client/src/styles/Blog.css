@@ -61,7 +61,7 @@
 
 .Blog .blogInfo {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 10px 0;
   font-size: 1rem;
   color: #9e9e9eba;
@@ -70,7 +70,7 @@
 }
 
 .Blog .blogInfo div {
-  margin: 0 5px;
+  margin: 3px 0;
 }
 
 .Blog .blogPreview {

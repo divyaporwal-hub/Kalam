@@ -81,8 +81,10 @@ const Blog = ({
         <div className="blogDetails">
           <h1>{heading}</h1>
           <div className="blogInfo">
-            <div>{uploadTime}</div> • <div>{fullName && fullName}</div> •
-            <div>{minuteRead}</div>
+            <div>{fullName && fullName}</div>
+            <div>
+              {minuteRead} • {uploadTime}
+            </div>
           </div>
           {blogTags ? (
             <div className="blogTagsContainer">
