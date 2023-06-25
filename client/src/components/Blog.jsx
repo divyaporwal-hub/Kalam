@@ -37,7 +37,7 @@ const Blog = ({
       .join(" ");
 
     // slice the string upto 100 characters
-    blogContentPreview = blogContentPreview.slice(0, 100) + "...";
+    blogContentPreview = blogContentPreview.slice(0, 50) + "...";
   }
 
   useEffect(() => {

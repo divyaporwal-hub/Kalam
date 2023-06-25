@@ -9,7 +9,7 @@
 }
 
 .Blog:hover {
-  background-color: #f3f3f3;
+  background-color: #ebebeb;
 }
 
 .Blog a {
@@ -17,7 +17,6 @@
   color: black;
   display: flex;
   flex-direction: row;
-  
 }
 
 .Blog h1 {
@@ -93,9 +92,9 @@
   cursor: pointer;
 }
 
-@media (min-width:320px){
+@media (min-width: 320px) {
   .Blog a {
-    width:100%;
+    width: 100%;
     flex-direction: column;
   }
   .Blog .blogImage {
@@ -103,27 +102,24 @@
     margin: 0 auto;
     display: flex;
   }
-  .Blog .blogDetails{
+  .Blog .blogDetails {
     width: 85%;
-    margin:0 auto;
-
+    margin: 0 auto;
+    margin-left: 10px;
   }
 }
 
-@media (min-width:481px){
-  
-.Blog a {
-  text-decoration: none;
-  color: black;
-  display: flex;
-  flex-direction: row;
-  
-}
-
-.Blog .blogImage {
-  width: 30%;
-  margin: 0 auto;
-  display: flex;
-}
-
+@media (min-width: 481px) {
+  .Blog a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: row;
   }
+
+  .Blog .blogImage {
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+  }
+}

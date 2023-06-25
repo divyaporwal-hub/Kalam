@@ -56,49 +56,45 @@
   color: black;
 }
 
-.Navbar .navbarContainer .hamburger svg{
+.Navbar .navbarContainer .hamburger svg {
   position: relative;
   top: -255px;
   left: 200px;
   width: 50px;
   font-size: 1.5rem;
   cursor: pointer;
-  background-color:white;
+  background-color: white;
   border-radius: 0px 4px 4px 0px;
   padding: 7px 0px;
 }
 
 .Navbar .navbarContainer .itemLinkUser {
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
 }
 
-.showNav{
+.showNav {
   left: 0;
 }
 
-.hideNav{
+.hideNav {
   left: -200px;
 }
 
-
-@media (min-width:320px)  { 
-  /* smartphones, iPhone, portrait 480x320 phones */ 
-  .showNav{
+@media (min-width: 320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .showNav {
     left: 0px;
   }
-  
-  .hideNav{
+
+  .hideNav {
     left: -200px;
   }
 }
 
-
-@media (min-width:481px)  { 
-  /* smartphones, iPhone, portrait 480x320 phones */ 
-  .hideNav{
+@media (min-width: 481px) {
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .hideNav {
     left: 0px;
   }
 }
-
-
