@@ -87,6 +87,7 @@ const BlogInfo = () => {
             <div className="blogDetailContainer">
               <BlogUser
                 userName={userName}
+                userIdForFollowers={userIdForFollowers}
                 blogSaveTime={blogData.blogSaveTime}
                 minuteRead={blogData.minuteRead}
                 blogId={blogId}

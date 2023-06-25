@@ -13,10 +13,13 @@ const BlogUser = ({
   blogSaveTime,
   minuteRead,
   setUserIdForFollowers,
+  userIdForFollowers,
 }) => {
   const [userId, setUserId] = useState("");
   const [fullName, setFullName] = useState("");
+  const [follow, setFollow] = useState(false);
   const navigate = useNavigate();
+  const [userFollower, setUserFollower] = useState(0);
 
   let localData = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -57,6 +60,27 @@ const BlogUser = ({
   function handleEdit() {
     navigate("/editblog/" + blogId);
   }
+  async function handleFollow(e) {
+    e.preventDefault();
+
+    // followed by
+    let followerId = localData.userId;
+
+    // request to update the followers of the user
+    let result = await axios.put(`${BASE_URL}/follower/setFollower`, {
+      userId: userIdForFollowers,
+      followerId: followerId,
+      follow: follow,
+    });
+    setUserFollower(result.data[0].followers.length);
+    setFollow(!follow);
+
+    try {
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <>
@@ -79,13 +103,13 @@ const BlogUser = ({
             </div>
           </div>
         </div>
-        {/* {localData && localData.userName !== userName && (
+        {localData && localData.userName !== userName && (
           <div className="followButtonContainer" onClick={handleFollow}>
             <button className={follow ? "follow" : "unfollow"}>
               {follow ? "Followed" : "Follow"}
             </button>
           </div>
-        )} */}
+        )}
 
         {localData && localData.userName === userName && (
           <div className="blogEditButtonsContainer">

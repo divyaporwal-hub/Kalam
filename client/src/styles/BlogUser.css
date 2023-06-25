@@ -44,6 +44,32 @@
 .BlogUserContainer .followButtonContainer {
   display: flex;
   margin-left: 10px;
+  
+}
+.BlogUserContainer .followButtonContainer button {
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 6px 15px;
+  transition: all 170ms linear;
+  
+}
+.BlogUserContainer .followButtonContainer  button.follow {
+  background-color: #45aaff;
+  color: white;
+}
+
+.BlogUserContainer .followButtonContainer  button.follow:hover {
+  background-color: #288bdb;
+}
+
+.BlogUserContainer .followButtonContainer  button.unfollow {
+  background-color: #d1d1d1c9;
+  color: #565656;
+}
+
+.BlogUserContainer .followButtonContainer  button.unfollow:hover {
+  background-color: #aaaaaac9;
 }
 
 .BlogUserContainer .followButtonContainer button {
@@ -51,7 +77,7 @@
   padding: 6px 10px;
 }
 
-.BlogUserContainer .followButtonContainer button.unfollow {
+/* .BlogUserContainer .followButtonContainer button.unfollow {
   border: 2px solid blue;
   background-color: white;
   color: blue;
@@ -61,7 +87,7 @@
   border: 2px solid blue;
   background-color: blue;
   color: white;
-}
+} */
 
 .BlogUserContainer .followButtonContainer button.deleteButton {
   border: 2px solid #eb00001c;
@@ -85,4 +111,17 @@
 .BlogUserContainer .followButtonContainer button.editButton:hover {
   background-color: #00800062;
   color: #3f8619e7;
+}
+@media screen and (min-width:320px){
+  .BlogUserContainer .followButtonContainer {
+    display: flex;
+    margin-left: 10px;
+  }
+
+}
+@media screen and (min-width:481px){
+  .BlogUserContainer .followButtonContainer {
+    display: none;
+    
+  }
 }
