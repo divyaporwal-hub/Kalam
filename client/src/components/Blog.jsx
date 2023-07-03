@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../helper/ref";
 import "../styles/Blog.css";
@@ -37,7 +37,8 @@ const Blog = ({
       .join(" ");
 
     // slice the string upto 100 characters
-    blogContentPreview = blogContentPreview.slice(0, 50) + "...";
+
+    blogContentPreview = blogContentPreview.split(" ").splice(0, 15).join(" ");
   }
 
   useEffect(() => {
@@ -65,13 +66,13 @@ const Blog = ({
           {/* <Avatar name={headingName} size="200" /> */}
           <div
             className="headingContainer"
-            style={{
-              backgroundColor: randomColor({
-                luminosity: "dark",
-                format: "rgba",
-                alpha: 0.5, // e.g. 'rgba(9, 1, 107, 0.5)',
-              }),
-            }}
+            // style={{
+            //   backgroundColor: randomColor({
+            //     luminosity: "dark",
+            //     format: "rgba",
+            //     alpha: 0.5, // e.g. 'rgba(9, 1, 107, 0.5)',
+            //   }),
+            // }}
           >
             {heading[0].length > 30
               ? heading[0].slice(0, 30) + "..."
@@ -82,8 +83,8 @@ const Blog = ({
           <h1>{heading}</h1>
           <div className="blogInfo">
             <div>{fullName && fullName}</div>
-            <div>
-              {minuteRead} • {uploadTime}
+            <div className="minRead">
+              {minuteRead} ・ {uploadTime}
             </div>
           </div>
           {blogTags ? (
@@ -102,6 +103,9 @@ const Blog = ({
           <div className="blogPreview">
             {blogContentPreview && blogContentPreview}
           </div>
+          <Link className="readMoreLink" to={`/bloginfo/${blogId}`}>
+            Read More{" "}
+          </Link>
         </div>
       </NavLink>
     </div>

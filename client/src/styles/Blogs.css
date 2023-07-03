@@ -31,14 +31,29 @@
 
 .allBlogs .blogLine {
   height: 1px;
+  width: 95%;
+  margin: auto;
   background-color: #dddddd;
 }
 
 .allBlogs .allBlogInfoContainer {
-  width: 97%;
+  width: 90%;
+  margin: auto;
 }
 
 .searchBlogs {
   position: relative;
   top: 250px;
+}
+
+@media (min-width: 320px) {
+  .allBlogs .allBlogInfoContainer {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) {
+  .allBlogs .allBlogInfoContainer {
+    width: 90%;
+  }
 }

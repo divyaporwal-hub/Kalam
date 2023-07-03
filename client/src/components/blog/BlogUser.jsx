@@ -113,13 +113,13 @@ const BlogUser = ({
 
         {localData && localData.userName === userName && (
           <div className="blogEditButtonsContainer">
-            <div className="followButtonContainer" onClick={handleDelete}>
+            <div className="editButtonContainer" onClick={handleDelete}>
               <button className="deleteButton">
                 <FontAwesomeIcon icon={faTrashCan} />
               </button>
             </div>
 
-            <div className="followButtonContainer" onClick={handleEdit}>
+            <div className="editButtonContainer" onClick={handleEdit}>
               <button className="editButton">
                 <FontAwesomeIcon icon={faEdit} />
               </button>

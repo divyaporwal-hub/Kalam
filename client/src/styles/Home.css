@@ -85,16 +85,20 @@
   .Home .main .showHideSearch .tagContainer .searchCloseIcon:hover {
     background-color: #e5e5e5;
   }
+
+  .Home .main .right .informationContainer .blogsContainer {
+    margin: 5px 0;
+  }
 }
 
 @media (min-width: 481px) {
   /* smartphones, iPhone, portrait 480x320 phones */
   .Home .main .tagContainer {
-    width: 18%;
+    width: 19%;
     margin: 0px 5px 0px 0px;
     border-radius: 10px;
     position: fixed;
-    right: 0;
+    right: 7px;
   }
 
   .Home .main .right {

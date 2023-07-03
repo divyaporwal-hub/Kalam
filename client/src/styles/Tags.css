@@ -1,9 +1,9 @@
 .Tags {
-  color: white;
+  /* color: white; */
   display: flex;
   flex-direction: column;
   margin: 15px 0;
-  background-color: rgba(243, 243, 243, 0.875);
+  /* background-color: rgba(243, 243, 243, 0.875); */
   border-radius: 7px;
 }
 
@@ -21,13 +21,13 @@
   width: 100%;
   align-items: flex-start;
 }
-@media screen and (min-width:320px){
-  .Tags{
-    display:none;
+@media screen and (min-width: 320px) {
+  .Tags {
+    display: none;
   }
 }
-@media screen and (min-width:481px){
-  .Tags{
-    display:flex;
+@media screen and (min-width: 481px) {
+  .Tags {
+    display: flex;
   }
 }
