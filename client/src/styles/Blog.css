@@ -8,17 +8,6 @@
   transition: all 200ms linear;
 }
 
-/* .Blog:hover {
-  background-color: #ebebeb;
-} */
-
-.Blog a {
-  text-decoration: none;
-  color: black;
-  display: flex;
-  flex-direction: row;
-}
-
 .Blog h1 {
   text-align: left;
   font-size: 1.6rem;
@@ -31,7 +20,6 @@
 
 .Blog .blogImage .headingContainer {
   background-color: #191919;
-  /* height: 175px; */
   width: 540px;
   border-radius: 5px;
   display: flex;
@@ -42,10 +30,6 @@
   color: white;
   min-height: 150px;
   padding: 10px;
-  /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
 }
 
 .Blog .blogImage img {
@@ -55,7 +39,6 @@
 
 .Blog .blogDetails {
   display: flex;
-  width: 60%;
   margin-left: 10px;
   flex-direction: column;
   padding: 10px;
@@ -106,7 +89,7 @@
   color: #3cb2ff;
   font-size: 1.1rem;
   /* border-bottom: 1px solid; */
-  width: 25%;
+  width: 100px;
   margin-top: 5px;
   transition: all 200ms linear;
 }
@@ -115,39 +98,52 @@
   text-decoration: underline;
 }
 
+.Blog .blogDetails a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 200ms linear;
+}
+
+.Blog .blogDetails a.userLink:hover {
+  color: black;
+}
+
+.Blog .imageLink {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
 @media (min-width: 320px) {
-  .Blog a {
-    width: 100%;
-    flex-direction: column;
+  .Blog .imageLink {
+    display: none;
   }
   .Blog .blogImage {
-    width: 85%;
+    width: 30%;
     margin: 0 auto;
     display: none; /* flex */
   }
   .Blog .blogDetails {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
     margin-left: 10px;
   }
 }
 
 @media (min-width: 481px) {
-  .Blog a {
-    text-decoration: none;
-    color: black;
+  .Blog .imageLink {
     display: flex;
-    flex-direction: row;
   }
-
   .Blog .blogImage {
-    width: 30%;
+    width: 80%;
     margin: 0 auto;
     display: flex;
   }
 
   .Blog .blogDetails {
-    width: 85%;
+    width: 70%;
     margin: 0 auto;
     margin-left: 20px;
   }

@@ -19,6 +19,7 @@ const Blog = ({
   blogId,
 }) => {
   const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
   // console.log("PRS: ", parse(blogPreview.slice(0, 100)));
 
   let blogContentPreview = "";
@@ -51,6 +52,7 @@ const Blog = ({
         })
         .then((response) => {
           setFullName(response.data[0].fullName);
+          setUserName(response.data[0].userName);
         })
         .catch((err) => {
           console.log(err);
@@ -60,7 +62,40 @@ const Blog = ({
 
   return (
     <div className="Blog">
-      <NavLink to={`/bloginfo/${blogId}`}>
+      <div className="blogDetails">
+        <NavLink to={`/bloginfo/${blogId}`} className={"urlRedirect"}>
+          <h1>{heading}</h1>
+        </NavLink>
+
+        <div className="blogInfo">
+          <NavLink to={`/profile/${userName}`} className={"userLink"}>
+            <div>{fullName && fullName}</div>
+          </NavLink>
+          <div className="minRead">
+            {minuteRead} ・ {uploadTime}
+          </div>
+        </div>
+        {blogTags ? (
+          <div className="blogTagsContainer">
+            {blogTags.map((tag, index) => {
+              return (
+                <div className="blogTag" key={index}>
+                  {tag}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          ""
+        )}
+        <div className="blogPreview">
+          {blogContentPreview && blogContentPreview}
+        </div>
+        <Link className="readMoreLink" to={`/bloginfo/${blogId}`}>
+          Read More{" "}
+        </Link>
+      </div>
+      <NavLink to={`/bloginfo/${blogId}`} className={"imageLink"}>
         <div className="blogImage">
           {/* <img src={blogImage} alt="blogImage" /> */}
           {/* <Avatar name={headingName} size="200" /> */}
@@ -78,34 +113,6 @@ const Blog = ({
               ? heading[0].slice(0, 30) + "..."
               : heading[0]}
           </div>
-        </div>
-        <div className="blogDetails">
-          <h1>{heading}</h1>
-          <div className="blogInfo">
-            <div>{fullName && fullName}</div>
-            <div className="minRead">
-              {minuteRead} ・ {uploadTime}
-            </div>
-          </div>
-          {blogTags ? (
-            <div className="blogTagsContainer">
-              {blogTags.map((tag, index) => {
-                return (
-                  <div className="blogTag" key={index}>
-                    {tag}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            ""
-          )}
-          <div className="blogPreview">
-            {blogContentPreview && blogContentPreview}
-          </div>
-          <Link className="readMoreLink" to={`/bloginfo/${blogId}`}>
-            Read More{" "}
-          </Link>
         </div>
       </NavLink>
     </div>
