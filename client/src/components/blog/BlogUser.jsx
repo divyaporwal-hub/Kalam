@@ -72,7 +72,7 @@ const BlogUser = ({
       followerId: followerId,
       follow: follow,
     });
-    setUserFollower(result.data[0].followers.length);
+    //setUserFollower(result.data[0].followers.length);
     setFollow(!follow);
 
     try {
