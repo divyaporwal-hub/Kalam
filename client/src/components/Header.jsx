@@ -9,12 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-
 const Header = () => {
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   const [searchText, setSearchText] = useState("");
   const [allBlogs, setAllBlogs] = useState([]);
- // const [searchIcon, setSearchIcon]=useState(true);
+  const [showSearchBox, setShowSearchBox] = useState(false);
 
   function handleSearch(e) {
     e.preventDefault();
@@ -38,6 +37,10 @@ const Header = () => {
     setSearchText("");
   }
 
+  function handleSearchBoxOpen() {
+    setShowSearchBox(!showSearchBox);
+  }
+
   return (
     <div className="main__header">
       <div className="header">
@@ -46,7 +49,10 @@ const Header = () => {
             <h1 className="logoName">Kalam</h1>
           </Link>
           {/* <form onSubmit="handleSubmit"> */}
-          <div className="searchContainer" >
+          <div
+            className="searchContainer"
+            style={showSearchBox ? { display: "inline" } : { display: "none" }}
+          >
             <input
               type="search"
               name=""
@@ -56,7 +62,7 @@ const Header = () => {
               onChange={handleSearch}
             />
           </div>
-         
+
           {searchText && (
             <div className="allSearchResults">
               {searchText && (
@@ -81,12 +87,15 @@ const Header = () => {
           {/* </form> */}
         </div>
         <div className="rightSection">
-        <div className="searchIcon" >
-          <FontAwesomeIcon icon={faSearch} style={{fontSize:"1.5rem"}} onClick={handleSearch} />
+          <div className="searchIcon">
+            <FontAwesomeIcon
+              icon={faSearch}
+              style={{ fontSize: "1.5rem" }}
+              onClick={handleSearchBoxOpen}
+            />
           </div>
           <NavLink to={localData ? `/write` : "/login"} className={"writeLink"}>
             <FontAwesomeIcon icon={faPenAlt} style={{ fontSize: "1.5rem" }} />
-        
           </NavLink>
           <NavLink to={localData ? `/profile/${localData.userName}` : "/login"}>
             <img src={Avatar} alt="user" />
