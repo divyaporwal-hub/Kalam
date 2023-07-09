@@ -8,7 +8,7 @@ const TagSuggestion = ({ blogTags, setBlogTags }) => {
         value={blogTags}
         onChange={setBlogTags}
         name="coding"
-        placeHolder="Enter Tags related to your blog:"
+        placeHolder="Enter blog's Tags..."
       />
     </div>
   );
