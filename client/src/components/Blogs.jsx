@@ -9,15 +9,7 @@ import { useState, useEffect } from "react";
 import "../styles/Blogs.css";
 import NoBlogs from "./NoBlogs";
 
-const Blogs = ({
-  searchTitle,
-  setSearchTitle,
-  searchTags,
-  setSearchTags,
-  setRecBlogs,
-  raonSearch,
-  setRaonSearch,
-}) => {
+const Blogs = ({ searchTitle, searchTags, setRecBlogs, raonSearch }) => {
   const [allBlogs, setAllBlogs] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -86,7 +78,7 @@ const Blogs = ({
         });
     }
   }, [searchTitle, searchTags]);
-  // console.log(allBlogs, fetchError);
+
   return (
     <div className={raonSearch ? "Blogs searchBlogs" : "Blogs"}>
       <h1 className="mainHeading"> Recent Articles </h1>

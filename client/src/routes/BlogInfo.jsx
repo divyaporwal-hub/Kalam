@@ -93,7 +93,6 @@ const BlogInfo = () => {
                 blogId={blogId}
                 setUserIdForFollowers={setUserIdForFollowers}
               />
-              {/* <BlogImage /> */}
               <BlogHeading blogHeading={blogData.blogHeading} />
               <BlogContent blogText={blogData.blogText} />
               {blogData.blogTags ? (

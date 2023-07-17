@@ -8,8 +8,10 @@ import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import useWindowDimensions from "./useWindowDimensions";
 
 const Header = () => {
+  const { height, width } = useWindowDimensions();
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   const [searchText, setSearchText] = useState("");
   const [allBlogs, setAllBlogs] = useState([]);
@@ -40,6 +42,10 @@ const Header = () => {
   function handleSearchBoxOpen() {
     setShowSearchBox(!showSearchBox);
   }
+
+  useEffect(() => {
+    setShowSearchBox(width > 481);
+  }, [width]);
 
   return (
     <div className="main__header">

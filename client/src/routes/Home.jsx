@@ -57,12 +57,7 @@ const Home = () => {
           <div className="showHideSearch">
             {showSearch || width >= 481 ? (
               <div className="tagContainer">
-                <HomeSearch
-                  setSearchTitle={setSearchTitle}
-                  searchTitle={searchTitle}
-                  searchTags={searchTags}
-                  setSearchTags={setSearchTags}
-                />
+                <HomeSearch />
                 <Tags recBlogs={recBlogs} />
                 {width < 481 && (
                   <div className="searchCloseIcon" onClick={handleSearchOpen}>

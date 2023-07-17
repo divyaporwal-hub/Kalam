@@ -6,6 +6,7 @@
   position: fixed;
   border-right: 1px solid #c0c0c081;
   background-color: #f8f8f8;
+  z-index: 20;
 }
 
 .Navbar .navbarContainer {

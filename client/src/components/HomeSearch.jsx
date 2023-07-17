@@ -2,42 +2,41 @@ import React, { useState } from "react";
 import "../styles/HomeSearch.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
-function HomeSearch({ searchTitle, setSearchTitle, searchTags,setSearchTags }) {
+function HomeSearch() {
   const [search, setSearch] = useState("");
-  const[tagsearch,setTagsearch]=useState("");
+  const [tagSearch, setTagsearch] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    setSearchTitle(search);
-    setSearchTags(tagsearch)
-  };
-
-  const handleSearchControl = (e) => {
-    e.preventDefault();
-    setSearch(e.target.value);
-    if (!e.target.value.length) {
-      setSearchTitle("");
-    }
-  };
-  const handleTagsearch = (e) => {
-    e.preventDefault();
-    setTagsearch(e.target.value);
-    if (!e.target.value.length) {
-      setSearchTags("");
-    }
-  };
+    navigate({
+      pathname: "/search",
+      search: `?title=${search}&tags=${tagSearch}`,
+    });
+  }
 
   return (
     <div className="HomeSearch">
       <form onSubmit={handleSubmit}>
         <div className="formGroup">
           <label htmlFor="blogtitle">Search By Title</label>
-          <input type="search" name="" id="" onChange={handleSearchControl} />
+          <input
+            type="search"
+            name=""
+            id=""
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <label htmlFor="blogtag">Search By Tags</label>
-          <input type="search" name="" id="" onChange={handleTagsearch}/>
+          <input
+            type="search"
+            name=""
+            id=""
+            onChange={(e) => setTagsearch(e.target.value)}
+          />
         </div>
         <div className="formGroup">
           <button>

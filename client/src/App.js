@@ -12,6 +12,7 @@ import BlogInfo from "./routes/BlogInfo";
 import EditProfile from "./routes/EditProfile";
 import EditBlog from "./routes/EditBlog";
 import Otp from "./routes/Otp";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/write" element={<Write />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/search" element={<SearchResult />} />
           <Route path="/bloginfo/:id" element={<BlogInfo />} />
           <Route path="/editblog/:blogId" element={<EditBlog />} />
           <Route path="/profile/edit/:userName" element={<EditProfile />} />
