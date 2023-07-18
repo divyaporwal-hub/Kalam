@@ -93,13 +93,13 @@
 }
 
 @media (min-width: 481px) {
-  /* smartphones, iPhone, portrait 480x320 phones */
   .Home .main .tagContainer {
     width: 19%;
     margin: 0px 5px 0px 0px;
     border-radius: 10px;
     position: fixed;
     right: 7px;
+    top: -8px;
   }
 
   .Home .main .right {

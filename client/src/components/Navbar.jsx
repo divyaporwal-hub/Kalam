@@ -35,44 +35,30 @@ const Navbar = ({ active }) => {
             className="itemLink itemLinkUser"
             to={`/profile/${localData.userName}`}
           >
-            <li className="menuItem">
+            <li
+              className={
+                active === "profile" ? "menuItem activeNav" : "menuItem"
+              }
+            >
               <FontAwesomeIcon icon={faUser} />
-              <div
-                className={
-                  active === "profile"
-                    ? "menuItemText activeNav"
-                    : "menuItemText"
-                }
-              >
-                {localData.fullName}
-              </div>
+              <div>{localData.fullName}</div>
             </li>
           </Link>
         )}
 
         <Link className="itemLink" to={"/"}>
-          <li className="menuItem">
+          <li className={active === "home" ? "menuItem activeNav" : "menuItem"}>
             <FontAwesomeIcon icon={faHouseUser} />
-            <div
-              className={
-                active === "home" ? "menuItemText activeNav" : "menuItemText"
-              }
-            >
-              Home
-            </div>
+            <div>Home</div>
           </li>
         </Link>
 
         <Link className="itemLink" to={localData ? "/write" : "/login"}>
-          <li className="menuItem">
+          <li
+            className={active === "write" ? "menuItem activeNav" : "menuItem"}
+          >
             <FontAwesomeIcon icon={faPenAlt} />
-            <div
-              className={
-                active === "write" ? "menuItemText activeNav" : "menuItemText"
-              }
-            >
-              Write
-            </div>
+            <div>Write</div>
           </li>
         </Link>
 

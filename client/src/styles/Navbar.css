@@ -18,7 +18,6 @@
 
 .Navbar .navbarContainer .itemLink .menuItem {
   padding: 10px 10px;
-  font-size: 1.4rem;
   border-radius: 6px;
   margin: 5px 10px;
   transition: all 200ms linear;
@@ -34,21 +33,28 @@
   background-color: rgb(245, 245, 245);
 }
 
+.Navbar .navbarContainer .itemLink .menuItem {
+  color: grey;
+  margin-right: 5px;
+}
+
 .Navbar .navbarContainer .itemLink .menuItem svg {
-  color: #565252;
-  font-size: 1.3rem;
+  width: 30%;
+  font-size: 1.2rem;
 }
 
-.Navbar .navbarContainer .itemLink .menuItem .menuItemText {
-  margin-left: 10px;
+.Navbar .navbarContainer .itemLink .menuItem div {
+  width: 70%;
+  font-size: 1.5rem;
 }
 
-.Navbar .navbarContainer .itemLink .menuItem .activeNav {
-  font-weight: 700;
+.Navbar .navbarContainer .itemLink .activeNav {
+  font-weight: 600;
+  color: black;
 }
 
 .Navbar .navbarContainer .itemLink .menuItem:hover {
-  background-color: #c4c4c4ab;
+  background-color: #e7e7e7;
 }
 
 .Navbar .navbarContainer .itemLink {
@@ -59,14 +65,16 @@
 
 .Navbar .navbarContainer .hamburger svg {
   position: absolute;
-  top: 0px;
-  left: 200px;
+  top: 7px;
+  left: 210px;
   width: 50px;
   font-size: 1.5rem;
   cursor: pointer;
-  background-color: white;
-  border-radius: 0px 4px 4px 0px;
+  background-color: #efefef;
+  /* border-radius: 0px 4px 4px 0px; */
   padding: 7px 0px;
+  color: grey;
+  border: 2px solid #a0a0a0;
 }
 
 .showNav {

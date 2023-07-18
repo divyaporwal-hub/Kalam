@@ -37,9 +37,9 @@ const User = (props) => {
         <p className="location">
           {props.location ? props.location.label : "India"}
         </p>
-        <p>●</p>
+        <p>・</p>
         <p className="postCount">{props.postCount} posts</p>
-        <p>●</p>
+        <p>・</p>
         <p className="followers">{props.followers} followers</p>
       </div>
       {props.userSocialLinks && (
