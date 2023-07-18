@@ -65,7 +65,8 @@
 
 .Blog .blogPreview {
   margin: 5px 0px;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
+  line-height: 2rem;
 }
 
 .Blog .blogTagsContainer {
@@ -74,13 +75,13 @@
 }
 
 .Blog .blogTagsContainer .blogTag {
-  background-color: #0000009c;
-  border-radius: 88px;
+  background-color: #e4e4e4;
+  border-radius: 27px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1rem;
   margin-right: 7px;
   padding: 4px 9px;
-  color: white;
+  color: #585454;
   transition: all 0.2s linear;
 }
 

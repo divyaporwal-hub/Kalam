@@ -30,6 +30,26 @@ const Navbar = ({ active }) => {
             </div>
           </li>
         </Link>
+        {localData && (
+          <Link
+            className="itemLink itemLinkUser"
+            to={`/profile/${localData.userName}`}
+          >
+            <li className="menuItem">
+              <FontAwesomeIcon icon={faUser} />
+              <div
+                className={
+                  active === "profile"
+                    ? "menuItemText activeNav"
+                    : "menuItemText"
+                }
+              >
+                {localData.fullName}
+              </div>
+            </li>
+          </Link>
+        )}
+
         <Link className="itemLink" to={"/"}>
           <li className="menuItem">
             <FontAwesomeIcon icon={faHouseUser} />
@@ -42,6 +62,7 @@ const Navbar = ({ active }) => {
             </div>
           </li>
         </Link>
+
         <Link className="itemLink" to={localData ? "/write" : "/login"}>
           <li className="menuItem">
             <FontAwesomeIcon icon={faPenAlt} />
@@ -91,25 +112,6 @@ const Navbar = ({ active }) => {
               )}
             </li>
           </div>
-        )}
-        {localData && (
-          <Link
-            className="itemLink itemLinkUser"
-            to={`/profile/${localData.userName}`}
-          >
-            <li className="menuItem">
-              <FontAwesomeIcon icon={faUser} />
-              <div
-                className={
-                  active === "profile"
-                    ? "menuItemText activeNav"
-                    : "menuItemText"
-                }
-              >
-                {localData.fullName}
-              </div>
-            </li>
-          </Link>
         )}
       </ul>
     </nav>

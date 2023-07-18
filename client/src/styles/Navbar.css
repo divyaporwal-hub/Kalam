@@ -19,7 +19,7 @@
 .Navbar .navbarContainer .itemLink .menuItem {
   padding: 10px 10px;
   font-size: 1.4rem;
-  border-radius: 10px;
+  border-radius: 6px;
   margin: 5px 10px;
   transition: all 200ms linear;
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 .Navbar .navbarContainer .itemLink .menuItemLogo:hover {
-  background-color: rgb(240, 239, 239);
+  background-color: rgb(245, 245, 245);
 }
 
 .Navbar .navbarContainer .itemLink .menuItem svg {
@@ -58,8 +58,8 @@
 }
 
 .Navbar .navbarContainer .hamburger svg {
-  position: relative;
-  top: -255px;
+  position: absolute;
+  top: 0px;
   left: 200px;
   width: 50px;
   font-size: 1.5rem;
@@ -67,11 +67,6 @@
   background-color: white;
   border-radius: 0px 4px 4px 0px;
   padding: 7px 0px;
-}
-
-.Navbar .navbarContainer .itemLinkUser {
-  position: absolute;
-  bottom: 40px;
 }
 
 .showNav {
