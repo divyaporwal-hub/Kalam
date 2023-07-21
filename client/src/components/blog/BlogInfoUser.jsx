@@ -131,17 +131,17 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
               profileData.userSocialLinks.length ? (
                 <>
                   {profileData.userSocialLinks[0] && (
-                    <Link to={profileData.userSocialLinks[0]}>
+                    <Link to={profileData.userSocialLinks[0]} target="_blank">
                       <FontAwesomeIcon icon={faLinkedin} />
                     </Link>
                   )}
                   {profileData.userSocialLinks[1] && (
-                    <Link to={profileData.userSocialLinks[1]}>
+                    <Link to={profileData.userSocialLinks[1]} target="_blank">
                       <FontAwesomeIcon icon={faInstagram} />
                     </Link>
                   )}
                   {profileData.userSocialLinks[2] && (
-                    <Link to={profileData.userSocialLinks[2]}>
+                    <Link to={profileData.userSocialLinks[2]} target="_blank">
                       <FontAwesomeIcon icon={faGithub} />
                     </Link>
                   )}

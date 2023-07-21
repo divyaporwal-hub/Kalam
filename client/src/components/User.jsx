@@ -45,17 +45,17 @@ const User = (props) => {
       {props.userSocialLinks && (
         <div className="socialMedia">
           {props.userSocialLinks[0] && (
-            <Link to={props.userSocialLinks[0]}>
+            <Link to={props.userSocialLinks[0]} target="_blank">
               <FontAwesomeIcon icon={faLinkedin} />
             </Link>
           )}
           {props.userSocialLinks[1] && (
-            <Link to={props.userSocialLinks[1]}>
+            <Link to={props.userSocialLinks[1]} target="_blank">
               <FontAwesomeIcon icon={faInstagram} />
             </Link>
           )}
           {props.userSocialLinks[2] && (
-            <Link to={props.userSocialLinks[2]}>
+            <Link to={props.userSocialLinks[2]} target="_blank">
               <FontAwesomeIcon icon={faGithub} />
             </Link>
           )}
