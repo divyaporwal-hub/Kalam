@@ -54,31 +54,27 @@
   font-weight: 400;
 }
 
-.Blog .blogInfo div {
-  margin: 3px 0;
-}
-
 .Blog .blogInfo div.minRead {
-  margin: 3px 0;
+  /* margin: 3px 0; */
   font-size: 14px;
 }
 
 .Blog .blogPreview {
   margin: 5px 0px;
-  font-size: 1.125rem;
-  line-height: 2rem;
+  font-size: 1rem;
+  line-height: 1.4rem;
 }
 
 .Blog .blogTagsContainer {
   display: flex;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
 .Blog .blogTagsContainer .blogTag {
   background-color: #e4e4e4;
   border-radius: 27px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 7px;
   padding: 4px 9px;
   color: #585454;
@@ -88,9 +84,7 @@
 .Blog .blogDetails .readMoreLink {
   color: #3cb2ff;
   font-size: 1.1rem;
-  /* border-bottom: 1px solid; */
   width: 100px;
-  margin-top: 5px;
   transition: all 200ms linear;
 }
 

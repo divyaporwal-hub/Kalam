@@ -94,11 +94,13 @@ const Header = () => {
         </div>
         <div className="rightSection">
           <div className="searchIcon">
-            <FontAwesomeIcon
-              icon={faSearch}
-              style={{ fontSize: "1.5rem" }}
-              onClick={handleSearchBoxOpen}
-            />
+            {width < 481 && (
+              <FontAwesomeIcon
+                icon={faSearch}
+                style={{ fontSize: "1.5rem" }}
+                onClick={handleSearchBoxOpen}
+              />
+            )}
           </div>
           <NavLink to={localData ? `/write` : "/login"} className={"writeLink"}>
             <FontAwesomeIcon icon={faPenAlt} style={{ fontSize: "1.5rem" }} />

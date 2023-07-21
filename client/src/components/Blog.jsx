@@ -71,9 +71,11 @@ const Blog = ({
           <NavLink to={`/profile/${userName}`} className={"userLink"}>
             <div>{fullName && fullName}</div>
           </NavLink>
-          <div className="minRead">
-            {minuteRead} ・ {uploadTime}
-          </div>
+          <NavLink to={`/bloginfo/${blogId}`} className={"userLink"}>
+            <div className="minRead">
+              {minuteRead} ・ {uploadTime}
+            </div>
+          </NavLink>
         </div>
         {blogTags ? (
           <div className="blogTagsContainer">
@@ -88,27 +90,18 @@ const Blog = ({
         ) : (
           ""
         )}
-        <div className="blogPreview">
-          {blogContentPreview && blogContentPreview}
-        </div>
+        <NavLink to={`/bloginfo/${blogId}`} className={"userLink"}>
+          <div className="blogPreview">
+            {blogContentPreview && blogContentPreview}
+          </div>
+        </NavLink>
         <Link className="readMoreLink" to={`/bloginfo/${blogId}`}>
-          Read More{" "}
+          Read More
         </Link>
       </div>
       <NavLink to={`/bloginfo/${blogId}`} className={"imageLink"}>
         <div className="blogImage">
-          {/* <img src={blogImage} alt="blogImage" /> */}
-          {/* <Avatar name={headingName} size="200" /> */}
-          <div
-            className="headingContainer"
-            // style={{
-            //   backgroundColor: randomColor({
-            //     luminosity: "dark",
-            //     format: "rgba",
-            //     alpha: 0.5, // e.g. 'rgba(9, 1, 107, 0.5)',
-            //   }),
-            // }}
-          >
+          <div className="headingContainer">
             {heading[0].length > 30
               ? heading[0].slice(0, 30) + "..."
               : heading[0]}

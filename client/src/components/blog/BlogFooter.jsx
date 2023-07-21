@@ -38,7 +38,7 @@ const BlogFooter = ({ id }) => {
   const [like, setLike] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [comment, setComment] = useState("");
-  const [showComment, setShowComment] = useState(false);
+  const [showComment, setShowComment] = useState(true);
   const [allComments, setAllComments] = useState([]);
   const [commentCount, setCommentCount] = useState(0);
   const [showShare, setShowShare] = useState(false);
@@ -47,7 +47,7 @@ const BlogFooter = ({ id }) => {
   let localData = JSON.parse(localStorage.getItem("userInfo"));
   let userId = localData ? localData.userId : "-1";
 
-  let siteLink = `https://kalam-blog.netlify.app/bloginfo/${id}`
+  let siteLink = `https://kalam-blog.netlify.app/bloginfo/${id}`;
 
   const navigate = useNavigate();
 

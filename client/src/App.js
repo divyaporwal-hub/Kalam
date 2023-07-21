@@ -13,6 +13,7 @@ import EditProfile from "./routes/EditProfile";
 import EditBlog from "./routes/EditBlog";
 import Otp from "./routes/Otp";
 import SearchResult from "./components/SearchResult";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/profile/edit/:userName" element={<EditProfile />} />
         </Routes>
       </Router>
+      {/* <Footer /> */}
     </>
   );
 }

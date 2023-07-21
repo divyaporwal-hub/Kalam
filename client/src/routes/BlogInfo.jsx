@@ -14,6 +14,16 @@ import BlogInfoUser from "../components/blog/BlogInfoUser";
 import ReactLoading from "react-loading";
 import Header from "../components/Header";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faThumbsUp,
+  faComments,
+  faShare,
+  faCommentAlt,
+  faMailBulk,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
+
 const BlogInfo = () => {
   const { id } = useParams();
 
@@ -26,6 +36,11 @@ const BlogInfo = () => {
   const [blogId, setBlogId] = useState("");
   const [userIdForFollowers, setUserIdForFollowers] = useState("");
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -121,6 +136,26 @@ const BlogInfo = () => {
           </div>
         </div>
       )}
+      <button
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+        style={{
+          position: "fixed",
+          height: "50px",
+          width: "50px",
+          padding: "5px",
+          fontSize: "1.5rem",
+          bottom: "40px",
+          right: "40px",
+          borderRadius: "50%",
+          backgroundColor: "#3993df9e",
+          color: "#fff",
+          textAlign: "center",
+        }}
+      >
+        <FontAwesomeIcon icon={faArrowUp} />
+      </button>
     </div>
   );
 };
