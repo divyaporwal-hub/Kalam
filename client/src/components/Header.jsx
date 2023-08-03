@@ -3,12 +3,12 @@ import "../styles/Header.css";
 import axios from "axios";
 import { BASE_URL } from "../helper/ref";
 import { RiQuillPenLine } from "react-icons/ri";
-import Avatar from "../images/userAvatar.png";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import useWindowDimensions from "./useWindowDimensions";
+import Avatar from "react-avatar";
 
 const Header = () => {
   const { height, width } = useWindowDimensions();
@@ -16,6 +16,8 @@ const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [allBlogs, setAllBlogs] = useState([]);
   const [showSearchBox, setShowSearchBox] = useState(false);
+  const [githubHandle, setGitHubHandle] = useState("");
+  const [profileData, setProfileData] = useState({});
 
   function handleSearch(e) {
     e.preventDefault();
@@ -46,6 +48,30 @@ const Header = () => {
   useEffect(() => {
     setShowSearchBox(width > 481);
   }, [width]);
+
+  useEffect(() => {
+    async function getGitHub() {
+      console.log(localData.userName);
+      let profileResult = await axios.get(`${BASE_URL}/profile/getProfile`, {
+        params: {
+          userName: localData.userName,
+        },
+      });
+      try {
+        if (profileResult.data.length) {
+          setProfileData(profileResult.data[0]);
+
+          // setProfileData(profileResult.data[0]);
+          // setLoading(false);
+        }
+      } catch (err) {
+        console.log("Error: Profile can't be feched due to", err);
+        // setLoading(false);
+      }
+    }
+
+    getGitHub();
+  }, []);
 
   return (
     <div className="main__header">
@@ -106,7 +132,19 @@ const Header = () => {
             <FontAwesomeIcon icon={faPenAlt} style={{ fontSize: "1.5rem" }} />
           </NavLink>
           <NavLink to={localData ? `/profile/${localData.userName}` : "/login"}>
-            <img src={Avatar} alt="user" />
+            {profileData &&
+            profileData.userSocialLinks &&
+            profileData.userSocialLinks[2] ? (
+              <Avatar
+                githubHandle={profileData.userSocialLinks[2].slice(
+                  profileData.userSocialLinks[2].lastIndexOf("/") + 1
+                )}
+                size={45}
+                round="50px"
+              />
+            ) : (
+              <Avatar name={profileData.fullName} size={45} round="50px" />
+            )}
           </NavLink>
         </div>
       </div>

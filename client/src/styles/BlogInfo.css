@@ -35,13 +35,14 @@
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
-.BlogInfoContainer .left .blogDetailContainer .blogContent p {
-  margin-bottom: 1rem;
-}
 
 .BlogInfoContainer .left .blogDetailContainer .blogContent * {
   line-height: 2rem;
   font-size: 1.125rem;
+}
+
+.BlogInfoContainer .left .blogDetailContainer .blogContent p {
+  margin: 10px 0;
 }
 
 .BlogInfoContainer .right {
@@ -59,8 +60,8 @@
 .BlogInfoContainer .blogTagsContainer .blogTag {
   margin-right: 10px;
   background-color: #6e6c5230;
-  padding: 7px 15px;
-  font-size: 20px;
+  padding: 5px 15px;
+  font-size: 1rem;
   border-radius: 22px;
   font-weight: 400;
   cursor: pointer;
@@ -68,7 +69,7 @@
 }
 
 .BlogInfoContainer .blogTagsContainer .blogTag:hover {
-  background-color: #6e6c5270;
+  background-color: #aaaaaa70;
 }
 
 @media screen and (min-width: 320px) {

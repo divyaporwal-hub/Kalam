@@ -151,11 +151,13 @@ function BlogInfoUser({ userName, userIdForFollowers }) {
               )}
             </div>
           </section>
-          <div className="bottom">
+          <div className="middle">
             {profileData && profileData.userBio && (
               <div className="userBio">{profileData.userBio}</div>
             )}
           </div>
+
+          <div className="bottom"></div>
         </>
       )}
     </div>

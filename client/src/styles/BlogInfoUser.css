@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  width: 23%;
 }
 
 .BlogInfoUser .top {
@@ -17,7 +16,7 @@
 }
 
 .BlogInfoUser .top .fullName {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-left: 10px;
 }
 
@@ -27,22 +26,22 @@
 }
 
 .BlogInfoUser .top .followers {
-  font-size: 1rem;
+  font-size: 0.85rem;
   margin-left: 10px;
   color: grey;
 }
 
 .BlogInfoUser .middle {
-  margin: 20px 0;
+  margin: 10px 0;
   display: flex;
   align-items: center;
 }
 
 .BlogInfoUser .middle button {
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  padding: 6px 15px;
+  padding: 5px 10px;
   transition: all 170ms linear;
 }
 
@@ -83,7 +82,7 @@
   color: rgb(59, 59, 59);
 }
 
-.BlogInfoUser .bottom .userBio {
-  font-size: 1rem;
+.BlogInfoUser .middle .userBio {
+  font-size: 0.9rem;
   line-height: 25px;
 }

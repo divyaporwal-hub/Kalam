@@ -27,8 +27,6 @@ import {
 const BlogInfo = () => {
   const { id } = useParams();
 
-  console.log(id);
-
   const [searchBgId, setSearchBgId] = useState("");
   //const [emptysearch, setEmptysearch] = useState(false);
   const [blogData, setBlogData] = useState({});
