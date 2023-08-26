@@ -79,14 +79,11 @@ function Editprofile() {
 
     if (allLinkAreValid()) {
       console.log(newUserName);
+      
       if (regex.test(newUserName)) {
-        let response = await Axios.get(`${BASE_URL}/user/userInfo`, {
-          params: {
-            userName: newUserName,
-          },
-        });
-        console.log(response.data.length);
-        if (response.data.length === 0) {
+        // Check if the new username is the same as the user's current username
+        if (newUserName === userData.userName) {
+          // Proceed with updating the profile
           Axios.put(`${BASE_URL}/profile/updateProfile`, {
             userName: userData.userName,
             newUserName: newUserName,
@@ -99,7 +96,7 @@ function Editprofile() {
           })
             .then((response) => {
               console.log(response);
-              // update the username and ufullname from localstorage
+              // Update the username and fullname in localstorage
               let userInfo = JSON.parse(localStorage.getItem("userInfo"));
               userInfo.userName = newUserName;
               userInfo.fullName = fullName;
@@ -110,16 +107,55 @@ function Editprofile() {
               console.log(err);
             });
         } else {
-          alert("This username is already exist");
+          // Check if the new username already exists
+          Axios.get(`${BASE_URL}/user/userInfo`, {
+            params: {
+              userName: newUserName,
+            },
+          })
+            .then((response) => {
+              console.log(response.data.length);
+              if (response.data.length === 0) {
+                // Proceed with updating the profile
+                Axios.put(`${BASE_URL}/profile/updateProfile`, {
+                  userName: userData.userName,
+                  newUserName: newUserName,
+                  fullName: fullName,
+                  userBio: userBio,
+                  userCountry: country,
+                  userInstagram: instagram,
+                  userFacebook: linkedin,
+                  userGithub: github,
+                })
+                  .then((response) => {
+                    console.log(response);
+                    // Update the username and fullname in localstorage
+                    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+                    userInfo.userName = newUserName;
+                    userInfo.fullName = fullName;
+                    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+                    navigate("/");
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              } else {
+                alert("This username is already taken");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
+      } else {
+        alert("Invalid Username\nUsername must contain only alphabets and digits.");
       }
     } else {
-      alert(
-        "Invalid Username\nUsername must contain only alphabet and digits."
-      );
+      alert("Invalid Links");
     }
-  }
+  }    
 
+  
   useEffect(() => {
     Axios.get(`${BASE_URL}/profile/getProfile`, {
       params: {
