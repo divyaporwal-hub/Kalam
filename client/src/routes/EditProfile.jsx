@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import isUrl from "is-url";
+import ReactLoading from "react-loading";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,7 +29,10 @@ function Editprofile() {
   const [instagram, setInstagram] = useState("");
   const [github, setGithub] = useState("");
   const [country, setCountry] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  // const [profileImage, setProfileImage] = useState("");
+  const [selectedSocialMedia, setSelectedSocialMedia] = useState("linkedin");
+  const [loading, setLoading] = useState(true);
+  const [loadingMessage, setLoadingMessage] = useState("Getting Your Profile");
 
   const options = useMemo(() => countryList().getData(), []);
 
@@ -37,21 +41,16 @@ function Editprofile() {
   };
 
   //post request to save the profile Image
-
   function handleProfileImage(e) {
     e.preventDefault();
 
     // to send the profile image into data
-
     const data = new FormData();
     data.append("profileImage", e.target.files[0]);
     data.append("userName", userData.userName);
-    //console.log(data.get('profileImage'));
 
     Axios.post(`${BASE_URL}/profileImage/profileImageUpload`, data)
-      .then((response) => {
-        console.log(response);
-      })
+      .then((response) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -75,18 +74,17 @@ function Editprofile() {
   async function handleSubmit(e) {
     e.preventDefault();
     let regex = /^[a-zA-Z0-9]+$/;
-    console.log(newUserName);
-
+    setLoading(true);
+    setLoadingMessage("Updating Your Profile");
     if (allLinkAreValid()) {
-      console.log(newUserName);
       if (regex.test(newUserName)) {
         let response = await Axios.get(`${BASE_URL}/user/userInfo`, {
           params: {
             userName: newUserName,
           },
         });
-        console.log(response.data.length);
-        if (response.data.length === 0) {
+
+        if (response.data.length === 0 || userData.userName === newUserName) {
           Axios.put(`${BASE_URL}/profile/updateProfile`, {
             userName: userData.userName,
             newUserName: newUserName,
@@ -98,25 +96,28 @@ function Editprofile() {
             userGithub: github,
           })
             .then((response) => {
-              console.log(response);
               // update the username and ufullname from localstorage
               let userInfo = JSON.parse(localStorage.getItem("userInfo"));
               userInfo.userName = newUserName;
               userInfo.fullName = fullName;
               localStorage.setItem("userInfo", JSON.stringify(userInfo));
+              setLoading(false);
               navigate("/");
             })
             .catch((err) => {
               console.log(err);
+              setLoading(false);
             });
         } else {
           alert("This username is already exist");
+          setLoading(false);
         }
       }
     } else {
       alert(
         "Invalid Username\nUsername must contain only alphabet and digits."
       );
+      setLoading(false);
     }
   }
 
@@ -136,10 +137,12 @@ function Editprofile() {
           setLinkedin(user.userSocialLinks[0]);
           setInstagram(user.userSocialLinks[1]);
           setGithub(user.userSocialLinks[2]);
+          setLoading(false);
         }
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false);
       });
   }, [userData.userName]);
 
@@ -148,104 +151,169 @@ function Editprofile() {
       {/* <Header /> */}
       <Navbar />
       <div className="EditProfile">
-        <form onSubmit={handleSubmit}>
-          <div className="formGroup">
-            <label htmlFor="Image">Profile</label>
-            <input
-              type="file"
-              id="Image"
-              placeholder="UserName"
-              onChange={handleProfileImage}
-            ></input>
-          </div>
-          <div className="formGroup">
-            <label htmlFor="userName">Username</label>
-            <input
-              type="text"
-              id="userName"
-              placeholder="User Name"
-              value={newUserName}
-              onChange={(e) => setNewuserName(e.target.value)}
+        {loading ? (
+          <div
+            className="loaderContainer"
+            style={{
+              display: "flex",
+              width: "100%",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <ReactLoading
+              type={"spin"}
+              color={"#45aaff"}
+              height={50}
+              width={50}
             />
+            <div style={{ marginTop: "10px" }}>
+              Please wait, {loadingMessage}...
+            </div>
           </div>
-          <div className="formGroup">
-            <label htmlFor="fullName">Fullname</label>
-            <input
-              type="text"
-              id="fullName"
-              placeholder="Full Name"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="userBio">Bio</label>
-            <textarea
-              id="userBio"
-              placeholder="write about yourself"
-              value={userBio}
-              onChange={(e) => setUserBio(e.target.value)}
-            ></textarea>
-          </div>
-          <div className="formGroup">
-            <label htmlFor="countryName">Country</label>
-            <Select
-              options={options}
-              value={country}
-              onChange={changeHandler}
-              id="countryName"
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="linkedin">
-              <FontAwesomeIcon icon={faLinkedin} className="fa-2x icon-hover" />
-            </label>
-            <input
-              type="text"
-              id="linkedin"
-              placeholder="linkedin url"
-              value={linkedin}
-              onChange={(e) => setLinkedin(e.target.value)}
-              autoComplete="off"
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="Instagram">
-              <FontAwesomeIcon
-                icon={faInstagram}
-                className="fa-2x icon-hover"
-              />
-            </label>
-            <input
-              type="text"
-              id="Instagram"
-              placeholder="instagram url"
-              value={instagram}
-              onChange={(e) => setInstagram(e.target.value)}
-              autoComplete="off"
-            />
-          </div>
-          <div className="formGroup">
-            <label htmlFor="Github">
-              <FontAwesomeIcon icon={faGithub} className="fa-2x icon-hover" />
-            </label>
-            <input
-              type="text"
-              id="Github"
-              placeholder="github url"
-              value={github}
-              onChange={(e) => setGithub(e.target.value)}
-              autoComplete="off"
-            />
-          </div>
+        ) : (
+          <>
+            <h1 className="formNameHeading">Edit Profile</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="formGroup">
+                <label htmlFor="userName">Username</label>
+                <input
+                  type="text"
+                  id="userName"
+                  placeholder="User Name"
+                  value={newUserName}
+                  onChange={(e) => setNewuserName(e.target.value)}
+                  autoComplete="on"
+                />
+              </div>
+              <div className="formGroup">
+                <label htmlFor="fullName">Fullname</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  placeholder="Full Name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </div>
+              <div className="formGroup">
+                <label htmlFor="userBio">Your Bio</label>
+                <textarea
+                  id="userBio"
+                  placeholder="write about yourself"
+                  value={userBio}
+                  onChange={(e) => setUserBio(e.target.value)}
+                  rows={5}
+                ></textarea>
+              </div>
+              <div className="formGroup">
+                <label htmlFor="react-select-2-input">Country</label>
+                <Select
+                  options={options}
+                  value={country}
+                  onChange={changeHandler}
+                  id="countryName"
+                />
+              </div>
 
-          <div className="formGroup">
-            <label htmlFor=""></label>
-            <button type="submit" id="submit">
-              Update
-            </button>
-          </div>
-        </form>
+              <div className="formGroup" id="SocialMediaContainer">
+                <div className="socialMediaIcons">
+                  {/* Linked Label */}
+                  <label
+                    htmlFor="socialMedialProfileInput"
+                    className="iconLabel"
+                    onClick={() => {
+                      setSelectedSocialMedia("linkedin");
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faLinkedin}
+                      className="fa-2x icon-hover"
+                      style={
+                        selectedSocialMedia === "linkedin" && {
+                          color: "#474747",
+                        }
+                      }
+                    />
+                  </label>
+
+                  {/* Instagram Label */}
+                  <label
+                    htmlFor="socialMedialProfileInput"
+                    className="iconLabel"
+                    onClick={() => {
+                      setSelectedSocialMedia("instagram");
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faInstagram}
+                      className="fa-2x icon-hover"
+                      style={
+                        selectedSocialMedia === "instagram" && {
+                          color: "#474747",
+                        }
+                      }
+                    />
+                  </label>
+
+                  {/* Github Label */}
+                  <label
+                    htmlFor="socialMedialProfileInput"
+                    className="iconLabel"
+                    onClick={() => {
+                      setSelectedSocialMedia("github");
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faGithub}
+                      className="fa-2x icon-hover"
+                      style={
+                        selectedSocialMedia === "github" && {
+                          color: "#474747",
+                        }
+                      }
+                    />
+                  </label>
+                </div>
+
+                <input
+                  type="text"
+                  id={"socialMedialProfileInput"}
+                  placeholder={`add ${selectedSocialMedia} profile`}
+                  value={
+                    selectedSocialMedia === "linkedin"
+                      ? linkedin === null
+                        ? ""
+                        : linkedin
+                      : selectedSocialMedia === "instagram"
+                      ? instagram === null
+                        ? ""
+                        : instagram
+                      : selectedSocialMedia === "github"
+                      ? github === null
+                        ? ""
+                        : github
+                      : ""
+                  }
+                  onChange={(e) => {
+                    selectedSocialMedia === "linkedin"
+                      ? setLinkedin(e.target.value)
+                      : selectedSocialMedia === "instagram"
+                      ? setInstagram(e.target.value)
+                      : setGithub(e.target.value);
+                  }}
+                  autoComplete="off"
+                />
+              </div>
+              <div className="formGroup">
+                <label htmlFor="submit"></label>
+                <button type="submit" id="submit">
+                  Update
+                </button>
+              </div>
+            </form>
+          </>
+        )}
       </div>
     </>
   );
