@@ -77,15 +77,14 @@ function Editprofile() {
     setLoading(true);
     setLoadingMessage("Updating Your Profile");
     if (allLinkAreValid()) {
-      console.log(newUserName);
       if (regex.test(newUserName)) {
         let response = await Axios.get(`${BASE_URL}/user/userInfo`, {
           params: {
             userName: newUserName,
           },
         });
-        console.log(response.data.length);
-        if (response.data.length === 0) {
+
+        if (response.data.length === 0 || userData.userName === newUserName) {
           Axios.put(`${BASE_URL}/profile/updateProfile`, {
             userName: userData.userName,
             newUserName: newUserName,
@@ -97,14 +96,13 @@ function Editprofile() {
             userGithub: github,
           })
             .then((response) => {
-              console.log(response);
               // update the username and ufullname from localstorage
               let userInfo = JSON.parse(localStorage.getItem("userInfo"));
               userInfo.userName = newUserName;
               userInfo.fullName = fullName;
               localStorage.setItem("userInfo", JSON.stringify(userInfo));
               setLoading(false);
-              navigate("/");
+              navigate("/profile/" + newUserName);
             })
             .catch((err) => {
               console.log(err);
@@ -112,16 +110,11 @@ function Editprofile() {
             });
         } else {
           alert("This username is already exist");
+          setLoading(false);
         }
-      } else {
-        alert(
-          "Invalid Username\nUsername must contain only alphabets and digits."
-        );
       }
     } else {
-      alert(
-        "Invalid Username\nUsername must contain only alphabet and digits."
-      );
+      setLoading(false);
     }
   }
 
