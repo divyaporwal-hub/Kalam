@@ -34,7 +34,6 @@ router.put("/updateProfile", async (req, res) => {
       userResult[0].userName = newUserName;
       userResult[0].fullName = fullName;
       await userResult[0].save();
-
       res.send("user updated");
     } else {
       const updatedProfile = new ProfileModel({
