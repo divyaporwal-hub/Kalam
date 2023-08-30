@@ -26,7 +26,6 @@ const Home = () => {
   return (
     <div className="Home">
       {/* Header will contain userprofile icons and name of the website */}
-      {/* <Header /> */}
       {/* main will contain entire page information */}
       <div className="main">
         {/* Left seciton will contain the Navbar */}
@@ -57,7 +56,7 @@ const Home = () => {
           <div className="showHideSearch">
             {showSearch || width >= 481 ? (
               <div className="tagContainer">
-                <HomeSearch />
+                {/* <HomeSearch /> */}
                 <Tags recBlogs={recBlogs} />
                 {width < 481 && (
                   <div className="searchCloseIcon" onClick={handleSearchOpen}>
