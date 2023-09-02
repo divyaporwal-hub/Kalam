@@ -15,6 +15,10 @@
   font-family: "Inter", sans-serif;
 }
 
+body {
+  background-color: #f7f7f7;
+}
+
 button {
   color: white;
   background-color: #191970;

@@ -16,7 +16,7 @@ const Blog = ({
 }) => {
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
-  // console.log("PRS: ", parse(blogPreview.slice(0, 100)));
+  const [unplashImage, setUnplashImage] = useState("");
 
   let blogContentPreview = "";
   blogContentPreview = convert(blogPreview);
@@ -40,6 +40,17 @@ const Blog = ({
     }
   }, []);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     const imageResponse = await axios.get(
+  //       "https://api.unsplash.com/search/photos?query=blog&client_id=UZPaZPnCoD0WJMmh6R-qnK3InJ2phfCnLSMaxxN9jlk&per_page=20"
+  //     );
+  //     setUnplashImage(
+  //       imageResponse.data.results[Math.floor(Math.random() * 20)].urls.full
+  //     );
+  //   })();
+  // }, [unplashImage]);
+
   return (
     <div className="Blog">
       <div className="blogDetails">
@@ -62,7 +73,7 @@ const Blog = ({
             {blogTags.map((tag, index) => {
               return (
                 <div className="blogTag" key={index}>
-                  {tag}
+                  #{tag}
                 </div>
               );
             })}
@@ -79,15 +90,16 @@ const Blog = ({
           Read More
         </Link>
       </div>
-      <NavLink to={`/bloginfo/${blogId}`} className={"imageLink"}>
+      {/* <NavLink to={`/bloginfo/${blogId}`} className={"imageLink"}>
         <div className="blogImage">
           <div className="headingContainer">
             {heading[0].length > 30
               ? heading[0].slice(0, 30) + "..."
               : heading[0]}
           </div>
+          <img src={unplashImage && unplashImage} alt="" />
         </div>
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 };
