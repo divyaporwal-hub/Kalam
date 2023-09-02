@@ -87,7 +87,7 @@ const Profile = () => {
   }, [userName]);
   return (
     <>
-      <Navbar active={"profile"} />
+      {/* <Navbar active={"profile"} /> */}
       <div className="Profile">
         <section className="userSection">
           {loading ? (

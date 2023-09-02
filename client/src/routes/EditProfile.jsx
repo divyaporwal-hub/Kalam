@@ -146,7 +146,7 @@ function Editprofile() {
   return (
     <>
       {/* <Header /> */}
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="EditProfile">
         {loading ? (
           <div
