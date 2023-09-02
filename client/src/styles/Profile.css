@@ -1,5 +1,5 @@
 .Profile {
-  width: 80%;
+  width: 90%;
   margin: auto;
   margin-top: 70px;
   display: flex;
@@ -8,8 +8,7 @@
 }
 
 .Profile .userSection {
-  /* background-color: rgb(162, 196, 196); */
-  width: 80%;
+  width: 100%;
   padding: 30px;
   display: flex;
   align-items: center;
@@ -41,4 +40,14 @@
   height: 1px;
   width: 100%;
   background-color: #dddddd;
+}
+
+@media screen and (min-width: 481px) {
+  .Profile {
+    width: 80%;
+  }
+
+  .Profile .userSection {
+    width: 80%;
+  }
 }
