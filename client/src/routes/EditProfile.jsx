@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
 import Select from "react-select";
-import countryList from "react-select-country-list";
 import { BASE_URL } from "../helper/ref.js";
 import Axios from "axios";
 import Header from "../components/Header";
@@ -8,6 +7,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import isUrl from "is-url";
 import ReactLoading from "react-loading";
+import countryOptions from "../helper/countryOptions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -34,7 +34,11 @@ function Editprofile() {
   const [loading, setLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Getting Your Profile");
 
-  const options = useMemo(() => countryList().getData(), []);
+
+  const options = useMemo(() => countryOptions,[]);
+  
+
+  // Now, options contains an array of all country names.
 
   const changeHandler = (country) => {
     setCountry(country);
