@@ -48,8 +48,8 @@ const Header = () => {
   }, [width]);
 
   useEffect(() => {
+    console.log(localData);
     async function getGitHub() {
-      console.log(localData.userName);
       let profileResult = await axios.get(`${BASE_URL}/profile/getProfile`, {
         params: {
           userName: localData.userName,
@@ -109,7 +109,6 @@ const Header = () => {
               )}
             </div>
           )}
-          {/* </form> */}
         </div>
         <div className="rightSection">
           <div className="searchIcon">

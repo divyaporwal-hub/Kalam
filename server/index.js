@@ -4,8 +4,6 @@ const mongoose = require("mongoose");
 require("./db/config.js");
 const cors = require("cors");
 
-
-// mongoose.set('strictQuery',false);
 const app = express();
 app.use(express.json());
 app.use(cors());
