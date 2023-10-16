@@ -20,19 +20,33 @@ const Header = () => {
   function handleSearch(e) {
     e.preventDefault();
     setSearchText(e.target.value);
-    axios
-      .get(`${BASE_URL}/blog/getsearchblogs`, {
-        params: {
-          searchTitle: e.target.value,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setAllBlogs(response.data.reverse());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (searchText.trim().indexOf("#") === 0) {
+      axios
+        .get(`${BASE_URL}/blog/getsearchtagsblog`, {
+          params: {
+            searchTags: e.target.value.trim().slice(1),
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios
+        .get(`${BASE_URL}/blog/getsearchblogs`, {
+          params: {
+            searchTitle: e.target.value,
+          },
+        })
+        .then((response) => {
+          setAllBlogs(response.data.reverse());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   function openBlog() {
@@ -48,8 +62,8 @@ const Header = () => {
   }, [width]);
 
   useEffect(() => {
+    console.log(localData);
     async function getGitHub() {
-      console.log(localData.userName);
       let profileResult = await axios.get(`${BASE_URL}/profile/getProfile`, {
         params: {
           userName: localData.userName,
@@ -83,13 +97,20 @@ const Header = () => {
               name=""
               id=""
               value={searchText}
-              placeholder="Search..."
+              placeholder="Search blogs or tags using #"
               onChange={handleSearch}
             />
           </div>
 
           {searchText && (
-            <div className="allSearchResults">
+            <div
+              className="allSearchResults"
+              style={
+                allBlogs && allBlogs.length > 0
+                  ? { visibility: "visible" }
+                  : { visibility: "hidden" }
+              }
+            >
               {searchText && (
                 <div className="searchResultContainer">
                   {allBlogs &&
@@ -109,7 +130,6 @@ const Header = () => {
               )}
             </div>
           )}
-          {/* </form> */}
         </div>
         <div className="rightSection">
           <div className="searchIcon">

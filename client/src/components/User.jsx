@@ -60,14 +60,20 @@ const User = (props) => {
           )}
         </div>
       )}
-      <NavLink
-        to={`/profile/edit/${props.userName}`}
-        className="editButtonLink"
-      >
-        {localData && localData.userName === props.userName && (
-          <button>edit</button>
-        )}
-      </NavLink>
+      {localData && localData.userName === props.userName && (
+        <div className="UserBottomButtonContainer">
+          <NavLink to={`/logout`} className="logoutButtonLink">
+            <button>Logout</button>
+          </NavLink>
+          |
+          <NavLink
+            to={`/profile/edit/${props.userName}`}
+            className="editButtonLink"
+          >
+            <button>Edit</button>
+          </NavLink>
+        </div>
+      )}
     </div>
   );
 };
